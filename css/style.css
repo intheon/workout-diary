@@ -1,0 +1,197 @@
+html    {
+    margin:0px;
+    padding:0px;
+}
+body{
+        font-family:arial;
+        margin:0px;
+        padding:0px;
+    }
+
+input[type="radio"] {
+  display:none;
+} 
+#modules_bar
+{
+    position:relative;
+    height:auto;
+    padding:1%;
+    width:auto;
+    margin-left:28%;
+    overflow:hidden;
+    color:white;
+}
+
+#modules_bar div
+{
+    float:left;
+    padding:10px;
+    border-radius:10px;
+    width:16%;
+    margin:2%;
+    margin-right:7%;
+    min-height: 82px;
+}
+.jumbo
+{
+    font-size: 2em;
+}
+.modules_footer
+{
+    float:left;
+    background-color: white;
+    margin:0;
+    padding:0;
+    width:100%;
+    position:absolute;
+    color:black;
+    font-size:0.9em;
+    margin-top:-10px
+}
+#exercises_illustration
+{
+    background-color:#428BCA;
+}
+#calories_illustration
+{
+    background-color:#5CB85C;
+}
+#pictures_illustration
+{
+    background-color:#F0AD4E;
+}
+
+
+
+#menu_panel
+{
+    padding-top:2%;
+    position:absolute;
+    float:left;
+    height:100%;
+    background-color:#E9E0D7;
+    width:17%;
+}
+#menu_panel div
+{
+    border-bottom: 1px solid;
+    border-color: #DFD3C7;
+    float:left;
+    padding:5%;
+    padding-left:8%;
+    width:87%;
+}
+
+
+#table
+{
+    position: absolute;
+    float:left;
+}
+
+/* */
+
+input[type="radio"] + label {
+    color:#000;
+    font-family:Georgia, sans-serif;
+    font-size:2em;
+}
+
+
+input[type="radio"] + label span  {
+    display:inline-block;
+    width:49px;
+    height:50px;
+    margin:0px 0px 0px 0px;
+    vertical-align:middle;
+    background:url(../img/checks.png) 0 top no-repeat;
+    cursor:pointer;
+}
+
+input[type="radio"]:checked + label span {
+    background:url(../img/checks.png) -48px top no-repeat;
+}
+
+input[type="button"]{
+    padding:0.6%;
+    background:#fff;
+    border-radius: 5px;
+    border: 2px solid;
+    border-color:#DBC0A5;
+    font-family:Georgia, sans-serif;
+    font-size:1.05em;
+}
+input[type="button"]:hover{
+    background:#E7DACC;
+}
+
+
+a {
+    color:#DBC89A;
+    text-decoration: none;
+}
+a:hover {
+    color:#B78612;
+}
+
+#toolbar{
+    background:url(../img/hdbg.png);
+    background-repeat: no-repeat;
+    width:100%;
+    height:3em;
+    background-color:#D9A067;
+    border-bottom: 3px solid;
+    border-color:#B17C47;
+    padding:1.5%;    
+    font-size:1.05em;
+    text-shadow: 5px 5px #C19054;
+    color:#5C4E40;
+
+}
+#menu
+{
+    margin:10px;
+    float:right;
+}
+#date
+{
+float:left;
+line-height: 23px;
+}
+#week
+{
+float:left;
+line-height: 23px;
+}
+#interact
+{
+margin:4%;
+float:left;
+position:relative;
+}
+#sidePane
+{
+    float:right;
+    padding:4% 4% 4%;
+    margin-top:4%;
+    margin-right:4%;
+    border-radius:13px;
+    background-color:#F6F3E1;
+    background: url(http://localhost/workout-diary/img/bg.png);
+    border-radius:2px solid;
+    border-color:#F7F6EC;
+}
+#sidePane div:nth-child(odd){
+    font-weight:bold;
+}
+#sidePane div:nth-child(even){
+    margin-bottom:11px;
+}
+.small
+{
+    margin-top:-4px;
+    margin-left:4px;
+    font-size:0.6em;
+
+    color:#7395AF;
+}
