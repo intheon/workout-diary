@@ -84,7 +84,6 @@ a:hover {
     display:inline-block;
     width:100%;
 }
-
 .tab_panel ul
 {
     list-style: none;
@@ -105,48 +104,72 @@ a:hover {
     background-color:#DBE5E9;
 
 }
-
 .tab_panel a
 {
     color:black;
 }
-
 .active li
 {
     background-color:#F0F2F3;
 }
+#tab_content
+{
+    margin-top:9%;
+    margin-left:1em;
+    margin-right:1em;
+    margin-bottom:1em;
+    padding:1%;
+    border: 1px solid;
+    border-color: #DFDFDF;
+    border-radius:6px;
+}
 
-input[type="radio"] + label {
+.localstorage_panel
+{
+    margin-top:3%;
+    border: 1px solid;
+    border-color: #D0E3C7;
+    border-radius:6px;
+}
+.localstorage_panel h1
+{
+    background-color:#DFF0D8;
+    padding:0%;
+    margin:0%;
+    font-size:1.35em;
+    padding:0.5em;
+    color:#92B780;
+}
+.localstorage_panel p
+{
+    padding:0%;
+    margin:0%;
+    font-size:1.05em;
+    padding:0.7em;
+}
+
+input[type="radio"] + label 
+{
     color:#000;
-    font-family:Georgia, sans-serif;
     font-size:2em;
 }
 
-input[type="radio"] + label span  {
-    display:inline-block;
-    width:49px;
-    height:50px;
-    margin:0px 0px 0px 0px;
-    vertical-align:middle;
-    background:url(../img/checks.png) 0 top no-repeat;
-    cursor:pointer;
-}
 
-input[type="radio"]:checked + label span {
-    background:url(../img/checks.png) -48px top no-repeat;
-}
-
-input[type="button"]{
-    padding:0.6%;
+input[type="button"]
+{
+    padding:0.7%;
     background:#fff;
-    border-radius: 5px;
-    border: 2px solid;
-    border-color:#DBC0A5;
-    font-family:Georgia, sans-serif;
-    font-size:1.05em;
+    border: 1px solid;
+    border-color:#F0F2F3;
+    font-size:1em;
 }
-input[type="button"]:hover{
-    background:#E7DACC;
+input[type="button"]:hover
+{
+    background:#F0F2F3;
+}
+select
+{
+    padding:1%;
 }
 
 
@@ -163,32 +186,4 @@ input[type="button"]:hover{
     font-size:1.05em;
     text-shadow: 5px 5px #C19054;
     color:#5C4E40;
-}
-
-#sidePane
-{
-    float:right;
-    padding:4% 4% 4%;
-    margin-top:4%;
-    margin-right:4%;
-    border-radius:13px;
-    background-color:#F6F3E1;
-    background: url(http://localhost/workout-diary/img/bg.png);
-    border-radius:2px solid;
-    border-color:#F7F6EC;
-}
-#sidePane div:nth-child(odd)
-{
-    font-weight:bold;
-}
-#sidePane div:nth-child(even)
-{
-    margin-bottom:11px;
-}
-.small
-{
-    margin-top:-4px;
-    margin-left:4px;
-    font-size:0.6em;
-    color:#7395AF;
 }

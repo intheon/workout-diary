@@ -44,94 +44,100 @@
 
         <!-- TAB CONTENT -->
 
-            <div id="ct_tab_content">
-                <form name="crossTrainerTimeForm" id="crossTrainerTimeForm">
-                    <select name="crossTrainerTime" id="crossTrainerTime">
-                        <option value="5" name="ct5minutes">5 Minutes</option>
-                        <option value="10" name="ct10minutes">10 Minutes</option>
-                        <option value="15" name="ct15minutes">15 Minutes</option>
-                        <option value="20" name="ct20minutes">20 Minutes</option>
-                        <option value="25" name="ct25minutes">25 Minutes</option>
-                    </select>
-                    <input type="button" id="crossTrainerTimeConfirm" value="OK">
-                </form>
+            <div id="tab_content">
+
+                <div id="ct_tab_content">
+                    <form name="crossTrainerTimeForm" id="crossTrainerTimeForm">
+                        <select name="crossTrainerTime" id="crossTrainerTime">
+                            <option value="5" name="ct5minutes">5 Minutes</option>
+                            <option value="10" name="ct10minutes">10 Minutes</option>
+                            <option value="15" name="ct15minutes">15 Minutes</option>
+                            <option value="20" name="ct20minutes">20 Minutes</option>
+                            <option value="25" name="ct25minutes">25 Minutes</option>
+                        </select>
+                        <input type="button" id="crossTrainerTimeConfirm" value="OK">
+                    </form>
+                </div>
+
+                <div id="pu_tab_content">
+                    <form name="pushUpTimeForm">
+                        <select name="pushUpTime" id="pushUpTime">
+                            <option name="5up" value="5">5 Push Ups</option>
+                            <option name="10up" value="10">10 Push Ups</option>
+                            <option name="15up" value="15">15 Push Ups</option>
+                            <option name="20up" value="20">20 Push Ups</option>
+                            <option name="25up" value="25">25 Push Ups</option>
+                        </select>
+                        <input type="button" id="pushUpTimeConfirm" value="OK">
+                    </form>
+                </div>
+
+                <div id="su_tab_content" style="display:none;">
+                    <form name="sitUpTimeForm">
+                        <select name="sitUpTime" id="sitUpTime">
+                            <option name="5sup" value="5">5 Sit Ups</option>
+                            <option name="10sup" value="10">10 Sit Ups</option>
+                            <option name="15sup" value="15">15 Sit Ups</option>
+                            <option name="20sup" value="20">20 Sit Ups</option>
+                            <option name="25sup" value="25">25 Sit Ups</option>
+                        </select>
+                        <input type="button" id="sitUpTimeConfirm" value="OK">
+                    </form>
+                </div>
+
+                <div id="tm_tab_content">
+                    <form name="treadmillTimeForm">
+                        <select name="treadmillTime" id="treadmillTime">
+                            <option name="5tminutes" value="5">5 Minutes</option>
+                            <option name="10tminutes" value="10">10 Minutes</option>
+                            <option name="15tminutes" value="15">15 Minutes</option>
+                            <option name="20tminutes" value="20">20 Minutes</option>
+                            <option name="25tminutes" value="25">25 Minutes</option>
+                        </select>
+                        <input type="button" id="treadmillTimeConfirm" value="OK">
+                    </form>
+                </div>
+
+                <div id="ro_tab_content">
+                    <form name="rowingTimeForm">
+                        <select name="rowingTime" id="rowingTime">
+                            <option name="5rminutes" value="5">5 Minutes</option>
+                            <option name="10rminutes" value="10">10 Minutes</option>
+                            <option name="15rminutes" value="15">15 Minutes</option>
+                            <option name="20rminutes" value="20">20 Minutes</option>
+                            <option name="25rminutes" value="25">25 Minutes</option>
+                        </select>
+                        <input type="button" id="rowingTimeConfirm" value="OK">
+                    </form>
+                </div>
+
+                <div id="st_tab_content">
+                    <form name="stepperTimeForm">
+                        <select name="stepperTime" id="stepperTime">
+                            <option name="srminutes" value="5">5 Minutes</option>
+                            <option name="10sminutes" value="10">10 Minutes</option>
+                            <option name="15sminutes" value="15">15 Minutes</option>
+                            <option name="20sminutes" value="20">20 Minutes</option>
+                            <option name="25sminutes" value="25">25 Minutes</option>
+                        </select>
+                        <input type="button" id="stepperTimeConfirm" value="OK">
+                    </form>
+                </div>
+
+            </div> <!-- END TAB CONTENT WRAPPER -->
+
+        </div> <!-- END TAB PANEL -->
+
+    <div class="localstorage_panel">
+        <h1>Saved</h1>
+        <p>No items available for submission</p>
+            <div class="localstorage_table">
             </div>
-
-            <div id="pu_tab_content">
-                <form name="pushUpTimeForm">
-                    <select name="pushUpTime" id="pushUpTime">
-                        <option name="5up" value="5">5 Push Ups</option>
-                        <option name="10up" value="10">10 Push Ups</option>
-                        <option name="15up" value="15">15 Push Ups</option>
-                        <option name="20up" value="20">20 Push Ups</option>
-                        <option name="25up" value="25">25 Push Ups</option>
-                    </select>
-                    <input type="button" id="pushUpTimeConfirm" value="OK" onClick="submitToPHP(pushUpTime.name,pushUpTime.value);">
-                </form>
-            </div>
-
-            <div id="su_tab_content" style="display:none;">
-            <form name="sitUpTimeForm">
-                <select name="sitUpTime" id="sitUpTime">
-                    <option name="5sup" value="5">5 Sit Ups</option>
-                    <option name="10sup" value="10">10 Sit Ups</option>
-                    <option name="15sup" value="15">15 Sit Ups</option>
-                    <option name="20sup" value="20">20 Sit Ups</option>
-                    <option name="25sup" value="25">25 Sit Ups</option>
-                </select>
-                <input type="button" id="sitUpTimeConfirm" value="OK" onClick="submitToPHP(sitUpTime.name,sitUpTime.value);">
-            </form>
-        </div>
-
-        <div id="tm_tab_content">
-            <form name="treadmillTimeForm">
-                <select name="treadmillTime" id="treadmillTime">
-                    <option name="5tminutes" value="5">5 Minutes</option>
-                    <option name="10tminutes" value="10">10 Minutes</option>
-                    <option name="15tminutes" value="15">15 Minutes</option>
-                    <option name="20tminutes" value="20">20 Minutes</option>
-                    <option name="25tminutes" value="25">25 Minutes</option>
-                </select>
-                <input type="button" id="treadmillTimeConfirm" value="OK" onClick="submitToPHP(treadmillTime.name,treadmillTime.value);">
-            </form>
-        </div>
-
-        <div id="ro_tab_content">
-            <form name="rowingTimeForm">
-                <select name="rowingTime" id="rowingTime">
-                    <option name="5rminutes" value="5">5 Minutes</option>
-                    <option name="10rminutes" value="10">10 Minutes</option>
-                    <option name="15rminutes" value="15">15 Minutes</option>
-                    <option name="20rminutes" value="20">20 Minutes</option>
-                    <option name="25rminutes" value="25">25 Minutes</option>
-                </select>
-                <input type="button" id="rowingTimeConfirm" value="OK" onClick="submitToPHP(rowingTime.name,rowingTime.value);">
-            </form>
-        </div>
-
-        <div id="st_tab_content">
-            <form name="stepperTimeForm">
-                <select name="stepperTime" id="stepperTime">
-                    <option name="srminutes" value="5">5 Minutes</option>
-                    <option name="10sminutes" value="10">10 Minutes</option>
-                    <option name="15sminutes" value="15">15 Minutes</option>
-                    <option name="20sminutes" value="20">20 Minutes</option>
-                    <option name="25sminutes" value="25">25 Minutes</option>
-                </select>
-                <input type="button" id="stepperTimeConfirm" value="OK" onClick="submitToPHP(stepperTime.name,stepperTime.value);">
-            </form>
-        </div>
-
-        </div>
+    </div>
 
     </div> <!-- END INTERACTION PANEL -->
 
-    <div id="sidePane">
-        <h3>Ready to send to database</h3>
-        <div id="date">Todays Date: </div><br />
-        <div id="week">Week: <span id="weekNumber"></span>
-        <span><a onClick="resetWeek()" href="#">&nbsp;reset?</a></span>
-    </div>
+
 
 </div> <!-- END MAIN -->
 
