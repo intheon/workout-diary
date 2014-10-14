@@ -130,9 +130,8 @@
 
     <div class="localstorage_panel">
         <h1>Saved</h1>
-        <p>No items available for submission</p>
-            <div class="localstorage_table">
-            </div>
+        <p class="localstorage_table">
+        </p>
     </div>
 
     </div> <!-- END INTERACTION PANEL -->

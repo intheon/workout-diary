@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
 getFromLS();
+listenForDelete();
 
   $('ul.tabs').each(function(){
     // For each set of tabs, we want to keep track of
@@ -41,17 +42,17 @@ getFromLS();
 });
 
 $("#crossTrainerTimeConfirm").click(function(){
-    var name = "Cross Trainer";
+    var name = "Cross_Trainer";
     var store = $("#crossTrainerTime").val();
     addToLS(name,store);
 });
 $("#pushUpTimeConfirm").click(function(){
-    var name = "Push Ups";
+    var name = "Push_Ups";
     var store = $("#pushUpTime").val();
     addToLS(name,store);
-})
+});
 $("#sitUpTimeConfirm").click(function(){
-    var name = "Sit Ups";
+    var name = "Sit_Ups";
     var store = $("#sitUpTime").val();
     addToLS(name,store);
 });
@@ -74,35 +75,36 @@ $("#stepperTimeConfirm").click(function(){
 function addToLS(name,store)
 {
     localStorage.setItem(name,store);
+    drawShit(name,store);
+    listenForDelete();
 }
+
+function drawShit(name,store)
+{
+    $(".localstorage_table").append("\
+        <div class='item_content'>"+
+            "<img src='http://localhost/workout-diary/img/delete.png' width='10%' class='cancel'>"+
+            "<p>Excercise: "+ name +"</p>"+
+            "<p>Time Spent: "+ store + "</p>"+
+        "</div>");
+}
+
 function getFromLS()
 {
-    if (localStorage == null)
-        {
-            $('.localstorage_table').html("Local Storage is currently empty");
-        }
     for (key in localStorage)
-        {
-            $('.localstorage_table').append(
-                "<span id='divFor"+key+"' class='delete'>"
-                    +
-                "<div id=outputKey"+key+">" 
-                    + 
-                key 
-                    + 
-                "<span class='small'>X</span>"
-                    +
-                "</div>" 
-                    + 
-                "<div id=outputValue"+key+">"
-                    +
-                localStorage.getItem(key) 
-                    + 
-                "</div>"
-                    +
-                "</span>"
-            );
-        }
+    {
+        drawShit(key,localStorage.getItem(key));
+    }
 }
+
+function listenForDelete()
+{
+    $(".cancel").click(function(event){
+        event.toElement.parentNode.remove();
+        console.log(event.toElement.parentElement.innerText);
+    });
+}
+
+
 
 

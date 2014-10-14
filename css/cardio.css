@@ -123,6 +123,22 @@ a:hover {
     border-color: #DFDFDF;
     border-radius:6px;
 }
+.item_content
+{
+    margin-left:1em;
+    margin-right:1em;
+    margin-bottom:1em;
+    padding:1%;
+    border: 1px solid;
+    border-color: #DFDFDF;
+    border-radius:6px;
+}
+.cancel
+{
+    float:right;
+    margin-top: 2%;
+    margin-right: 2%;
+}
 
 .localstorage_panel
 {
