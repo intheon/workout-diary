@@ -163,6 +163,26 @@ a:hover {
     font-size:1.05em;
     padding:0.7em;
 }
+.submission_panel
+{
+    margin-top:3%;
+    border: 1px solid;
+    border-color: #D8E7D2;
+    border-radius:6px;
+}
+.submission_panel input[type="button"]
+{
+    width:100%;
+    border-radius:6px;
+    color:black;
+}
+
+.submission_panel input[type="button"]:hover
+{
+    background-color:#F5FFEF;
+}
+
+
 
 input[type="radio"] + label 
 {
