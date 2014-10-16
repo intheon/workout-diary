@@ -1,8 +1,8 @@
 $(document).ready(function(){
-
+checkIfCanSubmit();
 getFromLS();
 listenForDelete();
-checkIfCanSubmit();
+
   $('ul.tabs').each(function(){
     // For each set of tabs, we want to keep track of
     // which tab is active and it's associated content
@@ -38,8 +38,6 @@ checkIfCanSubmit();
       e.preventDefault();
     });
   });
-
-
 
 });
 
@@ -77,8 +75,15 @@ $("#stepperTimeConfirm").click(function(){
 function addToLS(name,store)
 {
     localStorage.setItem(name,store);
+      if (localStorage.length !== 0)
+      {
+        $(".submission_panel").show();
+      }
+      else if (localStorage.length === 0)
+      {
+        $(".submission_panel").hide();
+      }
     drawShit(name,store);
-    checkIfCanSubmit();
     listenForDelete();
 }
 
@@ -90,7 +95,7 @@ function drawShit(name,store)
           "<p>Excercise: <span class='key'>"+ name +"</span></p>"+
           "<p>Quantity: "+ store + "</p>"+
       "</div>");
-
+  checkIfCanSubmit();
 }
 
 
@@ -110,21 +115,58 @@ function listenForDelete()
         event.currentTarget.parentNode.remove();
         var toRemove = event.currentTarget.parentElement.children[1].children[0].innerHTML
         localStorage.removeItem(toRemove);
+        checkIfCanSubmit();
     });
 }
 
 function checkIfCanSubmit()
 {
-  if (localStorage.length === 0)
+
+  if (localStorage.length !== 0)
+  {
+    $(".submission_panel").html("<input type='button' value='Submit to database' id='submitCardioButton' />");
+    bindAndAttach();
+  }
+    else if (localStorage.length === 0)
   {
     $(".submission_panel").hide();
   }
 
-  else if (localStorage.length !== 0)
-  {
-    $(".submission_panel").html("<input type='button' value='submit' disabled='false'>")
-  }
 }
+
+function bindAndAttach()
+{
+  var postData = {};
+
+  $("#submitCardioButton").click(function(){
+  for (key in localStorage)
+  {
+      postData[key] = localStorage.getItem(key);
+  }
+
+  var formedJSON = JSON.stringify(postData);
+
+  sendToDB(formedJSON);
+
+  });
+
+}
+
+function sendToDB(json_feed)
+{
+  $.ajax({
+    type: "POST",
+    url: "http://localhost/workout-diary/php/module_push_cardio.php",
+    data: "payload="+json_feed,
+    success: function(result)
+    {
+      console.log(result);
+    }
+  });
+}
+
+
+
 
 
 
