@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
 <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/global_framework.css" rel="stylesheet" type="text/css">
+    <link href="css/index_page.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <!-- TOP TOOLBAR -->
 <div id="toolbar">
-    <div id="greetings">Welcome Home!</div>
-
+    <div id="greeting">WorkoutDiary v.01</div>
+    <div id="dropdown_menu">
+        <div id="menu_items_location">
+            <div id="settings_menu_item">My Account</div>
+            <div id="logout_menu_item">Log Out</div>
+        </div>
+    </div>
 </div>
 
 <div id="menu_panel">
@@ -218,6 +224,6 @@
 </div>
 
 <script src="js/jquery.js"></script>
-<script src="js/engine.js"></script>
+<script src="js/global_engine.js"></script>
 </body>
 </html>
