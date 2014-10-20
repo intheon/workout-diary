@@ -1,9 +1,10 @@
 $(document).ready(function(){
-	$("#dropdown_menu div").hide()
 
-	$("#dropdown_menu").click(function(){
-		$("#dropdown_menu div").toggle()
-
+	$("#settings ul").click(function(event){
+		$("#settings ul ul").slideToggle();
+		$("#settings ul ul li").click(function(e){ 
+			e.stopPropagation()
+		});
 	});
 
 });

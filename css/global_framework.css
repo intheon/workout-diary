@@ -27,7 +27,6 @@ a:hover {
 #main
 {
     height:100%;
-    overflow:hidden;
 }
 
 
@@ -157,26 +156,39 @@ select
 	float:left;
 	padding:1em;
 }
-#dropdown_menu
+#settings
 {
-	width:15%;
-	height:100%;
-	float:right;
-	background: url(../img/settings.png);
-	background-size: 50%;
-	background-repeat: no-repeat;
-	background-position: right;
-}
-#dropdown_menu:hover
-{
-	opacity:0.5;
-}
-#menu_items_location
-{
-	float:right;
-	position:relative;
-	margin-top:33%;
-	margin-right:8%;
+    float:right;
+    margin-right:4%;
 }
 
+#settings ul
+{
+    list-style:none;
+}
 
+#settings ul img
+{
+    margin-top:-12%;
+    
+}
+
+#settings ul ul
+{
+    display:none;
+    background-color: #FFFFFF;
+    border: 1px solid;
+    border-color: #EDEDED;
+    border-radius: 15px;
+    position: absolute;
+    margin:0;
+    padding:0;
+    list-style-type: none;
+}
+#settings ul ul li
+{
+    padding-top:15%;
+    padding-bottom:15%;
+    padding-left:10%;
+    padding-right:10%;
+}

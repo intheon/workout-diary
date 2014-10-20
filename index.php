@@ -9,11 +9,18 @@
 <!-- TOP TOOLBAR -->
 <div id="toolbar">
     <div id="greeting">WorkoutDiary v.01</div>
-    <div id="dropdown_menu">
-        <div id="menu_items_location">
-            <div id="settings_menu_item">My Account</div>
-            <div id="logout_menu_item">Log Out</div>
-        </div>
+    <div id="settings">
+        <ul>
+            <li><img src="img/settings.png" width="50%"></li>
+            <ul>
+                <li><img src="img/settings.png" width="18%">
+                    <a href="myaccount.php">My Account</a>
+                </li>
+                <li><img src="img/settings.png" width="18%">
+                    <a href="#">Sign Out</a>
+                </li>
+            </ul>
+        </ul>
     </div>
 </div>
 
