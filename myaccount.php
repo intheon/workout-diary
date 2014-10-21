@@ -42,14 +42,23 @@
         <p>View your account here, and manage your information</p>
 
     <div class="table_panel">
-        <h2>Logged in as:</h2>
-        <p>Ben</p>
-        <h2>Current Weight:</h2>
-        <p>78kgs</p>
-        <h2>Current BMI:</h2>
-        <p>22.07</p>
-        <h2>Calories per day</h2>
-        <p>2307</p>
+    	<div class="column_title">Logged in as</div>
+    	<div class="column_content">Ben</div>
+    	<div class="column_title">Current Weight</div>
+    	<div class="column_content">78kgs</div>
+    	<div class="column_title">Height</div>
+    	<div class="column_content">5 ft 8</div>
+    	<div class="column_title">Gender</div>
+    	<div class="column_content">Male</div>
+    	<div class="column_title">Body Mass Index</div>
+    	<div class="column_content">22.96</div>
+    	<div class="column_title">Baseline Calories (BMR)</div>
+    	<div class="column_content">2108</div>
+    	<div class="column_title">Exercise Adjusted Calories</div>
+    	<div class="column_content">2508</div>
+    	<div class="column_title">Body Fat</div>
+    	<div class="column_content">22%</div>
+
     </div>
 
     </div>
