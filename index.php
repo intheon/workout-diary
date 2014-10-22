@@ -17,7 +17,7 @@
                     <a href="myaccount.php">My Account</a>
                 </li>
                 <li><img src="img/settings.png" width="18%">
-                    <a href="#">Sign Out</a>
+                    <a href="login.php">Sign Out</a>
                 </li>
             </ul>
         </ul>
