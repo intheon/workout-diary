@@ -1,20 +1,24 @@
-$(document).ready(function(){
+var user;
 
-var usersList;
+$(document).ready(function(){
+var value = localStorage.getItem("currentUser");
+	value = parseInt(value);
 
 	$.ajax({
-		type: "GET",
+		type: "POST",
 		url:  "http://localhost/workout-diary/php/module_pull_athlete.php",
+		data: "athletenum=" + value,
 		success: function(response)
 		{
-			usersList = response;
+			user = JSON.parse(response);
 		}
 	});
 
-	
+});
 
 
-	console.log(localStorage.getItem);
+$(document).ajaxSuccess(function(){
 
-
+	$("#currentUser").html(user[0].name);
+	$("#calories_illustration .jumbo").html(user[0].acn);
 });

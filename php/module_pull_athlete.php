@@ -7,7 +7,15 @@ $database = "wholegrain";
 
 $connect = mysqli_connect($host,$username,$password,$database);
 
-$data = mysqli_query($connect,"SELECT * FROM athlete");
+if (isset($_POST['athletenum']))
+{
+	$athleteId = $_POST['athletenum'];
+	$data = mysqli_query($connect,"SELECT * FROM athlete WHERE id = '$athleteId'");
+}
+else
+{
+	$data = mysqli_query($connect,"SELECT * FROM athlete");
+}
 
 $json = array();
 
