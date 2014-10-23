@@ -32,21 +32,25 @@
     <div>Statistics</div>
 </div>
 
+
 <div id="modules_bar">
     <div id="exercises_illustration">
         <span class="jumbo">4</span> more exercises to go.
-        <div class="modules_footer">View Details...</div>
     </div>
     <div id="calories_illustration">
         <span class="jumbo">890</span> more calories for today.
-        <div class="modules_footer">View Details...</div>
     </div>
     <div id="pictures_illustration">
         <span class="jumbo">2</span> days until a picture!
-        <div class="modules_footer">View Details...</div>
     </div>
 </div>
 
+<div id="interaction_panel">
+<div class="information_panel">
+    <h1>Welcome to the WorkOut Diary</h1>
+    <p>Currently logged in as <span id="currentUser"></span></p>
+</div>
+</div>
 
 
 <div id="interact"> <!-- MAIN DIV FOR QUESTIONS -->
@@ -232,5 +236,6 @@
 
 <script src="js/jquery.js"></script>
 <script src="js/global_engine.js"></script>
+<script src="js/index_engine.js"></script>
 </body>
 </html>

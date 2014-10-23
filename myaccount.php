@@ -41,6 +41,8 @@
         <h1>My Account <span class="click_options"><a href="#" onclick="editUser()">Edit</a> | <a href="#" onclick="newUser()">New</a></span></h1>
         <div class="panel_content">
 	        <p>View your account here, and manage your information.</p>
+
+	        <!--
 			    <div class="column_item">
 			    	<div class="column_title">Logged in as</div>
 			    	<div class="column_content">Ben</div>
@@ -73,6 +75,7 @@
 			    	<div class="column_title">Body Fat</div>
 			    	<div class="column_content">22%</div>
 			   	</div>
+			   	-->
 		</div>
 		<div class="moar"></div>
     </div>
