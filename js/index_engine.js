@@ -14,8 +14,24 @@ var value = localStorage.getItem("currentUser");
 		}
 	});
 
-});
 
+
+var ex = {
+		cardio:
+		{
+			running: 2,
+			walking: 7,
+			skiing: 10,
+			rowing: 11
+		},
+		misc:
+		{
+			isLoggedIn: true,
+			currentUser: 1
+		}};
+
+console.log(ex);
+});
 
 $(document).ajaxSuccess(function(){
 

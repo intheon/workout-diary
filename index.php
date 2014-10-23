@@ -46,10 +46,19 @@
 </div>
 
 <div id="interaction_panel">
-<div class="information_panel">
-    <h1>Welcome to the WorkOut Diary</h1>
-    <p>Currently logged in as <span id="currentUser"></span></p>
-</div>
+    <div class="information_panel">
+        <h1>Welcome to the WorkOut Diary</h1>
+        <p>Currently logged in as <span id="currentUser"></span></p>
+        <p>Todays Date is <span id="currentUser"></span></p>
+    </div>
+    <div class="localstorage_panel">
+        <h1>Exercises done today</h1>
+        <p>These are ready to be added to the database</p>
+    </div>
+    
+
+
+
 </div>
 
 
@@ -224,15 +233,6 @@
     </div>
 
 </div> <!-- END ASK DIV -->
-
-
-<div id="sidePane">
-<h3>Ready to send to database</h3>
-
-        <div id="date">Todays Date: </div><br />
-        <div id="week">Week: <span id="weekNumber"></span>
-        <span><a onClick="resetWeek()" href="#">&nbsp;reset?</a></span></div>
-</div>
 
 <script src="js/jquery.js"></script>
 <script src="js/global_engine.js"></script>
