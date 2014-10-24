@@ -1,4 +1,5 @@
 var user;
+var exercises;
 
 $(document).ready(function(){
 var value = localStorage.getItem("currentUser");
@@ -11,30 +12,50 @@ var value = localStorage.getItem("currentUser");
 		success: function(response)
 		{
 			user = JSON.parse(response);
+			writeAthlete();
 		}
 	});
 
-
-
-var ex = {
-		cardio:
+	$.ajax({
+		type: "GET",
+		url:  "http://localhost/workout-diary/php/module_pull_exercises.php",
+		success: function(response2)
 		{
-			running: 2,
-			walking: 7,
-			skiing: 10,
-			rowing: 11
-		},
-		misc:
-		{
-			isLoggedIn: true,
-			currentUser: 1
-		}};
+			exercises = JSON.parse(response2);
+			writeCardio();
+		}
+	});
 
-console.log(ex);
 });
 
-$(document).ajaxSuccess(function(){
 
+function writeAthlete()
+{
 	$("#currentUser").html(user[0].name);
 	$("#calories_illustration .jumbo").html(user[0].acn);
-});
+}
+
+function writeCardio()
+{
+
+var arr = []
+
+for (i = 0; i <= exercises.length - 1 ; i++)
+{
+	arr.push(exercises[i]);
+}
+
+var cardioExercises = localStorage.getItem("cardiovascular");
+	cardioExercises = JSON.parse(cardioExercises);
+
+var count = 0;
+for (keys in cardioExercises)
+{
+	count++
+	$(".localstorage_panel").append("<div class='small_item'>\
+		<p>\
+		" + cardioExercises[keys] + " lots of " + keys + " which is " + arr[count].calories * cardioExercises[keys] + " calories.\
+		</p>\
+		</div>");
+}
+}

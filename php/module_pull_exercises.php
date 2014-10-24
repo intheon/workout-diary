@@ -3,26 +3,22 @@
 $host = 'localhost';
 $username = 'root';
 $password = '';
-$database = 'hiya';
-
-try{
+$database = 'wholegrain';
 
 
 $connect = mysqli_connect($host,$username,$password,$database);
 
-$data = mysqli_query($connect,'SELECT exercise_name,calories_per_min FROM exercise_calories');
+$data = mysqli_query($connect,'SELECT * FROM exercise_calories');
+
 
 $json = array();
 
 while($row = mysqli_fetch_assoc($data))
 {
-		$json[] =  $row;
+	$json[] =  $row;
+
 }
-}
-catch($e)
-{
-	echo "caught: ", $e->getMessage();
-}
+
 
 mysqli_close($connect);
 

@@ -46,24 +46,4 @@
 {
     background-color:#F0AD4E;
 }
-#menu
-{
-    margin:10px;
-    float:right;
-}
-#date
-{
-float:left;
-line-height: 23px;
-}
-#week
-{
-float:left;
-line-height: 23px;
-}
-#interact
-{
-margin:4%;
-float:left;
-position:relative;
-}
+.

@@ -8,3 +8,34 @@ $(document).ready(function(){
 	});
 
 });
+// this handles and assigns stuff to localstorage
+var data = {};
+function localStorageController(key,val,type)
+{
+
+	// before i even submit this anywhere, build an object that groups together exercises
+
+	if (!data.hasOwnProperty(type))
+	{
+		Object.defineProperty(data,type,{
+			value: {},
+			enumerable: true
+		});
+	}
+
+		Object.defineProperty(data.cardiovascular,key,{
+			value: val,
+			enumerable: true
+		});
+
+	// now that the object is built, make a json string ready to be stored in localstorage
+	// this is just going to be overwritten each time it updates.
+
+		var s = JSON.stringify(data.cardiovascular);
+
+	// submit to localstorage
+
+		localStorage.setItem(type,s);
+
+}
+
