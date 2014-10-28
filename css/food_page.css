@@ -1,0 +1,29 @@
+.food_form
+{
+    margin:3%;
+    border
+}
+
+.food_form p
+{
+    font-size: 1.04em;
+}
+
+.food_form p input
+{
+    float:right;
+    width:70%;
+    border: 1px solid;
+    border-color:#CCCCCC;
+    padding:5px;
+}
+
+.food_form input[type="button"]
+{
+    padding:10px;
+    margin:1%;
+    margin-left: 28.7%;
+    width:69%;
+}
+
+

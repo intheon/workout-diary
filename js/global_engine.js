@@ -23,7 +23,7 @@ function localStorageController(key,val,type)
 		});
 	}
 
-		Object.defineProperty(data.cardiovascular,key,{
+		Object.defineProperty(data[type],key,{
 			value: val,
 			enumerable: true
 		});
@@ -31,7 +31,7 @@ function localStorageController(key,val,type)
 	// now that the object is built, make a json string ready to be stored in localstorage
 	// this is just going to be overwritten each time it updates.
 
-		var s = JSON.stringify(data.cardiovascular);
+		var s = JSON.stringify(data[type]);
 
 	// submit to localstorage
 

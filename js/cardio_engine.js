@@ -32,6 +32,9 @@ $("#tab_content div form input").click(function(event){
   var clickedId = event.currentTarget.id;
   var formId = clickedId.substr(0,clickedId.length - 7);
   var selected = $("#" + formId).val();
+    console.log("formID: " + formId);
+    console.log("selected: " + selected);
+    console.log("type: " + type);
       localStorageController(formId,selected,type);
       drawShit(formId,selected); 
 });
@@ -90,10 +93,14 @@ function listenForDelete()
 
 function checkIfCanSubmit()
 {
-  var check = localStorage.getItem("cardiovascular");
-      check = JSON.parse(check);
 
-  var s = Object.keys(check).length;
+  if (localStorage.getItem("cardiovascular"))
+  {
+    var check = localStorage.getItem("cardiovascular");
+    check = JSON.parse(check);
+    var s = Object.keys(check).length;
+  }
+
 
   if (s !== 0)
   {
