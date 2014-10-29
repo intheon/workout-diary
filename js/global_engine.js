@@ -9,9 +9,11 @@ $(document).ready(function(){
 
 });
 // this handles and assigns stuff to localstorage
-var data = {};
+
 function localStorageController(key,val,type)
 {
+
+var data = {};
 
 	// before i even submit this anywhere, build an object that groups together exercises
 

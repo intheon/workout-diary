@@ -5,7 +5,6 @@ $(document).ready(function(){
 	getFromLS();
 });
 
-
 function grabValues()
 {
 	var formData = $(".food_form").serialize();
@@ -31,7 +30,6 @@ function drawForm()
 		count++;
 		grabValues();
 	});
-
 }
 
 function doLocal(newStuff)
