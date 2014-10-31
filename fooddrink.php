@@ -50,8 +50,7 @@
 
     <div class="localstorage_panel">
         <h1>So far...</h1>
-        <div id="food_here">
-        </div>
+        <div id="food_here"></div>
     </div>
 </div>
 

@@ -10,10 +10,17 @@ $(document).ready(function(){
 });
 // this handles and assigns stuff to localstorage
 
+
+
+var data = {};
+var s;
+
 function localStorageController(key,val,type)
 {
 
-var data = {};
+	var stor = localStorage.getItem(type);
+	var parse = JSON.parse(stor);
+
 
 	// before i even submit this anywhere, build an object that groups together exercises
 
@@ -25,19 +32,39 @@ var data = {};
 		});
 	}
 
+	if (stor !== null)
+	{
+		for (keys in parse)
+		{
+			Object.defineProperty(data[type],keys,{
+			value: parse[keys],
+			enumerable: true
+			});
+		}
+	}
+
+
+
+		// now start appending 
 		Object.defineProperty(data[type],key,{
 			value: val,
 			enumerable: true
 		});
 
-	// now that the object is built, make a json string ready to be stored in localstorage
-	// this is just going to be overwritten each time it updates.
-
-		var s = JSON.stringify(data[type]);
-
-	// submit to localstorage
+		// build a json string
+		// the vars are global so everything gets appended
+		s = JSON.stringify(data[type]);
 
 		localStorage.setItem(type,s);
 
 }
+
+function overwriteController(jsonString)
+{
+	// this in essence 'deletes' properties because it overwrites the old string
+	// with a new one, except the new one has the new one has the one you want to remove gone
+	console.log(jsonString);
+}
+
+
 

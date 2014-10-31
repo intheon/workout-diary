@@ -1,30 +1,58 @@
 $(document).ready(function(){
 
-for (var key in localStorage)
+count = 0;
+count2 = 0;
+
+var raw = localStorage.getItem("food");
+var json = JSON.parse(raw);
+
+draw();
+attachListener();
+
+$(".submitFood").click(function(){
+	count++;
+	var item = $("#item").val();
+	var calories = $("#calories").val();
+
+	localStorageController(item,calories,"food");
+
+	$("#food_here").append("<p class='item_"+count2+"'>Item: "+item+" Calories: "+calories+"&nbsp;<span class='delete'>x</span></p>");
+
+});
+
+function draw()
 {
-    if (key == "food")
-    {
-      var all = localStorage.getItem(key);
-      var par = JSON.parse(all);
-		for (props in par)
+	raw = localStorage.getItem("food");
+	json = JSON.parse(raw);
+		for (key in json)
 		{
-			$("#food_here").append("<p>Item: "+props+" Calories: "+par[props]+"</p>");
+			count2++;
+			$("#food_here").append("<p class='item_"+count2+"'>Item: <span class='key'>"+key+"</span> Calories: "+json[key]+"&nbsp;<span class='delete'>x</span></p>");
+			attachListener();
 		}
-    }
+}
+
+function attachListener()
+{
+	$(".delete").click(function(event){
+	var propToDelete = event.currentTarget.parentElement.firstElementChild.innerHTML;
+
+	for (k in json)
+	{
+		if (k == propToDelete)
+		{
+			delete json[k];
+			overwriteController(json);
+		}
+	}
+	});
 }
 
 
-$(".submitFood").click(function(){
-	var item = $("#item").val();
-	var calories = $("#calories").val();
-	localStorageController(item,calories,"food");
-	$("#food_here").append("<p>Item: "+item+" Calories: "+calories+"</p>");
-});
 
 
 
-
-
+//localStorage.removeItem("food");
 
 
 
