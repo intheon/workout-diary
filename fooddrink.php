@@ -51,12 +51,17 @@
     <div class="localstorage_panel">
         <h1>So far...</h1>
         <div id="food_here"></div>
+        <div id="submitToDB">
+            <form id='submit_db'>
+                <input type='button' name='submitDB' value='Submit'/>
+            </form>
+        </div>
     </div>
 </div>
 
 
 <script src="js/jquery.js"></script>
 <script src="js/global_engine.js"></script>
-<script src="js/food_engine2.js"></script>
+<script src="js/food_engine.js"></script>
 </body>
 </html>

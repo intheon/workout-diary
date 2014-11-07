@@ -1,84 +1,79 @@
-var count = 0;
-
 $(document).ready(function(){
-	drawForm();
-	getFromLS();
-});
 
-function grabValues()
+// OK GET EXISTING
+var ls = JSON.parse(localStorage.getItem("food"));
+
+console.log(ls);
+
+// THIS SECTION IS CONFUSING
+// BASICALLY I WANT A UNIQUE COUNT, RATHER THAN STARTING FROM 1 ALL THE TIME
+var arr = [];
+var count;
+
+// LOOP THROUGH ALL 'itemnumber[n]' properties and push 
+// their unique number onto an array stack
+for (k in ls)
 {
-	var formData = $(".food_form").serialize();
-	drawForm();
-	doLocal(formData);
+	var full = k;
+	var strp = full.substr(10,full.length)
+	arr.push(strp);
 }
-
-// THIS IS SLIGHTLY DIFFERENT TO THE CARDIO ONE 
-// BECAUSE THERES ONLY EVER ONE FORM
-function drawForm()
-{
-	$("#form_here").html("\
-	<form name='foodform' class='food_form'>\
-		<p>Item:\
-			<input type='text' name='item_" + count + "' / >\
-		</p>\
-		<p>Calories:\
-			<input type='text' name='calories_" + count + "' / >\
-		</p>\
-			<input type='button' name='submitFood' class='submitFood' value='Submit'/>\
-	</form>\
-	");
-
-	console.log("id:" +count)
-
-	$(".submitFood").click(function(){
-		count++;
-		grabValues();
-	});
-}
-
-function doLocal(newStuff)
-{	
-	var arr = newStuff.split("&");
-
-	for (i = 0; i < arr.length; i++)
+// determine if it should resume
+	if (ls)
 	{
-		var arrProp = arr[i].split("=");
-		localStorageController(arrProp[0],arrProp[1],"food");
+		count = arr[arr.length - 1];
+	}
+	else if (!ls)
+	{
+		count = 0;
 	}
 
-	getFromLS();
-}
+// Once the page loads, draw the fooking stuff!
+	for (k in ls)
+	{
+		for (m in ls[k])
+		{
+			// this is one hell of a confusing loop
+			// goes through NESTED OBJECTS (!)
+			drawSomething(m,ls[k][m],k);
+		}
+	}
 
-var str = [];
+// register an event handler for the submit buttom
+	$(".submitFood").click(function(){
+		count++;
+		var id = "itemnumber" + count;
+		var tag = $(".item_input").val();
+		var quantity = $(".calories_input").val();
+		//i want to merge all this into an object
+		var o = {};
+			o[tag] = quantity;
+		// draw a nice output div
+		localStorageController(id,o,"food");
+		drawSomething(tag,quantity,id);
+		console.log(ls);
+	});
 
-function getFromLS()
+	$(".delete").click(function(event){
+		// the magic of passing ids into the html!
+		var uni = event.currentTarget.parentNode.id;
+		delete ls[uni];
+		$("#"+uni).fadeOut(500, function(){
+			$(this).remove()
+		});
+		console.log(ls);
+		localStorage.setItem("food",JSON.stringify(ls));
+	});
+});
+
+function drawSomething(tag,quantity,uniqueLabel)
 {
-	var counter = 10000;
-  for (var key in localStorage)
-  {
-    if (key == "food")
-    {
-      var all = localStorage.getItem(key);
-      var par = JSON.parse(all);
 
-
-
-      for (props in par)
-      {
-      	      $("#food_here").html("");
-      	counter--;
-      	console.log(props.length);
-      	console.log(counter);
-      	str.push(props + " " + par[props]);
-      $("#food_here").html("<p>\
-		" + str + "\
-			</p>\
-		");
-
-      }
-    }
-  }
-
-
+	$("#food_here").append("<div class='consume_panel' id='"+uniqueLabel+"'>\
+		<span>Item</span><div class='nest'>"+tag+"</div>\
+		<span>Calories</span><div class='nest'>"+quantity+"</div>\
+		<div class='delete'>x</div>\
+		</div>");
 }
 
+//localStorage.removeItem("food");

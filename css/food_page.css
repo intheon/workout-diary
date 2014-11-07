@@ -56,7 +56,16 @@
     margin-top:-0.75em;
     margin-right:-0.35em;
     font-size:1.78em;
-    color:#D5D4D5;
+    color:#C3B5C7;
+}
+#submit_db input[type="button"]
+{
+    margin-left:2%;
+    margin-right:2%;
+    margin-bottom:2%;
+    width:96%;
+    padding:3%;
+    border-radius: 8px
 }
 
 
