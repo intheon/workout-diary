@@ -26,4 +26,37 @@
     width:69%;
 }
 
+.consume_panel
+{
+    margin:2%;
+    padding:2%;
+    border: 2px solid;
+    border-color:#D7D7D7;
+    background-color:#F3F3F3;
+    display:flex;
+    border-radius: 8px;
+}
+.consume_panel span
+{
+    font-size:1.35em;
+    color:#C3C3C3;
+    padding:0;
+    margin:0;
+
+}
+.nest
+{
+    color:#95749F;
+    font-size:1.25em;
+    flex:1;
+    text-align:center;
+}
+.delete
+{
+    margin-top:-0.75em;
+    margin-right:-0.35em;
+    font-size:1.78em;
+    color:#D5D4D5;
+}
+
 

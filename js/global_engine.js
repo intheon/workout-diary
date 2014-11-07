@@ -28,7 +28,8 @@ function localStorageController(key,val,type)
 	{
 		Object.defineProperty(data,type,{
 			value: {},
-			enumerable: true
+			enumerable: true,
+			writable: true
 		});
 	}
 
@@ -38,17 +39,17 @@ function localStorageController(key,val,type)
 		{
 			Object.defineProperty(data[type],keys,{
 			value: parse[keys],
-			enumerable: true
+			enumerable: true,
+			writable: true
 			});
 		}
 	}
 
-
-
 		// now start appending 
 		Object.defineProperty(data[type],key,{
 			value: val,
-			enumerable: true
+			enumerable: true,
+			writable: true
 		});
 
 		// build a json string
@@ -65,6 +66,5 @@ function overwriteController(jsonString)
 	// with a new one, except the new one has the new one has the one you want to remove gone
 	console.log(jsonString);
 }
-
 
 

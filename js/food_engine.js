@@ -12,6 +12,8 @@ function grabValues()
 	doLocal(formData);
 }
 
+// THIS IS SLIGHTLY DIFFERENT TO THE CARDIO ONE 
+// BECAUSE THERES ONLY EVER ONE FORM
 function drawForm()
 {
 	$("#form_here").html("\
@@ -25,6 +27,8 @@ function drawForm()
 			<input type='button' name='submitFood' class='submitFood' value='Submit'/>\
 	</form>\
 	");
+
+	console.log("id:" +count)
 
 	$(".submitFood").click(function(){
 		count++;

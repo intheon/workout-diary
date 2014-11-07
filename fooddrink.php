@@ -40,8 +40,8 @@
         <h1>Enter Food and Drink</h1>
         <div id="form_here">
             <form name='foodform' class='food_form'>
-                <p>Item:<input type='text' id='item' /></p>
-                <p>Calories:<input type='text' id='calories' /></p>
+                <p>Item:<input type='text' class='item_input' /></p>
+                <p>Calories:<input type='text' class='calories_input' /></p>
                 <input type='button' name='submitFood' class='submitFood' value='Submit'/>
             </form>
         </div>
