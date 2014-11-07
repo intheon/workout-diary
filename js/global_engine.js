@@ -60,11 +60,43 @@ function localStorageController(key,val,type)
 
 }
 
-function overwriteController(jsonString)
+function whatDate()
 {
-	// this in essence 'deletes' properties because it overwrites the old string
-	// with a new one, except the new one has the new one has the one you want to remove gone
-	console.log(jsonString);
+	var date = new Date(); // create a date object
+    var dayOfMonth = date.getDate(); // get our day of the month;
+    var dayOfWeek = date.getDay(); // get our day of the week
+    var month = date.getMonth();
+    var result = dayOfMonth % 10; // modulo to get remainder, will give val within range 1-4
+    var o; // blank ordinal
+    if (dayOfMonth >= 4 && dayOfMonth <= 20)
+        {
+            o = "th";
+        } 
+        // because numbers 4 to 20 are th's ^^
+        // everything else follows the same ordinal labelling vv
+    else
+    {
+        switch (result)
+        {
+            case 1:
+            o = "st";
+            break;
+            case 2:
+            o = "nd";
+            break;
+            case 3:
+            o = "rd";
+            break;
+            default:
+            o = "th";
+            break;
+        }
+    } 
+
+    var days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var write = days[dayOfWeek-1] + " the " + dayOfMonth + o + " of " + months[month];
+    return write;
 }
 
 

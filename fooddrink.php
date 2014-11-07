@@ -53,7 +53,7 @@
         <div id="food_here"></div>
         <div id="submitToDB">
             <form id='submit_db'>
-                <input type='button' name='submitDB' value='Submit'/>
+                <input type='button' name='submitDB' id="submitDB" value='Submit'/>
             </form>
         </div>
     </div>

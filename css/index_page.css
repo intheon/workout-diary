@@ -1,26 +1,37 @@
 #modules_bar
 {
-    position:relative;
     height:auto;
-    padding:1%;
     width:auto;
-    margin-left:28%;
     color:white;
+
 }
 
 #modules_bar div
 {
+        float:left;
+    width:100%;
     float:left;
-    padding:10px;
+    padding:1%;
     border-radius:10px;
     width:16%;
-    margin:2%;
-    margin-right:7%;
+    margin:1%;
+    margin-left:7%;
     min-height: 82px;
+    border: 2px solid;
+
 }
 .jumbo
 {
+    width:50%;
     font-size: 2em;
+    float:left;
+    flex:1;
+}
+.remainder
+{
+    width:50%;
+    flex:1;
+    float:right;
 }
 .modules_footer
 {
@@ -37,13 +48,20 @@
 #exercises_illustration
 {
     background-color:#428BCA;
+    border-color:#82BBED !important;
 }
 #calories_illustration
 {
     background-color:#5CB85C;
+    border-color:#6AA76A !important;
 }
 #pictures_illustration
 {
     background-color:#F0AD4E;
+    border-color:#AB762B !important;
 }
-.
+#existing_calories_illustration
+{
+    background-color:#C95A5A;
+    border-color:#B73E3E !important;
+}

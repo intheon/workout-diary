@@ -2,29 +2,39 @@ var user;
 var exercises;
 
 $(document).ready(function(){
-var value = localStorage.getItem("currentUser");
-	value = parseInt(value);
+	whatDate("currentDate");
+	var value = localStorage.getItem("currentUser");
+		value = parseInt(value);
 
-	$.ajax({
-		type: "POST",
-		url:  "http://localhost/workout-diary/php/module_pull_athlete.php",
-		data: "athletenum=" + value,
-		success: function(response)
-		{
-			user = JSON.parse(response);
-			writeAthlete();
-		}
-	});
+		$.ajax({
+			type: "POST",
+			url:  "http://localhost/workout-diary/php/module_pull_athlete.php",
+			data: "athletenum=" + value,
+			success: function(response)
+			{
+				user = JSON.parse(response);
+				writeAthlete();
+			}
+		});
 
-	$.ajax({
-		type: "GET",
-		url:  "http://localhost/workout-diary/php/module_pull_exercises.php",
-		success: function(response2)
-		{
-			exercises = JSON.parse(response2);
-			writeCardio();
-		}
-	});
+		$.ajax({
+			type: "GET",
+			url:  "http://localhost/workout-diary/php/module_pull_exercises.php",
+			success: function(response2)
+			{
+				exercises = JSON.parse(response2);
+				writeCardio();
+			}
+		});
+
+		$.ajax({
+			type: "GET",
+			url:  "http://localhost/workout-diary/php/module_pull_week.php",
+			success: function(response3)
+			{
+				console.log(response3);
+			}
+		});
 
 });
 

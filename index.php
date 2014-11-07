@@ -35,13 +35,16 @@
 
 <div id="modules_bar">
     <div id="exercises_illustration">
-        <span class="jumbo">4</span> more exercises to go.
+        <span class="jumbo">???</span><span class="remainder"> more exercises to go.</span>
     </div>
     <div id="calories_illustration">
-        <span class="jumbo">???</span> more calories for today.
+        <span class="jumbo">???</span><span class="remainder"> more calories for today.</span>
     </div>
     <div id="pictures_illustration">
-        <span class="jumbo">2</span> days until a picture!
+        <span class="jumbo">???</span><span class="remainder"> days until a picture!</span>
+    </div>
+    <div id="existing_calories_illustration">
+        <span class="jumbo">???</span><span class="remainder"> worth of calories consumed today.</span>
     </div>
 </div>
 
@@ -50,6 +53,7 @@
         <h1>Welcome to the WorkOut Diary</h1>
         <p>Currently logged in as <span id="currentUser"></span></p>
         <p>Todays Date is <span id="currentDate"></span></p>
+        <p>It's week number <span id="weekNumber"></span></p>
     </div>
     <div class="localstorage_panel">
         <h1>Exercises done today</h1>

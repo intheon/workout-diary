@@ -3,8 +3,6 @@ $(document).ready(function(){
 // OK GET EXISTING
 var ls = JSON.parse(localStorage.getItem("food"));
 
-console.log(ls);
-
 // THIS SECTION IS CONFUSING
 // BASICALLY I WANT A UNIQUE COUNT, RATHER THAN STARTING FROM 1 ALL THE TIME
 var arr = [];
@@ -45,13 +43,30 @@ for (k in ls)
 		var id = "itemnumber" + count;
 		var tag = $(".item_input").val();
 		var quantity = $(".calories_input").val();
-		//i want to merge all this into an object
-		var o = {};
-			o[tag] = quantity;
-		// draw a nice output div
-		localStorageController(id,o,"food");
-		drawSomething(tag,quantity,id);
-		console.log(ls);
+		var r = new RegExp("^[0-9]*$");
+
+			// test if number of calories is a number
+			if (r.test(quantity) == false)
+			{
+				showWarning("Calories needs to be positive!");
+			}
+			else if (quantity >= 2000)
+			{
+				showWarning("There's no way you've eaten that much!");
+			}
+			else
+			{
+				//i want to merge all this into an object
+				var o = {};
+				o[tag] = quantity;
+				// draw a nice output div
+				localStorageController(id,o,"food");
+				drawSomething(tag,quantity,id);
+			}
+	$(".item_input").val("");
+	$(".calories_input").val("");
+
+
 	});
 
 	$(".delete").click(function(event){
@@ -61,8 +76,44 @@ for (k in ls)
 		$("#"+uni).fadeOut(500, function(){
 			$(this).remove()
 		});
-		console.log(ls);
 		localStorage.setItem("food",JSON.stringify(ls));
+	});
+
+	$("#submitDB").click(function()
+	{
+		var finalString = localStorage.getItem("food");
+		var currentDate = whatDate();
+		var totalcals = calculateCalories(finalString);
+
+		$.ajax({
+			type: "POST",
+			url: "http://localhost/workout-diary/php/module_push_diet.php",
+			data: {
+				whole: finalString,
+				dateDone: currentDate,
+				totalCalories: totalcals
+			},
+			success: function(response)
+			{
+				removeForm();
+			}
+		});
+		
+		function removeForm()
+		{
+			$(".consume_panel").each(function(i){
+       			$(this).delay((i + 1) * 300).fadeOut();
+			});
+			localStorage.removeItem("food");
+			$("#submitDB").fadeOut(400, function(){
+				$(this).remove();
+			});
+
+			setTimeout(function(){
+				$(".consume_panel").remove();
+			},2000);
+		}
+
 	});
 });
 
@@ -76,4 +127,43 @@ function drawSomething(tag,quantity,uniqueLabel)
 		</div>");
 }
 
+function showWarning(msg)
+{
+	$("body").append("<div class='warning'>\
+	"+msg+"<br /><br />\
+	<span class='dismiss'>close x</span>\
+	</div>");
+
+		$(".warning").hide().fadeIn();
+
+		$(".warning").click(function(){
+			$(this).fadeOut(500, function(){
+			$(this).remove()
+		})
+	});
+}
+
+// just takes a json string, loops through it, adds to an array and calculates the total value.
+function calculateCalories(json)
+{
+	var parsedObject = JSON.parse(json);
+	var array = [];
+	var total = 0;
+
+	for (properties in parsedObject)
+	{
+		for (subProperties in parsedObject[properties])
+		{
+			array.push(parseInt(parsedObject[properties][subProperties]));
+		}
+	}
+
+	$.each(array,function(){
+		total += this;
+	});
+
+	return total;
+}
+
+// use this for debugging.
 //localStorage.removeItem("food");
