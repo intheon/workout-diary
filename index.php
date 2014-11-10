@@ -44,7 +44,7 @@
         <span class="jumbo">???</span><span class="remainder"> days until a picture!</span>
     </div>
     <div id="existing_calories_illustration">
-        <span class="jumbo">???</span><span class="remainder"> worth of calories consumed today.</span>
+        <span class="jumbo">???</span><span class="remainder"> worth of calories injested today.</span>
     </div>
 </div>
 
