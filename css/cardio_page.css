@@ -40,3 +40,62 @@
     border:1px solid;
     border-color: #DBE9EF
 }
+.editCardio
+{
+    display:flex;
+}
+.editCardio input
+{
+    flex:1;
+    margin:1.5%;
+    padding:1%;
+    border-radius: 8px;
+    border:none;
+}
+.editCardio input[type="text"]
+{
+    border:1px solid;
+    border-color: #DBE9EF
+}
+.cardio_forms
+{
+    margin-top:1%;
+    padding:1.5%;
+    border:1px solid;
+    border-radius:6px;
+    border-color: #D9EDF7;
+}
+.cardio_forms form
+{
+    display:flex;
+
+}
+.cardio_forms p
+{
+    text-align:left;
+    margin:1%;
+    padding:1%;
+    width:40%;
+}
+.cardio_forms input
+{
+    flex:1;
+    margin:1%;
+    padding:1%;
+    width:50%;
+    text-align:center;
+}
+.cardio_forms input[type="text"]
+{
+    border:1px solid;
+    border-color: #DBE9EF;
+    border-radius:8px;
+}
+.cardio_submit_all input
+{
+    padding:2%;
+    margin-top:2%;
+    width:100%;
+    background-color: #E2E7E9;
+    border-radius:11px;
+}

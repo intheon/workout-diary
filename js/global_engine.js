@@ -100,3 +100,19 @@ function whatDate()
 }
 
 
+function showWarning(msg)
+{
+	$("body").append("<div class='warning'>\
+	"+msg+"<br /><br />\
+	<span class='dismiss'>close x</span>\
+	</div>");
+
+		$(".warning").hide().fadeIn();
+
+		$(".warning").click(function(){
+			$(this).fadeOut(500, function(){
+			$(this).remove()
+		})
+	});
+}
+

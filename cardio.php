@@ -25,7 +25,6 @@
     </div>
 </div>
 
-<div id="main">
 <!-- SIDE PANEL -->
 
     <div id="menu_panel">
@@ -51,14 +50,21 @@
         
         </div>
 
+        <!-- THE FORM IS DYNAMICALLY DRAWN BY JAVASCRIPT -->
+        <div class="cardio_forms" style="display:none">
+        
+        </div>
 
-
+        <!-- AND A HIDDEN SUBMIT BUTTON TO SUBMIT ALL -->
+        <div class="cardio_submit_all" style="display:none">
+            <form><input type="button" value="Submit All"></form>        
+        </div>
 
     </div> <!-- END INTERACTION PANEL -->
 
 
 
-</div> <!-- END MAIN -->
+
 
 
 <script src="js/jquery.js"></script>

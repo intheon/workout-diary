@@ -127,21 +127,7 @@ function drawSomething(tag,quantity,uniqueLabel)
 		</div>");
 }
 
-function showWarning(msg)
-{
-	$("body").append("<div class='warning'>\
-	"+msg+"<br /><br />\
-	<span class='dismiss'>close x</span>\
-	</div>");
 
-		$(".warning").hide().fadeIn();
-
-		$(".warning").click(function(){
-			$(this).fadeOut(500, function(){
-			$(this).remove()
-		})
-	});
-}
 
 // just takes a json string, loops through it, adds to an array and calculates the total value.
 function calculateCalories(json)

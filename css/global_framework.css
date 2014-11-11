@@ -24,10 +24,6 @@ a:hover {
     color:#B78612;
 }
 
-#main
-{
-    height:100%;
-}
 .item_content
 {
     margin-left:1em;
@@ -231,7 +227,7 @@ select
     height:120px;
     background-color:#FFC456;
     color:white;
-    position: fixed;
+    position: fixed !important;
     z-index:9;
     margin-left:33%;
     margin-right:33%;
