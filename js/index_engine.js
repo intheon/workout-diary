@@ -32,15 +32,6 @@ $(document).ready(function(){
 		});
 
 		$.ajax({
-			type: "GET",
-			url:  "http://localhost/workout-diary/php/module_pull_week.php",
-			success: function(response3)
-			{
-				//console.log(response3);
-			}
-		});
-
-		$.ajax({
 			type: "POST",
 			url:  "http://localhost/workout-diary/php/module_pull_diet.php",
 			data: "dateFilter=" + cDate,
@@ -50,10 +41,20 @@ $(document).ready(function(){
 			}
 		});
 
-
+		$.ajax({
+			type: "GET",
+			url:  "http://localhost/workout-diary/php/module_manage_timings.php",
+			success: function(responses)
+			{
+	
+			}
+		});
 
 	$("#currentDate").html(cDate); 
 
+	$("#initialise_weeks").click(function(){
+		startWeeksCount();
+	});
 });
 
 $(document).ajaxSuccess(function(){
@@ -116,3 +117,19 @@ function parseDiet(dietString)
 		// overwrite whatever value is there
 
 }
+
+function startWeeksCount()
+{
+	$.ajax({
+		type: "POST",
+		url:  "http://localhost/workout-diary/php/module_manage_timings.php",
+		data: {
+			reset: true
+		}
+		success: function(responses)
+		{
+			console.log(responses);
+		}
+	});
+}
+

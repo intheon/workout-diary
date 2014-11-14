@@ -42,6 +42,9 @@ function bindButton(element)
 {
   $(element).unbind("click").one("click",function(){
       $(".information_panel p").fadeOut(500, function(){
+
+
+        // IF ADDING
         if (element == "#addCardio")
         {
           $(".information_panel").append("\
@@ -83,22 +86,61 @@ function bindButton(element)
             });
           });
         }
+
+
+        //IF EDITING
         else if (element == "#editCardio")
         {
           $(".information_panel p").fadeOut(100);
           for (keys in entireString)
           {
             $(".information_panel").append("\
-            <form class='editCardio'>\
-            <input type='text' name='existingCardioName' id='existingCardioName' value='"+entireString[keys].exercise_name+"'/>\
-            <input type='text' name='newCardioCalorieConsumption' id='existingCardioCalorieConsumption' value='"+entireString[keys].calorie_consumption_per_minute+"'/>\
-            <input type='button' value='Modify Exercise' class='submitCalories'/>\
+            <form class='editCardio' id='editCardio"+entireString[keys].exercise_name+"_form'>\
+            <input type='text' name='existingCardioName' class='existingCardioName' value='"+entireString[keys].exercise_name+"'/>\
+            <input type='text' name='newCardioCalorieConsumption' class='existingCardioCalorieConsumption' value='"+entireString[keys].calorie_consumption_per_minute+"'/>\
+            <input type='hidden' name='id' class='existingId' value='"+entireString[keys].id+"'/>\
+            <input type='button' value='Modify Exercise' class='submitCalories' id='submitCardioForm"+entireString[keys].exercise_name+"'/>\
             </form>");
+
             $(".editCardio").each(function(i){
               $(this).delay((i + 1) * 100).hide().fadeIn();
             });
+
+            $("#submitCardioForm"+entireString[keys].exercise_name).click(function()
+            {
+              // traverse that dom motherfucker!
+              var currentName = $(this)[0].parentNode[0].value;
+              var currentQuant =$(this)[0].parentNode[1].value;
+              var exist = $(this)[0].parentNode[2].value;
+
+              $.ajax({
+                type: "POST",
+                url: "http://localhost/workout-diary/php/module_manage_exercise_types.php",
+                data: {
+                  existingId: exist,
+                  modName: currentName,
+                  modQuant: currentQuant
+                },
+                success: function(response)
+                {
+                  removeForm("editCardio"+entireString[keys].exercise_name);
+                }
+              });
+            })
           }
+
+          $("#editCardio").html("Close");
+
+          $("#editCardio").on("click", function(){
+                bindButton("#editCardio");
+                $(".editCardio").each(function(i){
+                  $(this).delay((i + 1) * 240).fadeOut(400);
+                });
+                });
         }
+
+
+
       });
     });
 }

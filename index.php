@@ -53,7 +53,7 @@
         <h1>Welcome to the WorkOut Diary</h1>
         <p>Currently logged in as <span id="currentUser"></span></p>
         <p>Todays Date is <span id="currentDate"></span></p>
-        <p>It's week number <span id="weekNumber"></span></p>
+        <p>It's week number <span id="weekNumber"></span><span id="initialise_weeks">Start?</span></p>
     </div>
     <div class="localstorage_panel">
         <h1>Exercises done today</h1>

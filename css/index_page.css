@@ -65,3 +65,13 @@
     background-color:#C95A5A;
     border-color:#B73E3E !important;
 }
+#initialise_weeks
+{
+    font-size:0.7em;
+    text-decoration: underline;
+}
+#initialise_weeks:hover
+{
+    color:blue;
+    cursor: pointer;
+}
