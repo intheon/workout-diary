@@ -38,7 +38,7 @@
         <span class="jumbo">???</span><span class="remainder"> more exercises to go.</span>
     </div>
     <div id="calories_illustration">
-        <span class="jumbo">???</span><span class="remainder"> more calories for today.</span>
+        <span class="jumbo">???</span><span class="remainder"> more calories remaining.</span>
     </div>
     <div id="pictures_illustration">
         <span class="jumbo">???</span><span class="remainder"> days until a picture!</span>

@@ -3,13 +3,17 @@ var exercises;
 var runningTotal = 0;
 var calorificNeed  = 0;
 var remainingCalories;
+var cDate;
 
 $(document).ready(function(){
 
 	var value = localStorage.getItem("currentUser");
 		value = parseInt(value);
 
-	var cDate = whatDate();
+
+
+
+	cDate = whatDate();
 
 		$.ajax({
 			type: "POST",
@@ -42,11 +46,15 @@ $(document).ready(function(){
 		});
 
 		$.ajax({
-			type: "GET",
+			type: "POST",
 			url:  "http://localhost/workout-diary/php/module_manage_timings.php",
+			data: {
+				getDate: true,
+				currentDays: dayOfYearCounter()
+			},
 			success: function(responses)
 			{
-	
+				$("#weekNumber").append(responses);
 			}
 		});
 
@@ -124,8 +132,10 @@ function startWeeksCount()
 		type: "POST",
 		url:  "http://localhost/workout-diary/php/module_manage_timings.php",
 		data: {
-			reset: true
-		}
+			reset: true,
+			date: cDate,
+			daysIn: dayOfYearCounter()
+		},
 		success: function(responses)
 		{
 			console.log(responses);
