@@ -145,6 +145,33 @@ function parseDiet(dietString)
 	$("#existing_calories_illustration .jumbo").html(runningTotal);
 		// overwrite whatever value is there
 
+	var itemQ = 0;
+
+	$("#food_output p").html("");
+
+	for (i = 0; i <= pString.length; i++)
+	{
+		var p = JSON.parse(pString[i].json);
+
+		for (k in p)
+		{
+			for (values in p[k])
+			{
+				itemQ++
+
+				$("#food_output p").append("<div class='consumables_panel'>\
+						<div class='item_number'>"+itemQ+"</div>\
+						<div class='consumable'>"+values+"</div>\
+						<div class='calories_consumed'>("+p[k][values]+" Calories)</div>\
+					</div>\
+				");
+			}
+		}
+	}
+
+
+
+
 }
 
 function startWeeksCount()

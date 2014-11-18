@@ -36,7 +36,7 @@
     </div>
 
     <!-- THE INTERACTION PANEL IS PURELY WHERE INTERACTIONS OCCUR -->
-
+<div class="right_content">
     <div id="interaction_panel">
 
         <div class="information_panel">
@@ -61,7 +61,7 @@
         </div>
 
     </div> <!-- END INTERACTION PANEL -->
-
+</div>
 
 
 

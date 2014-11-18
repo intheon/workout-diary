@@ -33,7 +33,7 @@
         <div><a href="stats.php">Statistics</a></div>
 </div>
 
-<div id="right_content">
+<div class="right_content">
 
     <div id="modules_bar">
         <div id="exercises_illustration">
@@ -74,7 +74,7 @@
             <p>None.</p>
         </div>
 
-        <div class="localstorage_panel">
+        <div class="localstorage_panel" id="food_output">
             <h1>Food and drink consumed today</h1>
             <p>None.</p>
         </div>

@@ -74,4 +74,25 @@
     border-color:#33333E;
 }
 
+.consumables_panel
+{
+    display:flex;
+}
+.item_number
+{
+    font-size:2em;   
+}
+.consumable
+{
+    padding-top:0.5em;
+    padding-left:3%;
+    font-size:1.2em;  
+}
+.calories_consumed
+{
+    font-size:0.6em; 
+    padding-top:2em;
+    padding-left:0.5em;
+}
+
 

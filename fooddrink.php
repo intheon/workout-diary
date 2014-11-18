@@ -32,33 +32,33 @@
         <div><a href="stats.php">Statistics</a></div>
 </div>
 
+<div class="right_content">
+    <div id="interaction_panel">
 
-<div id="interaction_panel">
 
-
-    <div class="information_panel">
-        <h1>Enter Food and Drink</h1>
-        <div id="form_here">
-            <form name='foodform' class='food_form'>
-                <p>Item:<input type='text' class='item_input' /></p>
-                <p>Calories:<input type='text' class='calories_input' /></p>
-                <input type='button' name='submitFood' class='submitFood' value='Submit'/>
-            </form>
+        <div class="information_panel">
+            <h1>Enter Food and Drink</h1>
+            <div id="form_here">
+                <form name='foodform' class='food_form'>
+                    <p>Item:<input type='text' class='item_input' /></p>
+                    <p>Calories:<input type='text' class='calories_input' /></p>
+                    <input type='button' name='submitFood' class='submitFood' value='Submit'/>
+                </form>
+            </div>
         </div>
-    </div>
 
 
-    <div class="localstorage_panel">
-        <h1>So far...</h1>
-        <div id="food_here"></div>
-        <div id="submitToDB">
-            <form id='submit_db'>
-                <input type='button' name='submitDB' id="submitDB" value='Submit'/>
-            </form>
+        <div class="localstorage_panel">
+            <h1>So far...</h1>
+            <div id="food_here"></div>
+            <div id="submitToDB">
+                <form id='submit_db'>
+                    <input type='button' name='submitDB' id="submitDB" value='Submit'/>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-
 
 <script src="js/jquery.js"></script>
 <script src="js/global_engine.js"></script>
