@@ -55,8 +55,6 @@ $(document).ready(function(){
 
 				var jsonObj = JSON.parse(jsonString);
 
-				$("#startDate").html(jsonObj[0].date);
-
 				// the next block is the logic that
 				// figures out how far you are in
 
@@ -66,7 +64,16 @@ $(document).ready(function(){
 				var difference = dayOfYear - dayStarted;
 				var weekCount = Math.floor(difference / 7);	
 
-				$("#weekNumber").html(weekCount);
+				$("#startDate").html(jsonObj[0].date);
+
+				$("#weekNumber").html(weekCount + 1);
+
+				$("#pictures_illustration .jumbo").html(7 - difference);
+
+				if (7 - difference <= 0)
+				{
+					$(".alert_panel").html("<div class='alert'><p>It is time for a picture!</p></div>")
+				}
 
 			}
 		});
@@ -89,6 +96,7 @@ function writeAthlete()
 	calorificNeed = parseInt(user[0].acn);
 	remainingCalories = calorificNeed - parseInt(runningTotal);
 	$("#calories_illustration .jumbo").html(remainingCalories);
+	
 }
 
 function writeCardio()

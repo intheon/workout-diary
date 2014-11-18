@@ -43,24 +43,27 @@ a:hover {
     padding-top:1%;
     height:100%;
     background-color:#1E1E21;
-    width:17%;
 }
 
 #menu_panel div
 {
     border-bottom: 1px solid;
     border-color: #363640;
-    padding:5%;
-    padding-left:21%;
-    width:87%;
+    padding:7%;
+    padding-left:15%;
     text-align:left;
 }
 #interaction_panel
 {
-    padding:3%;
-    margin-left:3%;
+
+}
+
+#right_content
+{
     float:left;
-    width:67%;
+    width:77%;
+    margin-left:2%;
+    padding-left:2%;
 }
 
 .information_panel
@@ -244,4 +247,20 @@ input[type="text"]
 {
     background-color: #272828;
 
+}
+.alert
+{
+    margin-top:3%;
+    margin-bottom:3%;
+    border: 1px solid;
+    border-color: #3C3C42;
+    border-radius:6px;
+}
+.alert p
+{
+    padding:0%;
+    margin:0%;
+    font-size:1.05em;
+    padding:0.7em;
+    text-align:center;
 }

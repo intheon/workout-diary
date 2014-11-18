@@ -1,37 +1,27 @@
 #modules_bar
 {
-    height:auto;
-    width:auto;
-    color:white;
-
+    display:flex;
+    margin-bottom:3%;
 }
 
 #modules_bar div
 {
-    float:left;
-    width:100%;
-    float:left;
-    padding:1%;
     border-radius:10px;
-    width:16%;
-    margin:1%;
-    margin-left:7%;
     min-height: 82px;
     border: 2px solid;
-
+    flex:1;
+    padding:1%;
+    margin:2%;
+    height:100%;
 }
 .jumbo
 {
-    width:50%;
     font-size: 2em;
-    float:left;
     flex:1;
 }
 .remainder
 {
-    width:50%;
     flex:1;
-    float:right;
 }
 .modules_footer
 {
@@ -74,6 +64,14 @@
 {
     color:blue;
     cursor: pointer;
+}
+
+.information_panel span
+{
+    font-size:1.23em;
+    color:#788899;
+    border-bottom:1px solid;
+    border-color:#33333E;
 }
 
 
