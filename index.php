@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
 <head>
+    <meta charset="UTF-8">
     <link href="css/global_framework.css" rel="stylesheet" type="text/css">
     <link href="css/index_page.css" rel="stylesheet" type="text/css">
 </head>
@@ -53,7 +54,13 @@
         <h1>Welcome to the WorkOut Diary</h1>
         <p>Currently logged in as <span id="currentUser"></span></p>
         <p>Todays Date is <span id="currentDate"></span></p>
-        <p>It's week number <span id="weekNumber"></span><span id="initialise_weeks">Start?</span></p>
+
+        <div id="week_information_panel">
+            <p>You started your workout timeline on <span id="startDate"></span></p>
+            <p>You are <span id="weekNumber"></span> weeks in.</p>
+            <p><span id="initialise_weeks">Start?</span></p>
+        </div>
+        
     </div>
     <div class="localstorage_panel">
         <h1>Exercises done today</h1>

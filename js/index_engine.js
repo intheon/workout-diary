@@ -10,9 +10,6 @@ $(document).ready(function(){
 	var value = localStorage.getItem("currentUser");
 		value = parseInt(value);
 
-
-
-
 	cDate = whatDate();
 
 		$.ajax({
@@ -50,11 +47,27 @@ $(document).ready(function(){
 			url:  "http://localhost/workout-diary/php/module_manage_timings.php",
 			data: {
 				getDate: true,
-				currentDays: dayOfYearCounter()
 			},
-			success: function(responses)
+			success: function(jsonString)
 			{
-				$("#weekNumber").append(responses);
+				// i just get a json string back from 
+				// the server with bits of useful shit in
+
+				var jsonObj = JSON.parse(jsonString);
+
+				$("#startDate").html(jsonObj[0].date);
+
+				// the next block is the logic that
+				// figures out how far you are in
+
+				var dayOfYear = dayOfYearCounter();
+				var dayStarted = jsonObj[0].days_in;
+
+				var difference = dayOfYear - dayStarted;
+				var weekCount = Math.floor(difference / 7);	
+
+				$("#weekNumber").html(weekCount);
+
 			}
 		});
 

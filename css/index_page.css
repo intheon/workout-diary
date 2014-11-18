@@ -8,7 +8,7 @@
 
 #modules_bar div
 {
-        float:left;
+    float:left;
     width:100%;
     float:left;
     padding:1%;
@@ -47,23 +47,23 @@
 }
 #exercises_illustration
 {
-    background-color:#428BCA;
-    border-color:#82BBED !important;
+    background-color:#56565f;
+    border-color:#696973 !important;
 }
 #calories_illustration
 {
-    background-color:#5CB85C;
-    border-color:#6AA76A !important;
+    background-color:#5f5f69;
+    border-color:#696973 !important;
 }
 #pictures_illustration
 {
-    background-color:#F0AD4E;
-    border-color:#AB762B !important;
+    background-color:#696973;
+    border-color:#72727d !important;
 }
 #existing_calories_illustration
 {
-    background-color:#C95A5A;
-    border-color:#B73E3E !important;
+    background-color:#72727d;
+    border-color:#5f5f69 !important;
 }
 #initialise_weeks
 {
@@ -75,3 +75,5 @@
     color:blue;
     cursor: pointer;
 }
+
+
