@@ -40,13 +40,14 @@
             <span class="jumbo">???</span><span class="remainder"> more gym visits remaining.</span>
         </div>
         <div id="calories_illustration">
-            <span class="jumbo">???</span><span class="remainder"> more calories remaining.</span>
+            <span class="jumbo" id="calories_in">???</span><span class="remainder"> calories in.</span>
+            <span class="jumbo" id="calories_out">???</span><span class="remainder"> calories out.</span>
+            <span class="foot_notes">
+            	<span id="remaining"></span> calories remaining from baseline requirement.
+            </span>
         </div>
         <div id="pictures_illustration">
             <span class="jumbo">???</span><span class="remainder"> days until a picture!</span>
-        </div>
-        <div id="existing_calories_illustration">
-            <span class="jumbo">???</span><span class="remainder"> worth of calories injested today.</span>
         </div>
     </div>
 
@@ -69,7 +70,7 @@
         </div>
 
 
-        <div class="localstorage_panel">
+        <div class="localstorage_panel" id="exercise_output">
             <h1>Exercises done today</h1>
             <p>None.</p>
         </div>

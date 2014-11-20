@@ -5,19 +5,23 @@
     padding:0.5%;
     border:1px solid;
     border-radius:6px;
-    border-color: #D9EDF7;
+    border-color: #363640;
 }
 .tab_item
 {
     flex:1;
-    padding:0.5%;
+    padding:1.5%;
     text-align: center;
+}
+.tab_item:nth-child(even)
+{
+    background-color:#272828;
 }
 .tab_item:hover
 {
-    background-color:#BFDEED;
-    border-radius:8px;
+    background-color:#272828;
     cursor:pointer;
+    color:#6A6A76;
 }
 .edit
 {
@@ -26,6 +30,9 @@
 .addCardio
 {
     display:flex;
+    margin-bottom:1%;
+    margin-top:0.7%;
+    padding:0.6%;
 }
 .addCardio input
 {
@@ -38,11 +45,15 @@
 .addCardio input[type="text"]
 {
     border:1px solid;
-    border-color: #DBE9EF
+    border-color: #3C3C42;
+    color:#9DAABA;
 }
 .editCardio
 {
     display:flex;
+    margin-bottom:1%;
+    margin-top:0.7%;
+    padding:0.6%;
 }
 .editCardio input
 {
@@ -51,11 +62,13 @@
     padding:1%;
     border-radius: 8px;
     border:none;
+    color:#9DAABA ;
 }
 .editCardio input[type="text"]
 {
     border:1px solid;
-    border-color: #DBE9EF
+    border-color: #363640;
+    color:#9DAABA ;
 }
 .cardio_forms
 {
@@ -63,12 +76,12 @@
     padding:1.5%;
     border:1px solid;
     border-radius:6px;
-    border-color: #D9EDF7;
+    border-color: #363640;
 }
 .cardio_forms form
 {
     display:flex;
-
+    margin-bottom:1%;
 }
 .cardio_forms p
 {
@@ -88,14 +101,26 @@
 .cardio_forms input[type="text"]
 {
     border:1px solid;
-    border-color: #DBE9EF;
+    border-color: #363640;
     border-radius:8px;
+    color:#9DAABA ;
 }
 .cardio_submit_all input
 {
     padding:2%;
     margin-top:2%;
     width:100%;
-    background-color: #9DAABA;
+    background-color: #272828;
     border-radius:11px;
+    color:#9DAABA ;
+}
+#editCardio:hover
+{
+    color:#C59666;
+    cursor:pointer;
+}
+#addCardio:hover
+{
+    color:#C59666;
+    cursor:pointer;
 }

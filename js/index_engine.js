@@ -1,6 +1,7 @@
 var user;
 var exercises;
-var runningTotal = 0;
+var foodRunningTotal = 0;
+var exerciseRunningTotal = 0;
 var calorificNeed  = 0;
 var remainingCalories;
 var cDate;
@@ -19,16 +20,19 @@ $(document).ready(function(){
 			success: function(response)
 			{
 				user = JSON.parse(response);
+				writeAthlete();
 			}
 		});
 
 		$.ajax({
-			type: "GET",
+			type: "POST",
 			url:  "http://localhost/workout-diary/php/module_pull_exercises.php",
-			success: function(response2)
+			data: {
+				filter: whatDate()
+			},
+			success: function(exercises)
 			{
-				exercises = JSON.parse(response2);
-				writeCardio();
+				writeExercises(exercises);
 			}
 		});
 
@@ -85,43 +89,41 @@ $(document).ready(function(){
 	});
 });
 
-$(document).ajaxSuccess(function(){
-	writeAthlete();
-});
-
 
 function writeAthlete()
 {
 	$("#currentUser").html(user[0].name);
 	calorificNeed = parseInt(user[0].acn);
-	remainingCalories = calorificNeed - parseInt(runningTotal);
-	$("#calories_illustration .jumbo").html(remainingCalories);
-	
+	remainingCalories = calorificNeed - parseInt(foodRunningTotal);
+	$("#remaining").html(remainingCalories);
+	$("#exercises_illustration .jumbo").html(user[0].gym_visits);
+	$("#calories_out").html(exerciseRunningTotal);
 }
 
-function writeCardio()
+function writeExercises(exerciseString)
 {
-
-	var arr = []
-
-	for (i = 0; i <= exercises.length - 1 ; i++)
+	var eString = JSON.parse(exerciseString);
+	var itemQ = 0;
+	$("#exercise_output p").html("");
+	for (i = 0; i <= eString.length - 1; i++)
 	{
-		arr.push(exercises[i]);
+		itemQ++;
+
+		var p = eString[i];
+
+		var temp = p.calories_total;
+			temp = parseInt(temp);
+			exerciseRunningTotal += temp;
+
+		$("#exercise_output p").append("<div class='database_output_panel'>\
+			<div class='item_number'>"+itemQ+"</div>\
+			<div class='item_description'>"+p.exercise_name+"</div>\
+			<div class='item_sub_description'>("+p.calories_total+" Calories / "+p.minutes_quantity+" Mins)</div>\
+			</div>\
+		");
+
 	}
 
-	var cardioExercises = localStorage.getItem("cardiovascular");
-		cardioExercises = JSON.parse(cardioExercises);
-
-	var count = 0;
-	for (keys in cardioExercises)
-	{
-		count++
-		$(".localstorage_panel").append("<div class='small_item'>\
-			<p>\
-			" + cardioExercises[keys] + " lots of " + keys + " which is " + arr[count].calories * cardioExercises[keys] + " calories.\
-			</p>\
-			</div>");
-	}
 }
 
 function parseDiet(dietString)
@@ -132,17 +134,16 @@ function parseDiet(dietString)
 		// our raw data
 
 
-
 	for (keys in pString)
 	{
 		var temp = pString[keys].total_calories;
 			temp = parseInt(temp);
-			runningTotal += temp;
+			foodRunningTotal += temp;
 	}	
 		// our loop which grabs the total number of calories for each obj
 		// and converts it to a number
 
-	$("#existing_calories_illustration .jumbo").html(runningTotal);
+	$("#calories_in").html(foodRunningTotal);
 		// overwrite whatever value is there
 
 	var itemQ = 0;
@@ -159,17 +160,15 @@ function parseDiet(dietString)
 			{
 				itemQ++
 
-				$("#food_output p").append("<div class='consumables_panel'>\
+				$("#food_output p").append("<div class='database_output_panel'>\
 						<div class='item_number'>"+itemQ+"</div>\
-						<div class='consumable'>"+values+"</div>\
-						<div class='calories_consumed'>("+p[k][values]+" Calories)</div>\
+						<div class='item_description'>"+values+"</div>\
+						<div class='item_sub_description'>("+p[k][values]+" Calories)</div>\
 					</div>\
 				");
 			}
 		}
 	}
-
-
 
 
 }

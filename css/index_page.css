@@ -74,7 +74,7 @@
     border-color:#33333E;
 }
 
-.consumables_panel
+.database_output_panel
 {
     display:flex;
 }
@@ -82,13 +82,13 @@
 {
     font-size:2em;   
 }
-.consumable
+.item_description
 {
     padding-top:0.5em;
     padding-left:3%;
     font-size:1.2em;  
 }
-.calories_consumed
+.item_sub_description
 {
     font-size:0.6em; 
     padding-top:2em;
