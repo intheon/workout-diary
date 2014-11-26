@@ -13,6 +13,44 @@ function grabValues(flag)
 	if (flag == "existing")
 	{
 		var formData = $("#loginCredentials").serializeArray();
+		var username = formData[0].value;
+		var password = formData[1].value;
+			
+			$.ajax({
+				type: "POST",
+				url: "https://localhost/workout-diary/php/module_check_credentials.php",
+				data: {
+					type: 'existing',
+					username: username,
+					password: password
+				},
+				success: function(response)
+				{
+					console.log(response);
+					if (response == "exists")
+					{
+						$(".alerts").html("<div class='alertMsg'>This username already exists X </div>");
+						$(".alertMsg").click(function(){
+							$(this).fadeOut(500,function(){
+								$(this).hide();
+							})
+						});
+					}
+					else if (response == "does_not")
+					{
+						$(".alerts").html("<div class='alertMsg'>This username doesn't exist, please register X </div>");
+						$(".alertMsg").click(function(){
+							$(this).fadeOut(500,function(){
+								$(this).hide();
+							})
+						});
+					}
+					else if (response == "success")
+					{
+						window.location = "http://google.com";
+					}
+				}
+			});
 		console.log(formData);
 	}
 		// new user
