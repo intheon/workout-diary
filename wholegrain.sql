@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2014 at 05:43 PM
+-- Generation Time: Nov 27, 2014 at 05:59 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -28,23 +28,50 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `athlete` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `sex` varchar(20) NOT NULL,
-  `weight` varchar(30) NOT NULL,
-  `height` varchar(30) NOT NULL,
-  `bmr` varchar(30) NOT NULL,
-  `acn` varchar(30) NOT NULL,
-  `gym_visits` int(10) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `gender` varchar(30) NOT NULL,
+  `age` int(10) NOT NULL,
+  `activity` varchar(30) NOT NULL,
+  `weight` int(10) NOT NULL,
+  `height` varchar(40) NOT NULL,
+  `calories` double NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `athlete`
 --
 
-INSERT INTO `athlete` (`id`, `name`, `sex`, `weight`, `height`, `bmr`, `acn`, `gym_visits`) VALUES
-(3, 'Ben', 'Male', '79', '172', '1800', '2222', 4),
-(5, 'Smith', 'Male', '78', '171', '1751', '2300', 5);
+INSERT INTO `athlete` (`id`, `username`, `name`, `email`, `gender`, `age`, `activity`, `weight`, `height`, `calories`) VALUES
+(8, 'intheon', 'Ben', 'allobon@gmail.com', 'male', 24, 'light', 79, '171', 2517.77075),
+(9, 'Gravy', 'test', 'password@password.com', 'female', 47, 'heavy', 56, '167', 2206.759725),
+(10, 'ham', 'test2', 'test@test', 'female', 54, 'moderate', 56, '23', 1244.4314500000003);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth`
+--
+
+CREATE TABLE IF NOT EXISTS `auth` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `athlete_id` int(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `auth`
+--
+
+INSERT INTO `auth` (`id`, `username`, `password`, `athlete_id`) VALUES
+(8, 'intheon', '$2y$10$xfosXxFGWvSGtynFoMgeTO.Da6KWTiiIRfWsakJpwAmjsuwJOptCm', 8),
+(9, 'Gravy', '$2y$10$h.i.xNa7uJGtCMkGOZV6Q.Z5HWqGmfj/zqm7gDmSECRXj3RlqCcJe', 9),
+(10, 'ham', '$2y$10$rdVk/7rtKEO0pECaDqGYQuIsspeQLoUmJ9BsSJAut4RL9lwKxjHIO', 10);
 
 -- --------------------------------------------------------
 
@@ -59,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `cardio_complete` (
   `calories_total` int(10) NOT NULL,
   `minutes_quantity` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
 
 --
 -- Dumping data for table `cardio_complete`
@@ -78,7 +105,10 @@ INSERT INTO `cardio_complete` (`id`, `exercise_name`, `date_done`, `calories_tot
 (26, 'Waterboarding', 'Thursday the 20th of November', 342, '234'),
 (38, 'Skateboarding', 'Thursday the 20th of November', 240, '22'),
 (39, 'Golfing', 'Thursday the 20th of November', 34, '1'),
-(40, 'Climbing', 'Thursday the 20th of November', 400, '2');
+(40, 'Climbing', 'Thursday the 20th of November', 400, '2'),
+(41, 'Skateboarding', 'Friday the 21st of November', 18900, '45'),
+(42, 'Waterboarding', 'Friday the 21st of November', 2829, '23'),
+(43, 'Running', 'Thursday the 27th of November', 120, '10');
 
 -- --------------------------------------------------------
 
@@ -91,19 +121,18 @@ CREATE TABLE IF NOT EXISTS `cardio_exercises` (
   `exercise_name` varchar(255) NOT NULL,
   `calorie_consumption_per_minute` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `cardio_exercises`
 --
 
 INSERT INTO `cardio_exercises` (`id`, `exercise_name`, `calorie_consumption_per_minute`) VALUES
-(1, 'Skateboarding', '420'),
-(2, 'Golfing', '34'),
-(7, 'Waterboarding', '123'),
-(8, 'Climbing', '200'),
-(9, 'Football', '123'),
-(10, 'Skiing', '54');
+(1, 'Running', '12'),
+(2, 'Skateboarding', '15'),
+(7, 'Rowing', '6'),
+(8, 'PushUps', '2'),
+(9, 'Crosstrainer', '10');
 
 -- --------------------------------------------------------
 
@@ -117,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `diet` (
   `json` varchar(255) NOT NULL,
   `total_calories` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `diet`
@@ -135,7 +164,10 @@ INSERT INTO `diet` (`id`, `date_done`, `json`, `total_calories`) VALUES
 (12, 'Wednesday the 19th of November', '{"itemnumber1":{"Sand":"34"},"itemnumber2":{"Pigs":"674"}}', '708'),
 (13, 'Wednesday the 19th of November', '{"itemnumber1":{"Milk":"321"}}', '321'),
 (14, 'Thursday the 20th of November', '{"itemnumber1":{"Coffee":"234"}}', '234'),
-(15, 'Thursday the 20th of November', '{"itemnumber1":{"2 Mexican Veg Burgers":"456"}}', '456');
+(15, 'Thursday the 20th of November', '{"itemnumber1":{"2 Mexican Veg Burgers":"456"}}', '456'),
+(16, 'Friday the 21st of November', '{"itemnumber1":{"food":"222"},"itemnumber2":{"cheese":"342"}}', '564'),
+(17, 'Monday the 24th of November', '{"itemnumber2":{"cake":"231"}}', '231'),
+(18, 'Thursday the 27th of November', '{"itemnumber1":{"big soup":"450"}}', '450');
 
 -- --------------------------------------------------------
 
@@ -165,6 +197,27 @@ INSERT INTO `exercise_calories` (`id`, `exercise_name`, `calories`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `testdata`
+--
+
+CREATE TABLE IF NOT EXISTS `testdata` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `usr` varchar(255) NOT NULL,
+  `pwd` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `testdata`
+--
+
+INSERT INTO `testdata` (`id`, `usr`, `pwd`) VALUES
+(1, 'bon', 'bon'),
+(2, 'cheese', 'cheese');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `timings`
 --
 
@@ -175,14 +228,14 @@ CREATE TABLE IF NOT EXISTS `timings` (
   `day_of_week` int(10) NOT NULL,
   `days_in` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `timings`
 --
 
 INSERT INTO `timings` (`id`, `week_number`, `date`, `day_of_week`, `days_in`) VALUES
-(12, 1, 'Tuesday the 18th of November', 1, 322);
+(13, 1, 'Thursday the 27th of November', 1, 331);
 
 -- --------------------------------------------------------
 

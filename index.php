@@ -67,6 +67,7 @@
 
             <div id="week_information_panel">
                 <p>This is week number <span id="weekNumber"></span>. <span id="initialise_weeks">reset?</span></p>
+                <p>You are <span id="daysInToWeek"></span> days into this week. (Since starting)</p>
             </div>
 
             <div id="motivation_panel">

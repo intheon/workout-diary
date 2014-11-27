@@ -45,6 +45,8 @@
 
             <p>View and modify your account information here.</p>
 
+            <div class="person_info_panel"></div>
+
         </div>
 
       </div>

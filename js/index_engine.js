@@ -1,4 +1,3 @@
-var user;
 var exercises;
 var foodRunningTotal = 0;
 var exerciseRunningTotal = 0;
@@ -61,12 +60,14 @@ $(document).ready(function(){
 				var dayOfYear = dayOfYearCounter();
 				var dayStarted = jsonObj[0].days_in;
 
+
 				var difference = dayOfYear - dayStarted;
 				var weekCount = Math.floor(difference / 7);	
 
 				$("#startDate").html(jsonObj[0].date);
 
 				$("#weekNumber").html(weekCount + 1);
+				$("#daysInToWeek").html(difference + 1);
 
 				$("#pictures_illustration .jumbo").html(7 - difference);
 

@@ -1,53 +1,21 @@
-.table_panel
-{
-    width:100%;
-    text-align: center;
-}
-.column_item 
-{
-    margin:20px;
-    display: inline-block;
-    border:1px solid;
-    border-color: #E9E3D7;
-    border-radius:11px;
-}
-.column_title 
-{
-    height:auto;
-    border-top-left-radius:11px;
-    border-top-right-radius:11px;
-    padding:10px;    
-    background-color:#F0AD4E;
-    font-weight:bold;
-    font-size:0.8em;
-}
-.column_content
-{
-    min-width:70px;
-    padding:30px;
-    border-bottom-left-radius:11px;
-    border-bottom-right-radius:11px;
-    background-color:#F7F5F2;
-    display: inline-block;
-}
-.click_options
-{
-    float:right;
-}
-h2, p
+.person_info_panel
 {
     padding:1%;
-    margin:1%;
 }
-input
+.row
 {
-    padding:1%;
-    border: none;
-    font-size:1em;
+    display:flex;
+    border-bottom:1px solid;
+    border-color:#3C3C42;
+    margin-left:1%;
+    padding:0.5%;
 }
-input[type="radio"]
+.title
 {
-background:none;
+    flex:1;
+    font-size:1.5em;
 }
-
-
+.cell_value
+{
+    flex:1;
+}
