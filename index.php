@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
 <head>
@@ -58,7 +59,7 @@
         <div class="information_panel">
 
             <h1>Welcome to the WorkOut Diary</h1>
-            <p>Currently logged in as <span id="currentUser"></span></p>
+            <p>Currently logged in as <span id="currentUser"><?php echo $_SESSION["username"]; ?></span></p>
             <p>Todays Date is <span id="currentDate"></span></p>
 
             <div id="week_information_panel">

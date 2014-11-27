@@ -21,12 +21,43 @@
 <div id="registerPrompt" class="roundPane" style="display:none">
     <h1>Or Register</h1>
     <h2>Enter your details</h2>
-    <form id="registerCredentials">
+    <form id="registerCredentials" autocomplete="off">
+        <p>These are your authentication details. Please enter carefully!</p>
         <input type="text" placeholder="Username" name="usernameField"/> <br/> 
         <input type="password" placeholder="Password" name="regPasswordField"/> <br/> 
         <input type="password" placeholder="Repeat Password" name="regPasswordRepeatField"/> <br/> 
         <input type="text" placeholder="Email" name="emailField"/> <br/> 
-        <input type="button" id="submitButton" value="Sign in >>" onclick="grabValues('new')"/>
+        <p>Physical information about you to tailor your plan.</p>
+        <input type="text" placeholder="Name" name="nameField"/> <br/> 
+        <span class="radioHolder">
+            <span class="radioItem">
+                <input type="radio" name="Gender" value="male"/>Male
+            </span>
+            <span class="radioItem">
+                <input type="radio" name="Gender" value="female"/>Female
+            </span>
+        </span>
+        <input type="text" placeholder="Age" name="Age" id="AgeField"/> <br/>
+        <p>Activity Level (daily)</p>
+        <span class="radioHolder">
+            <span class="radioItem">
+                <input type="radio" name="Activity" value="little"/>Little
+            </span>
+            <span class="radioItem">
+                <input type="radio" name="Activity" value="light"/>Light
+            </span>
+            <span class="radioItem">
+                <input type="radio" name="Activity" value="moderate"/>Moderate
+            </span>
+            <span class="radioItem">
+                <input type="radio" name="Activity" value="heavy"/>Heavy
+            </span>
+        </span>
+        <input type="text" placeholder="Weight (kgs)" name="weightField" id="weightField"/> <br/> 
+        <input type="text" placeholder="Height (cms)" name="heightField" id="heightField"/> <br/> 
+        <p>Below is worked on based on Harris-Benedict equation.</p>
+        <input type="text" placeholder="Calorific Need to maintain bodyweight" name="baseCalorieField" id="baseCalorieField"/> <br/>
+        <input type="button" id="submitButton" value="Register >>" onclick="grabValues('new')"/>
     </form>
 </div>
 

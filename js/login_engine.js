@@ -1,5 +1,100 @@
 $(document).ready(function(){
 	showElement("#logInPrompt");
+
+	// register a event listeners for weight and height, gender, age, and activity
+	// as these need to dynamically update the calorific needs
+
+	var weightInt, heightInt, ageInt, gender, activityLevel;
+
+	$("#weightField").on("change",function(){
+		weightInt = $(this).val();
+	});
+
+	$("#heightField").on("keyup",function(){
+		heightInt = $(this).val();
+		check();
+	});
+
+	$("#AgeField").on("change",function(){
+		ageInt = $(this).val();
+	});
+
+	$("input[name='Gender']").on("change",function(){
+		gender = $(this).val();
+	});
+
+	$("input[name='Activity']").on("change",function(){
+		activityLevel = $(this).val();
+	});
+
+
+	function check()
+	{
+		if (weightInt && heightInt)
+		{
+			var amount = calculateHBEquation(weightInt,heightInt,ageInt,gender,activityLevel);
+			$("#baseCalorieField").attr("value",amount);
+		}
+	}
+
+	function calculateHBEquation(weightInt,heightInt,ageInt,gender,activityLevel)
+	{
+		if (gender == "male")
+		{
+			//formula:
+			// 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x age in years)
+
+			var BMR = 13.397 * weightInt;
+				BMR += 4.799 * heightInt;
+				BMR += 88.362;
+				BMR -= 5.677 * ageInt;
+			
+			return applyExcerciseConsideration(BMR,activityLevel);
+		}
+		else if (gender == "female")
+		{
+			//formula:
+			//447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years)
+
+			var BMR = 9.247 * weightInt;
+				BMR += 3.098 * heightInt;
+				BMR += 447.593;
+				BMR -= 4.330 * ageInt;
+
+			return applyExcerciseConsideration(BMR,activityLevel);
+		}
+		else 
+		{
+			console.log("shit broke y0");
+		}
+
+		// Harris Benedict Equation has a second step, a multiplier
+			function applyExcerciseConsideration(BMR,activityLevel)
+			{
+				switch (activityLevel)
+				{
+					case "little":
+						return BMR * 1.2;
+					break;
+
+					case "light":
+						return BMR * 1.375;
+					break;
+
+					case "moderate":
+						return BMR * 1.55;
+					break;
+
+					case "heavy":
+						return BMR * 1.725;
+					break;
+
+					default:
+					break;
+				}
+			}
+	}
+
 });
 
 function showElement(element)
@@ -27,27 +122,28 @@ function grabValues(flag)
 				success: function(response)
 				{
 					console.log(response);
-					if (response == "exists")
+
+					switch (response)
 					{
-						$(".alerts").html("<div class='alertMsg'>This username already exists X </div>");
-						$(".alertMsg").click(function(){
-							$(this).fadeOut(500,function(){
-								$(this).hide();
-							})
-						});
-					}
-					else if (response == "does_not")
-					{
-						$(".alerts").html("<div class='alertMsg'>This username doesn't exist, please register X </div>");
-						$(".alertMsg").click(function(){
-							$(this).fadeOut(500,function(){
-								$(this).hide();
-							})
-						});
-					}
-					else if (response == "success")
-					{
-						window.location = "http://google.com";
+						case "exists":
+							createErrorMSG("This username already exists");
+							break;
+
+						case "does_not":
+							createErrorMSG("This username doesn't exist, please register");
+							break;
+
+						case "password_incorrect":
+							createErrorMSG("Incorrect Password");
+							break;
+
+						case "success":
+							window.location = "index.php";
+							break;
+
+						default:
+							createErrorMSG("No data received");
+							break;
 					}
 				}
 			});
@@ -61,12 +157,7 @@ function grabValues(flag)
 		// validation first
 		if (formData[1].value != formData[2].value)
 		{
-			$(".alerts").html("<div class='alertMsg'>These dont match! X</div>");
-			$(".alertMsg").click(function(){
-				$(this).fadeOut(500,function(){
-					$(this).hide();
-				})
-			});
+			createErrorMSG("These dont match!")
 		}
 
 		else if (formData[1].value == formData[2].value)
@@ -87,16 +178,12 @@ function grabValues(flag)
 				},
 				success: function(response)
 				{
-					console.log(response);
 					if (response == "exists")
 					{
-						$(".alerts").html("<div class='alertMsg'>This username already exists X </div>");
-						$(".alertMsg").click(function(){
-							$(this).fadeOut(500,function(){
-								$(this).hide();
-							})
-						});
+						createErrorMSG("This username already exists!");
 					}
+
+
 
 				}
 			});
@@ -120,4 +207,14 @@ function showForm()
 		$("#registerPrompt").fadeIn(500);
 	});
 
+}
+
+function createErrorMSG(txt)
+{
+	$(".alerts").html("<div class='alertMsg'>" +txt+ " X </div>");
+	$(".alertMsg").click(function(){
+		$(this).fadeOut(500,function(){
+			$(this).hide();
+		})
+	});
 }

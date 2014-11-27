@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: "POST",
-			url:  "http://localhost/workout-diary/php/module_pull_athlete.php",
+			url:  "https://localhost/workout-diary/php/module_pull_athlete.php",
 			data: "athletenum=" + value,
 			success: function(response)
 			{
@@ -26,7 +26,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: "POST",
-			url:  "http://localhost/workout-diary/php/module_pull_exercises.php",
+			url:  "https://localhost/workout-diary/php/module_pull_exercises.php",
 			data: {
 				filter: whatDate()
 			},
@@ -38,7 +38,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: "POST",
-			url:  "http://localhost/workout-diary/php/module_pull_diet.php",
+			url:  "https://localhost/workout-diary/php/module_pull_diet.php",
 			data: "dateFilter=" + cDate,
 			success: function(diet)
 			{
@@ -48,7 +48,7 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: "POST",
-			url:  "http://localhost/workout-diary/php/module_manage_timings.php",
+			url:  "https://localhost/workout-diary/php/module_manage_timings.php",
 			data: {
 				getDate: true,
 			},
@@ -92,7 +92,7 @@ $(document).ready(function(){
 
 function writeAthlete()
 {
-	$("#currentUser").html(user[0].name);
+	//$("#currentUser").html(user[0].name);
 	calorificNeed = parseInt(user[0].acn);
 	remainingCalories = calorificNeed - parseInt(foodRunningTotal);
 	$("#remaining").html(remainingCalories);

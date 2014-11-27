@@ -38,11 +38,11 @@ if (isset($_POST['username']) && isset($_POST['type']))
 
 			if ($isPasswordCorrect == true)
 			{
-				logUserIn();
+				logUserIn($clientSideUsername);
 			}
 			else if ($isPasswordCorrect == false)
 			{
-				//echo "password_incorrect";
+				echo "password_incorrect";
 			}
 		}
 		else if (!$doesUserExist)
@@ -86,14 +86,32 @@ function checkUsername($clientSideUsername)
 function checkPassword($clientSideUsername)
 {
 	global $connect;
+
 	$plaintext_password = $_POST['password'];
 
 	$checkPW = mysqli_query($connect,"SELECT password FROM auth WHERE username = '$clientSideUsername'");
 
-	echo print_r($checkPW->num_rows);
-	//$truth = password_verify($plaintext_password,$result['password']);
+	$var = mysqli_fetch_row($checkPW);
 
-	//echo $truth;
+	foreach ($var as $row)
+
+	if (!password_verify($plaintext_password,$row))
+	{
+		return false;
+	}
+
+	if (password_verify($plaintext_password,$row))
+	{
+		return true;
+	}
+
+}
+
+function logUserIn($clientSideUsername)
+{
+	session_start();
+	$_SESSION['username'] = $clientSideUsername;
+	echo "success";
 }
 
 
