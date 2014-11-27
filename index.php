@@ -41,8 +41,8 @@
             <span class="jumbo">???</span><span class="remainder"> more gym visits remaining.</span>
         </div>
         <div id="calories_illustration">
-            <span class="jumbo" id="calories_in">???</span><span class="remainder"> calories in.</span>
-            <span class="jumbo" id="calories_out">???</span><span class="remainder"> calories out.</span>
+            <span class="jumbo" id="calories_in">???</span><span class="remainder"> calories consumed today.</span><br />
+            <span class="jumbo" id="calories_out">???</span><span class="remainder"> calories burned so far today.</span><br />
             <span class="foot_notes">
             	<span id="remaining"></span> calories remaining from baseline requirement.
             </span>
@@ -59,13 +59,22 @@
         <div class="information_panel">
 
             <h1>Welcome to the WorkOut Diary</h1>
-            <p>Currently logged in as <span id="currentUser"><?php echo $_SESSION["username"]; ?></span></p>
-            <p>Todays Date is <span id="currentDate"></span></p>
+            <p>
+                Welcome back <span id="currentUser"><?php echo $_SESSION["username"]; ?></span> <br />
+                Todays Date is <span id="currentDate"></span> <br />
+                You started your workout timeline on <span id="startDate"></span>
+            </p>
 
             <div id="week_information_panel">
-                <p>You started your workout timeline on <span id="startDate"></span></p>
-                <p>This is week number <span id="weekNumber"></span>.</p>
-                <p><span id="initialise_weeks">Start?</span></p>
+                <p>This is week number <span id="weekNumber"></span>. <span id="initialise_weeks">reset?</span></p>
+            </div>
+
+            <div id="motivation_panel">
+                <p>You are at a deficit. You will lose weight. The healthy amount of intake is 1800 calories.</p>
+                <p>You are over your calorie limit. You need to burn X amount.</p>
+                <p>As you want to burn the fat off, you need to burn 3500 calories per week to lose 1 pound</p>
+                <p>This means you need to burn 500 more calories than you eat a day</p>
+                <p>This week, you have burned X number of calories so far. You have eaten X number of calories so far.</p>
             </div>
 
         </div>

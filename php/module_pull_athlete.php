@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -7,14 +9,10 @@ $database = "wholegrain";
 
 $connect = mysqli_connect($host,$username,$password,$database);
 
-if (isset($_POST['athletenum']))
+if (isset($_SESSION['username']))
 {
-	$athleteId = $_POST['athletenum'];
-	$data = mysqli_query($connect,"SELECT * FROM athlete WHERE id = '$athleteId'");
-}
-else
-{
-	$data = mysqli_query($connect,"SELECT * FROM athlete");
+	$loggedInUser = $_SESSION['username'];
+	$data = mysqli_query($connect,"SELECT * FROM athlete WHERE username = '$loggedInUser'");
 }
 
 $json = array();
@@ -25,5 +23,7 @@ while ($row = mysqli_fetch_assoc($data))
 }
 
 echo json_encode($json);
+
+
 
 ?>

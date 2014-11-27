@@ -63,7 +63,7 @@ function submit()
 
 	$.ajax({
 		type: "POST",
-		url:  "http://localhost/workout-diary/php/module_push_athlete.php",
+		url:  "https://localhost/workout-diary/php/module_push_athlete.php",
 		data: formData,
 		success: function(response)
 		{
@@ -84,7 +84,7 @@ function retreive()
 
 	$.ajax({
 		type: "GET",
-		url:  "http://localhost/workout-diary/php/module_pull_athlete.php",
+		url:  "https://localhost/workout-diary/php/module_pull_athlete.php",
 		success: function(response)
 		{
 			userData = response;

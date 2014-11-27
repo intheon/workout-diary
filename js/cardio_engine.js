@@ -10,7 +10,7 @@ function gatherExercises(flag)
   $.ajax(
   {
     type: "GET",
-    url: "http://localhost/workout-diary/php/module_pull_exercise_types.php",
+    url: "https://localhost/workout-diary/php/module_pull_exercise_types.php",
     success: function(response)
     {
       // on success you get this huge json string
@@ -75,7 +75,7 @@ function bindButton(element)
           $.ajax(
           {
             type: "POST",
-            url: "http://localhost/workout-diary/php/module_manage_exercise_types.php",
+            url: "https://localhost/workout-diary/php/module_manage_exercise_types.php",
             data: formData,
             success: function(response)
             {
@@ -129,7 +129,7 @@ function bindButton(element)
             $.ajax(
             {
               type: "POST",
-              url: "http://localhost/workout-diary/php/module_manage_exercise_types.php",
+              url: "https://localhost/workout-diary/php/module_manage_exercise_types.php",
               data:
               {
                 existingId: exist,
@@ -281,7 +281,7 @@ function submitToDB(quantity, name)
   $.ajax(
   {
     type: "POST",
-    url: "http://localhost/workout-diary/php/module_push_cardio.php",
+    url: "https://localhost/workout-diary/php/module_push_cardio.php",
     data: formData,
     success: function(response)
     {

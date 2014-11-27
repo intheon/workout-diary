@@ -8,15 +8,11 @@ var cDate;
 
 $(document).ready(function(){
 
-	var value = localStorage.getItem("currentUser");
-		value = parseInt(value);
-
 	cDate = whatDate();
 
 		$.ajax({
 			type: "POST",
 			url:  "https://localhost/workout-diary/php/module_pull_athlete.php",
-			data: "athletenum=" + value,
 			success: function(response)
 			{
 				user = JSON.parse(response);
@@ -92,12 +88,11 @@ $(document).ready(function(){
 
 function writeAthlete()
 {
-	//$("#currentUser").html(user[0].name);
-	calorificNeed = parseInt(user[0].acn);
-	remainingCalories = calorificNeed - parseInt(foodRunningTotal);
-	$("#remaining").html(remainingCalories);
-	$("#exercises_illustration .jumbo").html(user[0].gym_visits);
-	$("#calories_out").html(exerciseRunningTotal);
+	// this calculates how many calories you've burned today
+	// does it by hour, then plops on 
+	var dateObj = new Date();
+	var dateHours =	dateObj.getHours();
+	$("#calories_out").html(parseInt(user[0].calories / 24 * dateHours))
 }
 
 function writeExercises(exerciseString)
@@ -177,7 +172,7 @@ function startWeeksCount()
 {
 	$.ajax({
 		type: "POST",
-		url:  "http://localhost/workout-diary/php/module_manage_timings.php",
+		url:  "https://localhost/workout-diary/php/module_manage_timings.php",
 		data: {
 			reset: true,
 			date: cDate,
