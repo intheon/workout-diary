@@ -165,7 +165,15 @@ function grabValues(flag)
 
 			var username = formData[0].value;
 			var password = formData[1].value;
-			var email = formData[2].value;
+			var email = formData[3].value;
+			var name = formData[4].value;
+			var gender = formData[5].value;
+			var age = formData[6].value;
+			var activity = formData[7].value;
+			var weight = formData[8].value;
+			var height = formData[9].value;
+			var calories = formData[10].value;
+
 			
 			$.ajax({
 				type: "POST",
@@ -174,7 +182,14 @@ function grabValues(flag)
 					type: 'register',
 					username: username,
 					password: password,
-					email: email
+					email: email,
+					name: name,
+					gender: gender,
+					age: age,
+					activity: activity,
+					weight: weight,
+					height: height,
+					calories: calories
 				},
 				success: function(response)
 				{
@@ -182,16 +197,27 @@ function grabValues(flag)
 					{
 						createErrorMSG("This username already exists!");
 					}
-
-
+					else if (response == "created")
+					{
+						createErrorMSG("This username already exists!");
+					}
+					else if (response == "show_login")
+					{
+						$("#registerPrompt").fadeOut(500,function(){
+							$(this).hide();
+							$("#logInPrompt").fadeIn(500);
+						});
+						createErrorMSG("Registration success, please log in!");
+					}
 
 				}
 			});
 
+			
+
 		}
 
 	}
-		// broke	
 	else 
 	{
 		console.log("consult manual");

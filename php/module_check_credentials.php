@@ -56,11 +56,37 @@ if (isset($_POST['username']) && isset($_POST['type']))
 function createUser()
 { 
 	global $connect;
-	$user = $_POST['username'];
-	$plaintext_password = $_POST['password'];
-	$email = $_POST['email'];
+
+	// vars about the user
+		$username = $_POST['username'];
+		$plaintext_password = $_POST['password'];
+		$email = $_POST['email'];
+		$name = $_POST['name'];
+		$gender = $_POST['gender'];
+		$age = $_POST['age'];
+		$activity = $_POST['activity'];
+		$weight = $_POST['weight'];
+		$height = $_POST['height'];
+		$calories = $_POST['calories'];
+
+	// hash the users password. i dont need the plaintext anymore.
 	$hashed = hashPassword($plaintext_password);
-	$createUsrSQL = mysqli_query($connect,"INSERT INTO auth (username,password,email) VALUES ('$user','$hashed','$email')");
+
+	// the idea here is to insert data into two tables. one is the generic info. one is the auth table.
+
+	// the auth table will have a foreign key pointing to the record in the auth table.
+
+	mysqli_query($connect,"INSERT INTO athlete (username,name,email,gender,age,activity,weight,height,calories) VALUES ('$username','$name','$email','$gender','$age','$activity','$weight','$height','$calories')");
+
+	$newUsrID = mysqli_query($connect,"SELECT id FROM athlete WHERE username = '$username'");
+
+	$id = mysqli_fetch_row($newUsrID);
+
+	foreach ($id as $idActual)
+
+	$createAuth = mysqli_query($connect,"INSERT INTO auth (username,password,athlete_id) VALUES ('$username','$hashed','$idActual')");
+
+	echo "show_login";
 }
 
 function hashPassword($plaintext_password)
