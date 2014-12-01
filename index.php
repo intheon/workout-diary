@@ -54,7 +54,17 @@
 
     <div id="interaction_panel">
 
-        <div class="alert_panel"></div>
+        <div class="alert_panel">
+        	<h1>It's time for a picture!</h1>
+
+        	<form>
+        	    <p>Click to upload a picture for this week.</p>
+        	    <input type="file" placeholder="Weight in KGs">
+        	    <p>What's your current weight?</p>
+        		<input type="text" placeholder="Weight in KGs">
+        		<input type="button" value="Submit">
+        	</form>
+        </div>
 
         <div class="information_panel">
 
