@@ -7,93 +7,91 @@ var cDate;
 
 $(document).ready(function(){
 
+	// returns the current date
 	cDate = whatDate();
 
-		$.ajax({
-			type: "POST",
-			url:  "https://localhost/workout-diary/php/module_pull_athlete.php",
-			success: function(response)
+	// pull in information about the user.
+	$.ajax({
+		type: "POST",
+		url:  "https://localhost/workout-diary/php/module_pull_athlete.php",
+		success: function(response)
 			{
 				user = JSON.parse(response);
 				writeAthlete();
 			}
-		});
+	});
 
-		$.ajax({
-			type: "POST",
-			url:  "https://localhost/workout-diary/php/module_pull_exercises.php",
-			data: {
-				filter: whatDate()
-			},
-			success: function(exercises)
-			{
-				writeExercises(exercises);
-			}
-		});
+	// pull in the exercises they have done.
+	$.ajax({
+		type: "POST",
+		url:  "https://localhost/workout-diary/php/module_pull_exercises.php",
+		data: 
+		{
+			filter: whatDate()
+		},
+		success: function(exercises)
+		{
+			writeExercises(exercises);
+		}
+	});
 
-		$.ajax({
-			type: "POST",
-			url:  "https://localhost/workout-diary/php/module_pull_diet.php",
-			data: "dateFilter=" + cDate,
-			success: function(diet)
-			{
-				parseDiet(diet);
-			}
-		});
+	// pull in what they have eaten.
+	$.ajax({
+		type: "POST",
+		url:  "https://localhost/workout-diary/php/module_pull_diet.php",
+		data: "dateFilter=" + cDate,
+		success: function(diet)
+		{
+			parseDiet(diet);
+		}
+	});
 
-		$.ajax({
-			type: "POST",
-			url:  "https://localhost/workout-diary/php/module_manage_timings.php",
-			data: {
-				getDate: true,
-			},
-			success: function(jsonString)
-			{
-				// i just get a json string back from 
-				// the server with bits of useful shit in
-
-				var jsonObj = JSON.parse(jsonString);
-
-				// the next block is the logic that
-				// figures out how far you are in
-
-				var dayOfYear = dayOfYearCounter();
-				var dayStarted = jsonObj[0].days_in;
-
-
-				var difference = dayOfYear - dayStarted;
-				var weekCount = Math.floor(difference / 7);	
-
-				$("#startDate").html(jsonObj[0].date);
-
-				$("#weekNumber").html(weekCount + 1);
-				$("#daysInToWeek").html(difference + 1);
-
-				$("#pictures_illustration .jumbo").html(7 - difference);
-
-				if (7 - difference <= 0)
-				{
-					$(".alert_panel").html("<div class='alert'><p>It is time for a picture!</p></div>")
-				}
-
-			}
-		});
+	// timing management
+	$.ajax({
+		type: "POST",
+		url:  "https://localhost/workout-diary/php/module_manage_timings.php",
+		data: 
+		{
+			getDate: true,
+		},
+		success: function(jsonString)
+		{
+			// i just get a json string back from 
+			// the server with bits of useful shit in
+			var jsonObj = JSON.parse(jsonString);
+			handleTimings(jsonObj);
+		}
+	});
 
 	$("#currentDate").html(cDate); 
+	// ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
+	// Get and write current date.
 
 	$("#initialise_weeks").click(function(){
 		startWeeksCount();
 	});
-});
+	// ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
+	// When clicked, resets all the timings.
+	// 	** TODO **
+	// 	- I should really add in some validation for this. 
+	//  - It would be a ballache if it was accidentally clicked.
+	// 	** **** **
 
+	$("#pictureSubmitButton").click(function(){
+		submitPictureToDatabase();
+	});
+	// ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
+	// Submit a picture to the database.
+
+});
 
 function writeAthlete()
 {
 	// this calculates how many calories you've burned today
 	// does it by hour, then plops on 
-	var dateObj = new Date();
-	var dateHours =	dateObj.getHours();
-	$("#calories_out").html(parseInt(user[0].calories / 24 * dateHours))
+		var dateObj = new Date();
+		var dateHours =	dateObj.getHours();
+		$("#calories_out").html(parseInt(user[0].calories / 24 * dateHours))
 }
 
 function writeExercises(exerciseString)
@@ -128,7 +126,6 @@ function parseDiet(dietString)
 	// number of calories done today and spit it back client side.
 	var pString = JSON.parse(dietString);
 		// our raw data
-
 
 	for (keys in pString)
 	{
@@ -165,8 +162,6 @@ function parseDiet(dietString)
 			}
 		}
 	}
-
-
 }
 
 function startWeeksCount()
@@ -186,3 +181,50 @@ function startWeeksCount()
 	});
 }
 
+function submitPictureToDatabase()
+{
+	// ** Gets the image from #pictureUploadForm and submits to PHP **
+
+	var formData = new FormData();
+	formData.append('file', $("#fileUpload")[0].files[0]);
+
+	$.ajax({
+		url: "https://localhost/workout-diary/php/module_manage_picture.php",
+		type: "POST",
+		contentType: false,
+		cache: false,
+		processData: false,
+		data: formData,
+		success: function(response)
+		{
+			$("#debug").html(response);
+		}
+	});
+
+}
+
+
+function handleTimings(jsonObj)
+{
+	// the next block is the logic that
+	// figures out how far you are in
+		var dayOfYear = dayOfYearCounter();
+		var dayStarted = jsonObj[0].days_in;
+
+		var difference = dayOfYear - dayStarted;
+		var weekCount = Math.floor(difference / 7);	
+
+		$("#startDate").html(jsonObj[0].date);
+		$("#weekNumber").html(weekCount + 1);
+		$("#daysInToWeek").html(difference + 1);
+		$("#pictures_illustration .jumbo").html(7 - difference);
+
+		if (7 - difference <= 0)
+		{
+			$(".alert_panel").html("<div class='alert'><p>It is time for a picture!</p></div>")
+		}
+
+		$(".day_column:first").append(jsonObj[0].date);
+			
+		console.log(calendarHandler(jsonObj[0].date));
+}

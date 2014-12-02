@@ -56,14 +56,12 @@
 
         <div class="alert_panel">
         	<h1>It's time for a picture!</h1>
-
-        	<form>
+        	<form name="pictureUploadForm" enctype="multipart/form-data" id="pictureUploadForm">
         	    <p>Click to upload a picture for this week.</p>
-        	    <input type="file" placeholder="Weight in KGs">
-        	    <p>What's your current weight?</p>
-        		<input type="text" placeholder="Weight in KGs">
-        		<input type="button" value="Submit">
+        	    	<input type="file" name="fileUpload" id="fileUpload">
+        			<input type="button" value="Submit" id="pictureSubmitButton">
         	</form>
+        	<div id="debug"></div>
         </div>
 
         <div class="information_panel">
@@ -78,6 +76,33 @@
             <div id="week_information_panel">
                 <p>This is week number <span id="weekNumber"></span>. <span id="initialise_weeks">reset?</span></p>
                 <p>You are <span id="daysInToWeek"></span> days into this week. (Since starting)</p>
+            </div>
+
+            <div id="timeline_panel">
+            <p>Here's where we are</p>
+				<div id="calendar">
+					<div class="day_column">
+					1
+					</div>
+					<div class="day_column">
+					2
+					</div>
+					<div class="day_column">
+					3
+					</div>
+					<div class="day_column">
+					4
+					</div>
+					<div class="day_column">
+					5
+					</div>
+					<div class="day_column">
+					6
+					</div>
+					<div class="day_column">
+					7
+					</div>
+				</div>
             </div>
 
             <div id="motivation_panel">

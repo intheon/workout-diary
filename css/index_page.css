@@ -94,5 +94,27 @@
     padding-top:2em;
     padding-left:0.5em;
 }
+#calendar
+{
+    display:flex;
+    margin-left:1.5%;
+    margin-right:1.5%;
+
+}
+.day_column
+{
+    padding-left:4px;
+    flex:1;
+    min-height:85px;
+    font-size:0.85em;
+    border-top:1px solid;
+    border-bottom:1px solid;
+    border-left:1px solid;
+}
+
+.day_column:last-child
+{
+    border-right:1px solid;
+}
 
 
