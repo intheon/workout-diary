@@ -226,5 +226,39 @@ function handleTimings(jsonObj)
 
 		$(".day_column:first").append(jsonObj[0].date);
 			
-		console.log(calendarHandler(jsonObj[0].date));
+		(calendarHandler(jsonObj[0].date));
 }
+
+function calendarHandler(startDate)
+{
+
+	// because i need a number of which month it is
+	var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+	// basically right, i only have a STRING of the day that i started on.
+	// I need to work out what the other 6 date are from that starting date and plonk them on a calendar
+
+	// very clever shit! extract any word thats split by a space
+	var dayNumber = startDate.split(/\s+/).slice(2,3).join(" ");
+		dayNumber = parseInt(dayNumber.substr(0,dayNumber.length-2));
+	var month = startDate.split(/\s+/).slice(4,5).join(" ");
+	var year = startDate.split(/\s+/).slice(5,6).join(" ");
+	var monthPosition = parseInt(jQuery.inArray(month,months));
+
+	for (i = 1; i<=6; i++)
+	{
+		var time = new Date(year, monthPosition, dayNumber);
+		time.setTime( time.getTime() + i * 86400000 );
+
+		$("#calendar:not(:first-child)").each(function(){
+			$(this).append("<div class='day_column'>" + days[time.getDay()] + " the " + time.getDate() + getOrdinal(time.getDate()) + " of " + months[time.getMonth()] + "</div>");
+		});
+	}
+
+
+
+
+}
+
+   
+

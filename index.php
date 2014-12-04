@@ -81,27 +81,7 @@
             <div id="timeline_panel">
             <p>Here's where we are</p>
 				<div id="calendar">
-					<div class="day_column">
-					1
-					</div>
-					<div class="day_column">
-					2
-					</div>
-					<div class="day_column">
-					3
-					</div>
-					<div class="day_column">
-					4
-					</div>
-					<div class="day_column">
-					5
-					</div>
-					<div class="day_column">
-					6
-					</div>
-					<div class="day_column">
-					7
-					</div>
+					<div class="day_column" id="firstCell"></div>
 				</div>
             </div>
 
