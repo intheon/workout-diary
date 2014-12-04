@@ -54,7 +54,7 @@
 
     <div id="interaction_panel">
 
-        <div class="alert_panel">
+        <div class="alert">
         	<h1>It's time for a picture!</h1>
         	<form name="pictureUploadForm" enctype="multipart/form-data" id="pictureUploadForm">
         	    <p>Click to upload a picture for this week.</p>
@@ -75,14 +75,12 @@
 
             <div id="week_information_panel">
                 <p>This is week number <span id="weekNumber"></span>. <span id="initialise_weeks">reset?</span></p>
-                <p>You are <span id="daysInToWeek"></span> days into this week. (Since starting)</p>
+                <p>You are <span id="daysInToWeek"></span> days in (since starting).</p>
             </div>
 
             <div id="timeline_panel">
             <p>Here's where we are</p>
-				<div id="calendar">
-					<div class="day_column" id="firstCell"></div>
-				</div>
+				<div id="calendar"></div>
             </div>
 
             <div id="motivation_panel">

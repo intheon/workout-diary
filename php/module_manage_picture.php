@@ -1,6 +1,6 @@
 <?php
 
-
+require "db_conf.php";
 
 if (!isset($_FILES['file']))
 {
@@ -8,6 +8,8 @@ if (!isset($_FILES['file']))
 }
 else
 {
+
+	
 	$prefix 			= "img_";
 	$destination 		= "C:/wamp/www/workout-diary/img/uploads/";
 	$img_name 			= $_FILES['file']['name'];

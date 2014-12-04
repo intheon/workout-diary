@@ -1,10 +1,7 @@
 <?php
 
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "wholegrain";
+require "db_conf.php";
 
 $connect = mysqli_connect($host,$username,$password,$database);
 

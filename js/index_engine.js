@@ -211,51 +211,82 @@ function handleTimings(jsonObj)
 		var dayOfYear = dayOfYearCounter();
 		var dayStarted = jsonObj[0].days_in;
 
-		var difference = dayOfYear - dayStarted;
+		console.log("day of the year is", dayOfYear);
+		console.log("day started is", jsonObj[0].days_in);
+
+		var difference = dayOfYear - parseInt(dayStarted);
 		var weekCount = Math.floor(difference / 7);	
 
 		$("#startDate").html(jsonObj[0].date);
-		$("#weekNumber").html(weekCount + 1);
-		$("#daysInToWeek").html(difference + 1);
-		$("#pictures_illustration .jumbo").html(7 - difference);
 
-		if (7 - difference <= 0)
+		console.log(difference);
+
+		$("#weekNumber").html(weekCount + 1);
+		$("#daysInToWeek").html(difference);
+
+		if (7 - difference >= 0)
 		{
-			$(".alert_panel").html("<div class='alert'><p>It is time for a picture!</p></div>")
+			$("#pictures_illustration .jumbo").html(7 - difference);
+		}
+		else if (7 - difference < 0)
+		{
+			$("#pictures_illustration").html("You harshly need to take a picture");
 		}
 
 		$(".day_column:first").append(jsonObj[0].date);
 			
-		(calendarHandler(jsonObj[0].date));
+		calendarHandler(jsonObj[0].date);
 }
 
-function calendarHandler(startDate)
+function calendarHandler(veryFirstDate)
 {
-
-	// because i need a number of which month it is
 	var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-	// basically right, i only have a STRING of the day that i started on.
-	// I need to work out what the other 6 date are from that starting date and plonk them on a calendar
 
-	// very clever shit! extract any word thats split by a space
-	var dayNumber = startDate.split(/\s+/).slice(2,3).join(" ");
-		dayNumber = parseInt(dayNumber.substr(0,dayNumber.length-2));
-	var month = startDate.split(/\s+/).slice(4,5).join(" ");
-	var year = startDate.split(/\s+/).slice(5,6).join(" ");
-	var monthPosition = parseInt(jQuery.inArray(month,months));
+	var components = convertStringToComponents(whatDate());
 
-	for (i = 1; i<=6; i++)
+	var test = convertStringToComponents(veryFirstDate);
+
+	var test2 = new Date(test.y, test.p, test.d);
+
+	test2.setTime( test2.getTime() + 7 * 86400000 );
+
+	console.log(test2.getDate());
+
+
+	for (i = 0; i<=6; i++)
 	{
-		var time = new Date(year, monthPosition, dayNumber);
+		var time = new Date(components.y, components.p, components.d);
 		time.setTime( time.getTime() + i * 86400000 );
 
 		$("#calendar:not(:first-child)").each(function(){
-			$(this).append("<div class='day_column'>" + days[time.getDay()] + " the " + time.getDate() + getOrdinal(time.getDate()) + " of " + months[time.getMonth()] + "</div>");
+			$(this).append("<div class='day_column' id='dayNum"+time.getDate()+"'>" + days[time.getDay()] + " the " + time.getDate() + getOrdinal(time.getDate()) + " of " + months[time.getMonth()] + "</div>");
+			if (test2.getDate() == time.getDate())
+			{
+				$("#dayNum"+time.getDate()).append("<div class='calendar_entry'>Last Day</div>");
+			}
 		});
 	}
 
 
+
+
+	function convertStringToComponents(string)
+	{
+    	// very clever shit! extract any word thats split by a space
+    	var dayNumber = string.split(/\s+/).slice(2,3).join(" ");
+			dayNumber = parseInt(dayNumber.substr(0,dayNumber.length-2));
+		var month = string.split(/\s+/).slice(4,5).join(" ");
+		var year = string.split(/\s+/).slice(5,6).join(" ");
+		var monthPosition = parseInt(jQuery.inArray(month,months));
+
+		return {
+			m: month,
+			d: dayNumber,
+			y: year,
+			p:monthPosition
+		};
+	}
 
 
 }

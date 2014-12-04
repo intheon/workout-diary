@@ -1,10 +1,6 @@
 <?php
 
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'wholegrain';
-$connect = mysqli_connect($host,$username,$password,$database);
+require "db_conf.php";
 
 if (isset($_POST['filter']))
 {
