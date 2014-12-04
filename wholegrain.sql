@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2014 at 05:59 PM
+-- Generation Time: Dec 04, 2014 at 06:19 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -197,6 +197,27 @@ INSERT INTO `exercise_calories` (`id`, `exercise_name`, `calories`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `picture`
+--
+
+CREATE TABLE IF NOT EXISTS `picture` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `week_number` varchar(255) NOT NULL,
+  `picture_path` varchar(255) NOT NULL,
+  `picture_taken` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `picture`
+--
+
+INSERT INTO `picture` (`id`, `week_number`, `picture_path`, `picture_taken`) VALUES
+(4, '1', 'C:/wamp/www/workout-diary/img/uploads/img_greek11.png', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `testdata`
 --
 
@@ -228,14 +249,14 @@ CREATE TABLE IF NOT EXISTS `timings` (
   `day_of_week` int(10) NOT NULL,
   `days_in` int(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `timings`
 --
 
 INSERT INTO `timings` (`id`, `week_number`, `date`, `day_of_week`, `days_in`) VALUES
-(13, 1, 'Thursday the 27th of November', 1, 331);
+(17, 1, 'Thursday the 4th of December 2014', 1, 338);
 
 -- --------------------------------------------------------
 

@@ -4,6 +4,8 @@ var exerciseRunningTotal = 0;
 var calorificNeed  = 0;
 var remainingCalories;
 var cDate;
+var weekCount;
+
 
 $(document).ready(function(){
 
@@ -56,6 +58,7 @@ $(document).ready(function(){
 		},
 		success: function(jsonString)
 		{
+			console.log(jsonString);
 			// i just get a json string back from 
 			// the server with bits of useful shit in
 			var jsonObj = JSON.parse(jsonString);
@@ -185,8 +188,10 @@ function submitPictureToDatabase()
 {
 	// ** Gets the image from #pictureUploadForm and submits to PHP **
 
+	var currentWeek = weekCount + 1;
 	var formData = new FormData();
-	formData.append('file', $("#fileUpload")[0].files[0]);
+	formData.append("file", $("#fileUpload")[0].files[0]);
+	formData.append("cWeek", currentWeek);
 
 	$.ajax({
 		url: "https://localhost/workout-diary/php/module_manage_picture.php",
@@ -215,7 +220,7 @@ function handleTimings(jsonObj)
 		console.log("day started is", jsonObj[0].days_in);
 
 		var difference = dayOfYear - parseInt(dayStarted);
-		var weekCount = Math.floor(difference / 7);	
+		weekCount = Math.floor(difference / 7);	
 
 		$("#startDate").html(jsonObj[0].date);
 
@@ -236,6 +241,32 @@ function handleTimings(jsonObj)
 		$(".day_column:first").append(jsonObj[0].date);
 			
 		calendarHandler(jsonObj[0].date);
+
+			// check for picture
+		$.ajax({
+			type: "POST",
+			url:  "https://localhost/workout-diary/php/module_manage_picture.php",
+			data: 
+			{
+				checkPicture: true,
+				weekNumber: weekCount + 1
+			},
+			success: function(pictureDone)
+			{
+				console.log(pictureDone);
+
+				if (pictureDone == true)
+				{
+					console.log()
+					$(".alert").hide();
+				}
+				else
+				{
+					$(".alert").hide().fadeIn(1400);
+				}
+
+			}
+		});
 }
 
 function calendarHandler(veryFirstDate)

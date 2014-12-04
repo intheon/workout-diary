@@ -13,8 +13,6 @@ if (isset($_POST['reset']))
 	}
 }
 
-
-
 if (isset($_POST['getDate']))
 {
 	if ($_POST['getDate'] == true)

@@ -54,7 +54,7 @@
 
     <div id="interaction_panel">
 
-        <div class="alert">
+        <div class="alert" style="display:none">
         	<h1>It's time for a picture!</h1>
         	<form name="pictureUploadForm" enctype="multipart/form-data" id="pictureUploadForm">
         	    <p>Click to upload a picture for this week.</p>
