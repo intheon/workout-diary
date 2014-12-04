@@ -15,7 +15,7 @@ $(document).ready(function(){
 	// pull in information about the user.
 	$.ajax({
 		type: "POST",
-		url:  "https://localhost/workout-diary/php/module_pull_athlete.php",
+		url:  "http://localhost/workout-diary/php/module_pull_athlete.php",
 		success: function(response)
 			{
 				user = JSON.parse(response);
@@ -26,7 +26,7 @@ $(document).ready(function(){
 	// pull in the exercises they have done.
 	$.ajax({
 		type: "POST",
-		url:  "https://localhost/workout-diary/php/module_pull_exercises.php",
+		url:  "http://localhost/workout-diary/php/module_pull_exercises.php",
 		data: 
 		{
 			filter: whatDate()
@@ -40,7 +40,7 @@ $(document).ready(function(){
 	// pull in what they have eaten.
 	$.ajax({
 		type: "POST",
-		url:  "https://localhost/workout-diary/php/module_pull_diet.php",
+		url:  "http://localhost/workout-diary/php/module_pull_diet.php",
 		data: "dateFilter=" + cDate,
 		success: function(diet)
 		{
@@ -51,7 +51,7 @@ $(document).ready(function(){
 	// timing management
 	$.ajax({
 		type: "POST",
-		url:  "https://localhost/workout-diary/php/module_manage_timings.php",
+		url:  "http://localhost/workout-diary/php/module_manage_timings.php",
 		data: 
 		{
 			getDate: true,
@@ -171,7 +171,7 @@ function startWeeksCount()
 {
 	$.ajax({
 		type: "POST",
-		url:  "https://localhost/workout-diary/php/module_manage_timings.php",
+		url:  "http://localhost/workout-diary/php/module_manage_timings.php",
 		data: {
 			reset: true,
 			date: cDate,
@@ -194,7 +194,7 @@ function submitPictureToDatabase()
 	formData.append("cWeek", currentWeek);
 
 	$.ajax({
-		url: "https://localhost/workout-diary/php/module_manage_picture.php",
+		url: "http://localhost/workout-diary/php/module_manage_picture.php",
 		type: "POST",
 		contentType: false,
 		cache: false,
@@ -245,7 +245,7 @@ function handleTimings(jsonObj)
 			// check for picture
 		$.ajax({
 			type: "POST",
-			url:  "https://localhost/workout-diary/php/module_manage_picture.php",
+			url:  "http://localhost/workout-diary/php/module_manage_picture.php",
 			data: 
 			{
 				checkPicture: true,

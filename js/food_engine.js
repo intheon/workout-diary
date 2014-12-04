@@ -87,7 +87,7 @@ for (k in ls)
 
 		$.ajax({
 			type: "POST",
-			url: "https://localhost/workout-diary/php/module_push_diet.php",
+			url: "http://localhost/workout-diary/php/module_push_diet.php",
 			data: {
 				whole: finalString,
 				dateDone: currentDate,

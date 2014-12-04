@@ -113,7 +113,7 @@ function grabValues(flag)
 			
 			$.ajax({
 				type: "POST",
-				url: "https://localhost/workout-diary/php/module_check_credentials.php",
+				url: "http://localhost/workout-diary/php/module_check_credentials.php",
 				data: {
 					type: 'existing',
 					username: username,
@@ -177,7 +177,7 @@ function grabValues(flag)
 			
 			$.ajax({
 				type: "POST",
-				url: "https://localhost/workout-diary/php/module_check_credentials.php",
+				url: "http://localhost/workout-diary/php/module_check_credentials.php",
 				data: {
 					type: 'register',
 					username: username,
