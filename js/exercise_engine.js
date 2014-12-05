@@ -2,6 +2,8 @@ $(document).ready(function()
 {
   gatherExercises();
 
+  gymVisisted();
+
 });
 
 
@@ -16,6 +18,34 @@ function gatherExercises(flag)
       // on success you get this huge json string
       // just pass it to a parsing function
       drawHTML(response,flag);
+    }
+  });
+}
+
+function gymVisisted()
+{
+  $.ajax(
+  {
+    type: "POST",
+    url: "http://localhost/workout-diary/php/module_manage_exercises.php",
+    data: {
+      date: whatDate(),
+      checkForVisit: true
+    },
+    success: function(response)
+    {
+      if (response == "nothing")
+      {
+        $(".messages").html("Gym Not Visited");
+        $(".toggle input[type='checkbox']").attr("checked",false);
+      }
+      else if (response == "match")
+      {
+        $(".messages").html("Gym Visited");
+        $(".messages").addClass("switched");
+        $(".toggle input[type='checkbox']").attr("checked",true);
+        $(".toggle input[type='checkbox']").attr("disabled",true);
+      }
     }
   });
 }
@@ -307,3 +337,35 @@ function manageSubmitAll()
 
   })
 }
+
+
+$(".toggle input[type='checkbox']").click(function(){
+  var isChecked = $(".toggle input[type='checkbox']").is(":checked");
+
+  if (isChecked)
+  {
+    $(".messages").html("Gym Visited");
+    $(".messages").addClass("switched");
+    $(".toggle input[type='checkbox']").attr("disabled",true);
+
+    $.ajax(
+      {
+        type: "POST",
+        url: "http://localhost/workout-diary/php/module_manage_exercises.php",
+        data: {
+          checked: true,
+          date: whatDate()
+        },
+        success: function(response)
+        {
+          console.log(response);
+        }
+    });
+  }
+  else
+  {
+    $(".messages").html("Gym Not Visited");
+    $(".messages").removeClass("switched")
+  }
+
+});

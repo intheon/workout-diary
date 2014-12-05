@@ -8,7 +8,7 @@
 <body>
 <!-- TOP TOOLBAR -->
 <div id="toolbar">
-    <div id="greeting">WorkoutDiary v.01</div>
+    <div id="greeting">WorkoutDiary v1</div>
     <div id="settings">
         <ul>
             <li><img src="img/settings.png" width="50%"></li>
@@ -27,8 +27,7 @@
 <div id="menu_panel">
         <div><a href="index.php">Dashboard</a></div>
         <div><a href="fooddrink.php">Food and Drink <</a></div>
-        <div><a href="cardio.php">Cardio</a></div>
-        <div><a href="weights.php">Weights</a></div>
+        <div><a href="exercises.php">Exercises</a></div>
         <div><a href="stats.php">Statistics</a></div>
 </div>
 

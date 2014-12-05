@@ -29,8 +29,7 @@
 <div id="menu_panel">
         <div><a href="index.php">Dashboard < </a></div>
         <div><a href="fooddrink.php">Food and Drink</a></div>
-        <div><a href="cardio.php">Cardio</a></div>
-        <div><a href="weights.php">Weights</a></div>
+        <div><a href="exercises.php">Exercises</a></div>
         <div><a href="stats.php">Statistics</a></div>
 </div>
 

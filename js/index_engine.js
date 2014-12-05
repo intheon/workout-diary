@@ -58,7 +58,6 @@ $(document).ready(function(){
 		},
 		success: function(jsonString)
 		{
-			console.log(jsonString);
 			// i just get a json string back from 
 			// the server with bits of useful shit in
 			var jsonObj = JSON.parse(jsonString);
@@ -94,7 +93,8 @@ function writeAthlete()
 	// does it by hour, then plops on 
 		var dateObj = new Date();
 		var dateHours =	dateObj.getHours();
-		$("#calories_out").html(parseInt(user[0].calories / 24 * dateHours))
+		$("#calories_out").html(parseInt(user[0].calories / 24 * dateHours));
+		$("#exercises_illustration .jumbo").html(parseInt(user[0].gym_visits_per_week));
 }
 
 function writeExercises(exerciseString)
@@ -179,7 +179,7 @@ function startWeeksCount()
 		},
 		success: function(responses)
 		{
-			console.log(responses);
+			//console.log(responses);
 		}
 	});
 }
@@ -216,15 +216,15 @@ function handleTimings(jsonObj)
 		var dayOfYear = dayOfYearCounter();
 		var dayStarted = jsonObj[0].days_in;
 
-		console.log("day of the year is", dayOfYear);
-		console.log("day started is", jsonObj[0].days_in);
+		//console.log("day of the year is", dayOfYear);
+		//console.log("day started is", jsonObj[0].days_in);
 
 		var difference = dayOfYear - parseInt(dayStarted);
 		weekCount = Math.floor(difference / 7);	
 
 		$("#startDate").html(jsonObj[0].date);
 
-		console.log(difference);
+		//console.log(difference);
 
 		$("#weekNumber").html(weekCount + 1);
 		$("#daysInToWeek").html(difference);
@@ -238,8 +238,7 @@ function handleTimings(jsonObj)
 			$("#pictures_illustration").html("You harshly need to take a picture");
 		}
 
-		$(".day_column:first").append(jsonObj[0].date);
-			
+
 		calendarHandler(jsonObj[0].date);
 
 			// check for picture
@@ -294,7 +293,7 @@ function calendarHandler(veryFirstDate)
 			$(this).append("<div class='day_column' id='dayNum"+time.getDate()+"'>" + days[time.getDay()] + " the " + time.getDate() + getOrdinal(time.getDate()) + " of " + months[time.getMonth()] + "</div>");
 			if (test2.getDate() == time.getDate())
 			{
-				$("#dayNum"+time.getDate()).append("<div class='calendar_entry'>Last Day</div>");
+				$("#dayNum"+time.getDate()).append("<div class='calendar_entry'>last day of week</div>");
 			}
 		});
 	}

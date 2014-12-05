@@ -19,7 +19,11 @@ while ($row = mysqli_fetch_assoc($data))
 	$json[] =  $row;
 }
 
+$_SESSION["gym_visits"] =  $json[0]["gym_visits_per_week"];
+
 echo json_encode($json);
+
+
 
 
 
