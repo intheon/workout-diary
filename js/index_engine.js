@@ -5,10 +5,9 @@ var calorificNeed  = 0;
 var remainingCalories;
 var cDate;
 var weekCount;
-
+var user;
 
 $(document).ready(function(){
-
 	// returns the current date
 	cDate = whatDate();
 
@@ -16,10 +15,11 @@ $(document).ready(function(){
 	$.ajax({
 		type: "POST",
 		url:  "http://localhost/workout-diary/php/module_pull_athlete.php",
+		data: "dateFilter=" + cDate, 
 		success: function(response)
 			{
-				user = JSON.parse(response);
-				writeAthlete();
+				var resp = JSON.parse(response)
+				writeAthlete(resp);
 			}
 	});
 
@@ -87,14 +87,15 @@ $(document).ready(function(){
 
 });
 
-function writeAthlete()
+function writeAthlete(resp)
 {
+	var user = resp;
 	// this calculates how many calories you've burned today
 	// does it by hour, then plops on 
 		var dateObj = new Date();
 		var dateHours =	dateObj.getHours();
 		$("#calories_out").html(parseInt(user[0].calories / 24 * dateHours));
-		$("#exercises_illustration .jumbo").html(parseInt(user[0].gym_visits_per_week));
+		$("#exercises_illustration .jumbo").html(parseInt(user[1].gym_visits_left));
 }
 
 function writeExercises(exerciseString)
@@ -291,10 +292,10 @@ function calendarHandler(veryFirstDate)
 
 		$("#calendar:not(:first-child)").each(function(){
 			$(this).append("<div class='day_column' id='dayNum"+time.getDate()+"'>" + days[time.getDay()] + " the " + time.getDate() + getOrdinal(time.getDate()) + " of " + months[time.getMonth()] + "</div>");
-			if (test2.getDate() == time.getDate())
-			{
-				$("#dayNum"+time.getDate()).append("<div class='calendar_entry'>last day of week</div>");
-			}
+			//if (test2.getDate() == time.getDate())
+			//{
+			//	$("#dayNum"+time.getDate()).append("<div class='calendar_entry'>last day of week</div>");
+			//}
 		});
 	}
 
@@ -318,8 +319,20 @@ function calendarHandler(veryFirstDate)
 		};
 	}
 
-
 }
 
    
+setTimeout(function(){
 
+	$(".day_column").each(function(){
+		var inner = $(this).context.textContent;
+		var db = user[1].date.substr(0,user[1].date.length - 5)
+
+		if (inner == db)
+		{
+			$(this).append("wow");
+			console.log("wow");
+		}
+	});
+
+},1000);
