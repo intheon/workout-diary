@@ -310,4 +310,23 @@ input[type="text"]
 }
 
 
+@media screen and (max-width:900px){
 
+
+body
+{
+    height:auto;
+    width:100%;
+}
+
+
+    #menu_panel
+    {
+        display:flex;
+    }
+    #menu_panel div
+    {
+        flex:1;
+    }
+
+}
