@@ -58,11 +58,8 @@ $(document).ready(function(){
 		},
 		success: function(jsonString)
 		{
-			console.log("This is what is being returned");
-			//var jsonObj = JSON.parse(jsonString);
-
-			console.log(jsonString);
-			//handleTimings(jsonObj);
+			var jsonObj = JSON.parse(jsonString);
+			handleTimings(jsonObj);
 		}
 	});
 
@@ -70,9 +67,13 @@ $(document).ready(function(){
 	// ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
 	// Get and write current date.
 
+
 	$("#initialise_weeks").click(function(){
-		startWeeksCount();
+		showWarning("ARE YOU SURE??? <br />\
+		 <a href='#' onclick='startWeeksCount()'>YES</a>");
 	});
+
+
 	// ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
 	// When clicked, resets all the timings.
 	// 	** TODO **
@@ -219,15 +220,10 @@ function handleTimings(jsonObj)
 		var dayOfYear = dayOfYearCounter();
 		var dayStarted = jsonObj[0].days_in;
 
-		//console.log("day of the year is", dayOfYear);
-		//console.log("day started is", jsonObj[0].days_in);
-
 		var difference = dayOfYear - parseInt(dayStarted);
 		weekCount = Math.floor(difference / 7);	
 
 		$("#startDate").html(jsonObj[0].date);
-
-		//console.log(difference);
 
 		$("#weekNumber").html(weekCount + 1);
 		$("#daysInToWeek").html(difference);
@@ -240,7 +236,6 @@ function handleTimings(jsonObj)
 		{
 			$("#pictures_illustration").html("You harshly need to take a picture");
 		}
-
 
 		calendarHandler(jsonObj[0].date);
 
@@ -269,6 +264,7 @@ function handleTimings(jsonObj)
 
 			}
 		});
+
 }
 
 function calendarHandler(veryFirstDate)
@@ -276,24 +272,34 @@ function calendarHandler(veryFirstDate)
 	var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-	var components = convertStringToComponents(whatDate());
+	// useful!
+	var workOutStartDate = convertStringToComponents(veryFirstDate);
+	// lets see this as a true date object
+	var workOutStartDateObj = new Date(workOutStartDate.y, workOutStartDate.p, workOutStartDate.d);
 
-	var test = convertStringToComponents(veryFirstDate);
+	var multiplier = weekCount;
 
-	var test2 = new Date(test.y, test.p, test.d);
+	var calendarStart = findWeeksAfterStart(workOutStartDateObj,multiplier);
 
-	test2.setTime( test2.getTime() + 7 * 86400000 );
+	function findWeeksAfterStart(workOutStartDateObj,multiplier)
+	{
+		// workOutStartDateObj  is your start date, interpretted as a valid Date() object
+		// multiplier is number of weeks since that date
+		var currentWeekDateObj = new Date();
 
-	console.log(test2.getDate());
+		currentWeekDateObj.setTime( workOutStartDateObj.getTime() + (7 * multiplier) * 86400000 );
+		return currentWeekDateObj;
+	}
 
+	console.log(calendarStart);
 
 	for (i = 0; i<=6; i++)
 	{
-		var time = new Date(components.y, components.p, components.d);
-		time.setTime( time.getTime() + i * 86400000 );
+		var remainingWeek = new Date();
+		remainingWeek.setTime( calendarStart.getTime() + i * 86400000 );
 
 		$("#calendar:not(:first-child)").each(function(){
-			$(this).append("<div class='day_column' id='dayNum"+time.getDate()+"'>" + days[time.getDay()] + " the " + time.getDate() + getOrdinal(time.getDate()) + " of " + months[time.getMonth()] + "</div>");
+			$(this).append("<div class='day_column' id='dayNum"+remainingWeek.getDate()+"'>" + days[remainingWeek.getDay()] + " the " + remainingWeek.getDate() + getOrdinal(remainingWeek.getDate()) + " of " + months[remainingWeek.getMonth()] + "</div>");
 			//if (test2.getDate() == time.getDate())
 			//{
 			//	$("#dayNum"+time.getDate()).append("<div class='calendar_entry'>last day of week</div>");
