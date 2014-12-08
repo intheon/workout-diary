@@ -26,7 +26,7 @@
     <p>Authentication. Enter carefully as you will be asked to remember these.</p>
     <form id="registerCredentials" autocomplete="off">
     <div class="chunk">
-        <input type="text" placeholder="Username" name="usernameField"/>
+        <input type="text" placeholder="Username" name="usernameField" id="usernameField"/>
         <input type="password" placeholder="Password" name="regPasswordField"/>
         <input type="password" placeholder="Repeat Password" name="regPasswordRepeatField"/>
         <input type="text" placeholder="Email" name="emailField"/>

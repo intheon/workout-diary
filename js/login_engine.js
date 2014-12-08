@@ -10,14 +10,31 @@ $(document).ready(function(){
 		weightInt = $(this).val();
 	});
 
-	$("#heightField").on("keyup",function(){
+	$("#heightField").on("change",function(){
 		heightInt = $(this).val();
 		check();
 	});
 
-	$("#AgeField").on("change",function(){
-		ageInt = $(this).val();
+	$("input[name='Activity']").on("click",function(){
+		check();
 	});
+
+	$("#AgeField").on("keyup",function(){
+
+		if (isNaN($(this).val()))
+		{
+			$(".alerts").hide();
+			createErrorMSG("This isnt a number");
+		}
+		else
+		{
+			$(".alerts").hide();
+			ageInt = $(this).val();
+		}
+
+	});
+
+
 
 	$("input[name='Gender']").on("change",function(){
 		gender = $(this).val();
@@ -27,6 +44,35 @@ $(document).ready(function(){
 		activityLevel = $(this).val();
 	});
 
+	$("#usernameField").on("keyup",function(){
+		$(".alerts").hide();
+		var currentEntry = $(this).val();
+
+		if (currentEntry.length >= 4)
+		{
+			checkUsernameAlreadyExists(currentEntry);
+
+		}
+
+	});
+
+	function checkUsernameAlreadyExists(string)
+	{
+		$.ajax({
+			type: "POST",
+			url: "http://localhost/workout-diary/php/module_check_credentials.php",
+			data: {
+				userToCheck: string
+			},
+			success: function(outcome)
+			{
+				if (outcome == "true")
+				{
+					createErrorMSG("User already exists");
+				}
+			}
+		});
+	}
 
 	function check()
 	{
@@ -167,12 +213,14 @@ function grabValues(flag)
 			var password = formData[1].value;
 			var email = formData[3].value;
 			var name = formData[4].value;
-			var gender = formData[5].value;
-			var age = formData[6].value;
-			var activity = formData[7].value;
-			var weight = formData[8].value;
-			var height = formData[9].value;
+			var age = formData[5].value;
+			var gender = formData[6].value;
+			var weight = formData[7].value;
+			var height = formData[8].value;
+			var activity = formData[9].value;
 			var calories = formData[10].value;
+
+			console.log(formData);
 
 			
 			$.ajax({
@@ -239,6 +287,7 @@ function showForm()
 
 function createErrorMSG(txt)
 {
+	$(".alerts").show();
 	$(".alerts").html("<div class='alertMsg'>" +txt+ " X </div>");
 	$(".alertMsg").click(function(){
 		$(this).fadeOut(500,function(){

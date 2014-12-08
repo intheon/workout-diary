@@ -3,6 +3,16 @@ require "db_conf.php";
 
 $connect = mysqli_connect($host,$username,$password,$database);
 
+if (isset($_POST['userToCheck']))
+{
+	$usr = mysqli_real_escape_string($connect,$_POST['userToCheck']);
+
+	$result = checkUsername($usr);
+
+	echo htmlspecialchars($result);
+
+}
+
 if (isset($_POST['username']) && isset($_POST['type']))
 {
 	if ($_POST['type'] == "register")
@@ -11,18 +21,18 @@ if (isset($_POST['username']) && isset($_POST['type']))
 
 		$doesUserExist = checkUsername($clientSideUsername);
 
-		if ($doesUserExist == true)
+		if ($doesUserExist == "true")
 		{
-			echo "exists";
+			echo htmlspecialchars("exists");
 		}
-		else if ($doesUserExist == false)
+		else if ($doesUserExist == "false")
 		{
 			createUser();
 		}
 	}
 	else if ($_POST['type'] == "existing")
 	{
-		$clientSideUsername = $_POST['username'];
+		$clientSideUsername = mysqli_real_escape_string($connect,$_POST['username']);
 
 		$doesUserExist = checkUsername($clientSideUsername);
 
@@ -38,13 +48,13 @@ if (isset($_POST['username']) && isset($_POST['type']))
 			}
 			else if ($isPasswordCorrect == false)
 			{
-				echo "password_incorrect";
+				echo htmlspecialchars("password_incorrect");
 			}
 		}
 		else if (!$doesUserExist)
 		{
 			// they need to register instead
-			echo "does_not";
+			echo htmlspecialchars("does_not");
 		}
 	}
 }
@@ -54,18 +64,18 @@ function createUser()
 	global $connect;
 
 	// vars about the user
-		$username = $_POST['username'];
-		$plaintext_password = $_POST['password'];
-		$email = $_POST['email'];
-		$name = $_POST['name'];
-		$gender = $_POST['gender'];
-		$age = $_POST['age'];
-		$activity = $_POST['activity'];
-		$weight = $_POST['weight'];
-		$height = $_POST['height'];
-		$calories = $_POST['calories'];
-		$dateCreated = $_POST['dateCreated'];
-		$daysIn = $_POST['daysIn'];
+		$username = mysqli_real_escape_string($connect,$_POST['username']);
+		$plaintext_password = mysqli_real_escape_string($connect,$_POST['password']);
+		$email = mysqli_real_escape_string($connect,$_POST['email']);
+		$name = mysqli_real_escape_string($connect,$_POST['name']);
+		$gender = mysqli_real_escape_string($connect,$_POST['gender']);
+		$age = mysqli_real_escape_string($connect,$_POST['age']);
+		$activity = mysqli_real_escape_string($connect,$_POST['activity']);
+		$weight = mysqli_real_escape_string($connect,$_POST['weight']);
+		$height = mysqli_real_escape_string($connect,$_POST['height']);
+		$calories = mysqli_real_escape_string($connect,$_POST['calories']);
+		$dateCreated = mysqli_real_escape_string($connect,$_POST['dateCreated']);
+		$daysIn = mysqli_real_escape_string($connect,$_POST['daysIn']);
 
 	// hash the users password. i dont need the plaintext anymore.
 	$hashed = hashPassword($plaintext_password);
@@ -86,7 +96,7 @@ function createUser()
 
 	$initialiseTiming = mysqli_query($connect,"INSERT INTO timings (week_number,date,days_in,user_name) VALUES (1,'$dateCreated','$daysIn','$username')");
 
-	echo "show_login";
+	echo htmlspecialchars("show_login");
 }
 
 function hashPassword($plaintext_password)
@@ -101,11 +111,11 @@ function checkUsername($clientSideUsername)
 
 	if ($check->num_rows >= 1)
 	{
-		return true;
+		return "true";
 	}
 	else if ($check->num_rows == 0)
 	{
-		return false;
+		return "false";
 	}
 }
 
@@ -137,7 +147,7 @@ function logUserIn($clientSideUsername)
 {
 	session_start();
 	$_SESSION['username'] = $clientSideUsername;
-	echo "success";
+	echo htmlspecialchars("success");
 }
 
 
