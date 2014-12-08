@@ -1,9 +1,4 @@
-<?php session_start(); 
-
-
-echo $_SESSION['username'];
-
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
 <head>

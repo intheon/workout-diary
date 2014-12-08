@@ -1,13 +1,16 @@
 <?php
 
+
 require "db_conf.php";
 
-$connect = mysqli_connect($host,$username,$password,$database);
+session_start();
+
+$loggedInUser = $_SESSION['username'] ;
 
 if (isset($_POST['dateFilter']))
 {
 	$dateParam = $_POST['dateFilter'];
-	$sql = mysqli_query($connect,"SELECT * FROM diet WHERE date_done = '$dateParam'");
+	$sql = mysqli_query($connect,"SELECT * FROM diet WHERE date_done = '$dateParam' AND owner = '$loggedInUser'");
 }
 
 $json = array();

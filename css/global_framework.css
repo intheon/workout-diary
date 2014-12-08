@@ -178,7 +178,6 @@ select
 #settings
 {
     float:right;
-    margin-right:4%;
 }
 
 #settings ul
@@ -188,8 +187,8 @@ select
 
 #settings ul img
 {
+    position:relative;
     margin-top:-12%;
-    
 }
 
 #settings ul ul

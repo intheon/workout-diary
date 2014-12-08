@@ -6,6 +6,7 @@ session_start();
 
 $loggedInUser = $_SESSION['username'] ;
 
+
 if (isset($_POST['reset']))
 {
 	if ($_POST['reset'] == true)
@@ -22,15 +23,16 @@ if (isset($_POST['getDate']))
 	if ($_POST['getDate'] == true)
 	{
 
-		$sql = mysqli_query($connect,"SELECT * FROM timings WHERE `user_name` = '$loggedInUser'");
+		echo $loggedInUser;
+		//$sql = mysqli_query($connect,"SELECT * FROM timings WHERE `user_name` = '$loggedInUser'");
 
-		$row = mysqli_fetch_assoc($sql);
+		//$row = mysqli_fetch_assoc($sql);
 
-		$array = array();
+		//$array = array();
 
-		$array[] = $row;
+		//$array[] = $row;
 
-		echo json_encode($array);
+		//echo json_encode($array);
 
 	}
 }

@@ -175,11 +175,11 @@ function grabValues(flag)
 							createErrorMSG("This username already exists");
 							break;
 
-						case "does_not":
+						case "nonexistent":
 							createErrorMSG("This username doesn't exist, please register");
 							break;
 
-						case "password_incorrect":
+						case "incorrectpw":
 							createErrorMSG("Incorrect Password");
 							break;
 

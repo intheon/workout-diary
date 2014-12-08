@@ -18,7 +18,7 @@ $(document).ready(function(){
 		data: "dateFilter=" + cDate, 
 		success: function(response)
 			{
-				var resp = JSON.parse(response)
+				var resp = JSON.parse(response);
 				writeAthlete(resp);
 			}
 	});
@@ -58,10 +58,11 @@ $(document).ready(function(){
 		},
 		success: function(jsonString)
 		{
-			// i just get a json string back from 
-			// the server with bits of useful shit in
-			var jsonObj = JSON.parse(jsonString);
-			handleTimings(jsonObj);
+			console.log("This is what is being returned");
+			//var jsonObj = JSON.parse(jsonString);
+
+			console.log(jsonString);
+			//handleTimings(jsonObj);
 		}
 	});
 
@@ -91,11 +92,12 @@ function writeAthlete(resp)
 {
 	var user = resp;
 	// this calculates how many calories you've burned today
-	// does it by hour, then plops on 
-		var dateObj = new Date();
-		var dateHours =	dateObj.getHours();
-		$("#calories_out").html(parseInt(user[0].calories / 24 * dateHours));
-		$("#exercises_illustration .jumbo").html(parseInt(user[1].gym_visits_left));
+	// does it by hour, then plops on
+
+	var dateObj = new Date();
+	var dateHours =	dateObj.getHours();
+	$("#calories_out").html(Math.round((user[0].calories / 24)) * dateHours);
+	//$("#exercises_illustration .jumbo").html(parseInt(user[1].gym_visits_left));
 }
 
 function writeExercises(exerciseString)
@@ -320,19 +322,3 @@ function calendarHandler(veryFirstDate)
 	}
 
 }
-
-   
-setTimeout(function(){
-
-	$(".day_column").each(function(){
-		var inner = $(this).context.textContent;
-		var db = user[1].date.substr(0,user[1].date.length - 5)
-
-		if (inner == db)
-		{
-			$(this).append("wow");
-			console.log("wow");
-		}
-	});
-
-},1000);

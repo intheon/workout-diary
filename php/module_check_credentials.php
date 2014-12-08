@@ -48,13 +48,13 @@ if (isset($_POST['username']) && isset($_POST['type']))
 			}
 			else if ($isPasswordCorrect == false)
 			{
-				echo htmlspecialchars("password_incorrect");
+				echo htmlspecialchars("incorrectpw");
 			}
 		}
 		else if (!$doesUserExist)
 		{
 			// they need to register instead
-			echo htmlspecialchars("does_not");
+			echo htmlspecialchars("nonexistent");
 		}
 	}
 }
@@ -84,7 +84,7 @@ function createUser()
 
 	// the auth table will have a foreign key pointing to the record in the auth table.
 
-	mysqli_query($connect,"INSERT INTO athlete (username,name,email,gender,age,activity,weight,height,calories) VALUES ('$username','$name','$email','$gender','$age','$activity','$weight','$height','$calories')");
+	mysqli_query($connect,"INSERT INTO athlete (username,name,email,gender,age,activity,weight,height,calories,gym_visits_per_week) VALUES ('$username','$name','$email','$gender','$age','$activity','$weight','$height','$calories',4)");
 
 	$newUsrID = mysqli_query($connect,"SELECT id FROM athlete WHERE username = '$username'");
 
