@@ -64,6 +64,8 @@ function createUser()
 		$weight = $_POST['weight'];
 		$height = $_POST['height'];
 		$calories = $_POST['calories'];
+		$dateCreated = $_POST['dateCreated'];
+		$daysIn = $_POST['daysIn'];
 
 	// hash the users password. i dont need the plaintext anymore.
 	$hashed = hashPassword($plaintext_password);
@@ -81,6 +83,8 @@ function createUser()
 	foreach ($id as $idActual)
 
 	$createAuth = mysqli_query($connect,"INSERT INTO auth (username,password,athlete_id) VALUES ('$username','$hashed','$idActual')");
+
+	$initialiseTiming = mysqli_query($connect,"INSERT INTO timings (week_number,date,days_in,user_name) VALUES (1,'$dateCreated','$daysIn','$username')");
 
 	echo "show_login";
 }

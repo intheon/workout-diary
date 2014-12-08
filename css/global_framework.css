@@ -122,11 +122,12 @@ a:hover {
     color:black;
 }
 
-input[type="radio"] + label 
+input
 {
-    color:#000;
-    font-size:2em;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 4px;
 }
+
 
 input[type="button"]
 {
@@ -136,10 +137,22 @@ input[type="button"]
     border-color:#3C3C42;
     font-size:1em;
     color:#768291;
+    border-radius: 4px;
 }
 input[type="button"]:hover
 {
     background:#424246;
+    color:#768291;
+}
+input[type="text"]:hover
+{
+    background:#424246;
+    color:#768291;
+}
+input[type="password"]:hover
+{
+    background:#424246;
+    color:#768291;
 }
 select
 {

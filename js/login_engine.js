@@ -189,7 +189,9 @@ function grabValues(flag)
 					activity: activity,
 					weight: weight,
 					height: height,
-					calories: calories
+					calories: calories,
+					dateCreated: whatDate(),
+					daysIn: dayOfYearCounter()
 				},
 				success: function(response)
 				{
