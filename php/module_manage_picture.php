@@ -38,7 +38,7 @@ else
 		}
 		// params about my file
 		$prefix 			= "img_";
-		$destination 		= "C:/wamp/www/workout-diary/img/uploads/";
+		$destination 		= "../img/uploads/";
 		$img_name 			= $_FILES['file']['name'];
 		$img_size 			= $_FILES['file']['size'];
 		$img_temp			= $_FILES['file']['tmp_name'];
