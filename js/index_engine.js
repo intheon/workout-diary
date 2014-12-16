@@ -198,7 +198,7 @@ function submitPictureToDatabase()
 	formData.append("cWeek", currentWeek);
 
 	$.ajax({
-		url: "/workout/php/module_manage_picture.php",
+		url: "http://localhost/workout-diary/php/module_manage_picture.php",
 		type: "POST",
 		contentType: false,
 		cache: false,
