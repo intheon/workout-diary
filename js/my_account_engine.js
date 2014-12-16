@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 	$.ajax({
 		type: "POST",
-			url:  "http://localhost/workout-diary/php/module_pull_athlete.php",
+			url:  globalURL + "php/module_pull_athlete.php",
 			success: function(response)
 			{
 				var user = JSON.parse(response);

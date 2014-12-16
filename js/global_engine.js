@@ -1,17 +1,4 @@
-$(document).ready(function(){
-
-	$("#settings ul").click(function(event){
-		$("#settings ul ul").slideToggle();
-		$("#settings ul ul li").click(function(e){ 
-			e.stopPropagation()
-		});
-	});
-
-});
-// this handles and assigns stuff to localstorage
-
-
-
+var globalURL = "http://localhost/workout-diary/";
 var data = {};
 var s;
 
