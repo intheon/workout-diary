@@ -12,7 +12,7 @@ function gatherExercises(flag)
   $.ajax(
   {
     type: "GET",
-    url: "/workout/php/module_pull_exercise_types.php",
+    url: "http://localhost/workout-diary/php/module_pull_exercise_types.php",
     success: function(response)
     {
       // on success you get this huge json string
@@ -27,7 +27,7 @@ function gymVisisted()
   $.ajax(
   {
     type: "POST",
-    url: "/workout/php/module_manage_exercises.php",
+    url: "http://localhost/workout-diary/php/module_manage_exercises.php",
     data: {
       date: whatDate(),
       checkForVisit: true
@@ -105,7 +105,7 @@ function bindButton(element)
           $.ajax(
           {
             type: "POST",
-            url: "/workout/php/module_manage_exercise_types.php",
+            url: "http://localhost/workout-diary/php/module_manage_exercise_types.php",
             data: formData,
             success: function(response)
             {
@@ -159,7 +159,7 @@ function bindButton(element)
             $.ajax(
             {
               type: "POST",
-              url: "/workout/php/module_manage_exercise_types.php",
+              url: "http://localhost/workout-diary/php/module_manage_exercise_types.php",
               data:
               {
                 existingId: exist,
@@ -311,7 +311,7 @@ function submitToDB(quantity, name)
   $.ajax(
   {
     type: "POST",
-    url: "/workout/php/module_push_cardio.php",
+    url: "http://localhost/workout-diary/php/module_push_cardio.php",
     data: formData,
     success: function(response)
     {
@@ -351,7 +351,7 @@ $(".toggle input[type='checkbox']").click(function(){
     $.ajax(
       {
         type: "POST",
-        url: "../php/module_manage_exercises.php",
+        url: "http://localhost/workout-diary/php/module_manage_exercises.php",
         data: {
           checked: true,
           date: whatDate()
