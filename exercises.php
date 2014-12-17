@@ -1,3 +1,13 @@
+<?php 
+session_start();
+
+if (!isset($_SESSION['username']))
+{
+    header("Location: login.php");
+    die();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
 <head>
@@ -14,11 +24,11 @@
         <ul>
             <li><img src="img/settings.png" width="50%"></li>
             <ul>
-                <li><img src="img/settings.png" width="18%">
+                <li>
                     <a href="myaccount.php">My Account</a>
                 </li>
-                <li><img src="img/settings.png" width="18%">
-                    <a href="login.php">Sign Out</a>
+                <li>
+                    <a href="#" id="logMeOut">Sign Out</a>
                 </li>
             </ul>
         </ul>
@@ -26,16 +36,10 @@
 </div>
 
 <!-- SIDE PANEL -->
-
-    <div id="menu_panel">
-        <div><a href="index.php">Dashboard</a></div>
-        <div><a href="fooddrink.php">Food and Drink</a></div>
-        <div><a href="exercises.php">Exercises <</a></div>
-        <div><a href="stats.php">Statistics</a></div>
-    </div>
+<div class="menu_panel"></div>
 
     <!-- THE INTERACTION PANEL IS PURELY WHERE INTERACTIONS OCCUR -->
-<div class="right_content">
+<div class="main_content">
     <div id="interaction_panel">
 
         <div class="information_panel">

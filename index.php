@@ -1,4 +1,14 @@
-<?php session_start(); ?>
+<?php 
+session_start();
+
+if (!isset($_SESSION['username']))
+{
+    header("Location: login.php");
+    die();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" xml:lang="en">
 <head>
@@ -15,27 +25,22 @@
         <ul>
             <li><img src="img/settings.png" width="50%"></li>
             <ul>
-                <li><img src="img/settings.png" width="18%">
+                <li>
                     <a href="myaccount.php">My Account</a>
                 </li>
-                <li><img src="img/settings.png" width="18%">
-                    <a href="login.php">Sign Out</a>
+                <li>
+                    <a href="#" id="logMeOut">Sign Out</a>
                 </li>
             </ul>
         </ul>
     </div>
 </div>
 
-<div id="menu_panel">
-        <div><a href="index.php">Dashboard < </a></div>
-        <div><a href="fooddrink.php">Food and Drink</a></div>
-        <div><a href="exercises.php">Exercises</a></div>
-        <div><a href="stats.php">Statistics</a></div>
-</div>
+<div class="menu_panel"></div>
 
-<div class="right_content">
+<div class="main_content">
 
-    <div id="modules_bar">
+    <div id="modules_bar"> <!-- MODULES | CONTAINS STATS -->
         <div id="exercises_illustration">
             <span class="jumbo">???</span><span class="remainder"> more gym visits remaining.</span>
         </div>
@@ -50,39 +55,44 @@
 
     <div id="interaction_panel">
 
-        <div class="information_panel">
+        <div class="information_panel"> <!-- FIRST PANEL | WELCOME -->
 
-            <h1>Welcome to the WorkOut Diary</h1>
-            <div class="time_ticker">
-                <div class="time_item">Todays date: <span id="currentDate"></span></div>
-                <div class="time_item">Workout started: <span id="startDate"></span></div>
-            </div>
-
-            <div class="welcome_messages">
-                Welcome back, <span id="currentUser"><?php echo $_SESSION["username"]; ?></span>
-            </div>
-            <div id="week_information_panel">
-                <div class="flex_item"><span id="weekNumber"></span> week in. <span id="initialise_weeks">reset?</span></div>
-                <div class="flex_item"><span id="daysInToWeek"></span> days in.</div>
-            </div>
-                
-            <div class="alert" style="display:none">
-                <h1>It's time for a picture!</h1>
-                <form name="pictureUploadForm" enctype="multipart/form-data" id="pictureUploadForm">
-                    <p>Click to upload a picture for this week.</p>
-                        <input type="file" name="fileUpload" id="fileUpload">
-                        <input type="button" value="Submit" id="pictureSubmitButton">
-                </form>
-                <div id="debug"></div>
-            </div>
-
+            <h1>Welcome back, <span id="currentUser"><?php echo $_SESSION["username"]; ?></span></h1>
+            <p>How the hell are you today? Get entering some information!</p>
 
             <div id="timeline_panel">
-            <p>Week planner</p>
+                <p>Week planner</p>
 				<div id="calendar"></div>
+            </div> 
+
+        </div> <!-- END FIRST -->
+
+        <div class="information_panel"> <!-- SECOND PANEL | STATS-->
+
+            <div id="week_information_panel">
+                <div class="flex_item">Todays date: <span id="currentDate"></span></div>
+                <div class="flex_item">Workout started: <span id="startDate"></span></div>
+                <div class="flex_item">Week number: <span id="weekNumber"></span><span id="initialise_weeks">reset?</span></div>
+                <div class="flex_item">Days in: <span id="daysInToWeek"></span> </div>
             </div>
 
-            <!--
+        </div> <!-- SECOND FIRST -->
+
+        <!-- <div class="information_panel"> THIRD PANEL | ALERTS
+
+            <div class="alert" style="display:none">
+            <h1>It's time for a picture!</h1>
+                <form name="pictureUploadForm" enctype="multipart/form-data" id="pictureUploadForm">
+                    <p>Click to upload a picture for this week.</p>
+                    <input type="file" name="fileUpload" id="fileUpload">
+                    <input type="button" value="Submit" id="pictureSubmitButton">
+                </form>
+            <div id="debug"></div>
+
+        </div> END THIRD -->
+
+        <!--<div class="information_panel"> FORTH PANEL | MOTIVATIONAL MESSAGES
+        
             <div id="motivation_panel">
                 <p>You are at a deficit. You will lose weight. The healthy amount of intake is 1800 calories.</p>
                 <p>You are over your calorie limit. You need to burn X amount.</p>
@@ -90,20 +100,18 @@
                 <p>This means you need to burn 500 more calories than you eat a day</p>
                 <p>This week, you have burned X number of calories so far. You have eaten X number of calories so far.</p>
             </div> 
-            -->
 
-        </div>
+        </div> END FORTH -->
 
-
-        <div class="localstorage_panel" id="exercise_output">
+        <div class="localstorage_panel" id="exercise_output"> <!-- FIFTH PANEL | EXERCISES-->
             <h1>Exercises done today</h1>
             <p>None.</p>
-        </div>
+        </div> <!-- END FIFTH-->
 
-        <div class="localstorage_panel" id="food_output">
+        <div class="localstorage_panel" id="food_output"> <!-- FIFTH SIXTH | FOOD AND DRINK-->
             <h1>Food and drink consumed today</h1>
             <p>None.</p>
-        </div>
+        </div> <!-- END  -->
 
     </div>
 

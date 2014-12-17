@@ -8,18 +8,32 @@ html
 
 body
 {
-    font-family:arial;
     margin:0px;
     padding:0px;
+    font-size:1em;
+    background-color: #282323;
+    color:#E5E5E5;
     height:100%;
-    background-color:#1E1E21;
-    color:#9DAABA ;
     font-family: 'Raleway', sans-serif;
+}
+
+h1{
+    margin:0px;
+    padding:0px;
+    color:#E9AC61;
+    margin:10px;
+}
+h2
+{
+    margin:10px;
+    font-weight:normal;
+    color:#9D9797;
+    margin-bottom:2%;
 }
 
 a 
 {
-    color:#9DAABA;
+    color:#E5E5E5;
     text-decoration: none;
 }
 
@@ -34,47 +48,45 @@ a:hover {
     margin-bottom:1em;
     padding:1%;
     border: 1px solid;
-    border-color: #363640;
+    border-color: #262121;
     border-radius:6px;
 }
 
-#menu_panel
+.menu_panel
 {
     float:left;
     height:100%;
-    background-color:#1E1E21;
+    background-color:#3A3535;
+    border-right:1px solid;
+    border-color:#262121;
 }
 
-#menu_panel div
+.menu_panel div
 {
     border-bottom: 1px solid;
-    border-color: #363640;
+    border-color: #262121;
     padding:7%;
     padding-left:15%;
     text-align:left;
-    background: linear-gradient(to bottom, #252528 , #1E1E21);
-}
-#interaction_panel
-{
-
+    background: linear-gradient(to bottom, #383333 , #3A3535 );
 }
 
-.right_content
+.main_content
 {
-    float:right;
-    width:79%;
-    margin-right:4%;
+    display:flex;
+    flex-direction: column;
+   padding:1%;
 }
 
 .information_panel
 {
+    background: linear-gradient(to bottom, #383333 , #3A3535 );
     border: 1px solid;
-    border-color: #3C3C42;
+    border-color: #262121;
     border-radius:6px;
 }
 .information_panel h1
 {
-    background: linear-gradient(to bottom, #272828 , #1E1E21);
     padding:0%;
     margin:0%;
     font-size:1.55em;
@@ -85,13 +97,13 @@ a:hover {
     padding:0%;
     margin:0%;
     font-size:1.05em;
-    padding:0.7em;
-
+    padding-left:1.5%;
+    padding-bottom:1.5%;
 }
 .tab_panel
 {
     border: 1px solid;
-    border-color: #363640;
+    border-color: #262121;
     border-radius:6px;
     margin-top:3%;
     display:inline-block;
@@ -134,7 +146,7 @@ input[type="button"]
     padding:0.7%;
     background:#3C3C42;
     border: 1px solid;
-    border-color:#3C3C42;
+    border-color:#262121;
     font-size:1em;
     color:#768291;
     border-radius: 4px;
@@ -166,7 +178,7 @@ select
     background: url(../img/header_bg.png) top center;
     background-size: cover;
     border-bottom: 1px solid;
-    border-color:#3C3C42;
+    border-color:#262121;
 }
 #greeting
 {
@@ -178,6 +190,7 @@ select
 #settings
 {
     float:right;
+    height:100%;
 }
 
 #settings ul
@@ -190,32 +203,40 @@ select
     position:relative;
     margin-top:-12%;
 }
+#settings a
+{
+    padding:4%;
+}
 
 #settings ul ul
 {
     display:none;
-    background-color: #FFFFFF;
+    background-color:#272828;
     border: 1px solid;
-    border-color: #363640;
+    border-color: #262121;
     border-radius: 15px;
     position: absolute;
     margin:0;
-    padding:0;
-    list-style-type: none;
+    margin-left:-1.5%;
+    margin-right:1.5%;
+    padding-top:1.5%;
+    padding-bottom:2%;
 }
 #settings ul ul li
 {
-    padding-top:15%;
-    padding-bottom:15%;
-    padding-left:10%;
-    padding-right:10%;
+    float:left;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    padding:1%;
+
 }
 
 .localstorage_panel
 {
     margin-top:3%;
     border: 1px solid;
-    border-color: #3C3C42;
+    border-color: #262121;
     border-radius:6px;
 }
 .localstorage_panel h1
@@ -250,7 +271,7 @@ select
     border-radius:11px;
     font-size:2em;
     border: 5px solid;
-    border-color:#FDB734;
+    border-color:#262121;
 }
 .dismiss
 {
@@ -265,10 +286,10 @@ input[type="text"]
 .alert
 {
     border: 1px solid;
-    border-color: #2C2C30;
+    border-color: #262121;
     border-radius:6px;
     margin-bottom:2%;
-    margin-top:5%;
+    margin-top:0.5%;
     margin-right:1.5%;
     margin-left:1.5%;
     padding-bottom:1.5%;
@@ -310,7 +331,7 @@ input[type="text"]
 }
 
 
-@media screen and (max-width:900px){
+@media screen and (max-width:950px){
 
 
 body
@@ -320,13 +341,49 @@ body
 }
 
 
-    #menu_panel
+    .menu_panel
     {
         display:flex;
+        float:none;
+        width:100%;
+        border
     }
-    #menu_panel div
+    .menu_panel div
     {
         flex:1;
+        flex-grow:2;
+        padding:2%;
+    }
+
+    .main_content
+    {
+        display:block;
+    float:left;
+    width:98%;
+    margin:1%;
+    }
+    .alert
+    {
+    width:40%;
+    }
+
+}
+
+@media screen and (min-width:1920px){
+
+.main_content
+    {
+        float:left;
+    display:flex;
+    flex-direction:row-reverse;
+
+    }
+#modules_bar
+    {
+    padding-left:2%;
+    margin-right:-4%;
+    display:flex;
+    flex-direction:column-reverse;
     }
 
 }
