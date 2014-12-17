@@ -43,8 +43,8 @@ if (!isset($_SESSION['username']))
         <p>Because I'm lazy, and don't have a list of foods/drinks to choose from yet, you must write what you've consumed along with a ballpark calorie count! mu-haha</p>
         <div id="form_here">
             <form name='foodform' class='food_form'>
-                <p>Item:<input type='text' class='item_input' /></p>
-                <p>Calories:<input type='text' class='calories_input' /></p>
+                <span>Item:</span><input type='text' class='item_input' />
+                <span>Calories:</span><input type='text' class='calories_input' />
                 <input type='button' name='submitFood' class='submitFood' value='Submit'/>
             </form>
         </div>

@@ -3,6 +3,25 @@ $(document).ready(function(){
 // OK GET EXISTING
 var ls = JSON.parse(localStorage.getItem("food"));
 
+if (!checkLSStatus())
+{
+	$(".localstorage_panel").hide();
+}
+
+function checkLSStatus()
+{
+	ls = JSON.parse(localStorage.getItem("food"));
+
+	if ($.isEmptyObject(ls))
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
 // THIS SECTION IS CONFUSING
 // BASICALLY I WANT A UNIQUE COUNT, RATHER THAN STARTING FROM 1 ALL THE TIME
 var arr = [];
@@ -61,6 +80,10 @@ for (k in ls)
 				o[tag] = quantity;
 				// draw a nice output div
 				localStorageController(id,o,"food");
+				if (checkLSStatus())
+				{
+					$(".localstorage_panel").show();
+				}
 				drawSomething(tag,quantity,id);
 			}
 	$(".item_input").val("");

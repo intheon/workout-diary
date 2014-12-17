@@ -82,8 +82,6 @@ a:hover {
 .information_panel
 {
     background: linear-gradient(to bottom, #383333 , #3A3535 );
-    border: 1px solid;
-    border-color: #262121;
     border-radius:6px;
 }
 .information_panel h1
