@@ -54,6 +54,7 @@ a:hover {
 
 .menu_panel
 {
+    width:9%;
     float:left;
     height:100%;
     background-color:#3A3535;
@@ -234,6 +235,7 @@ select
 
 .localstorage_panel
 {
+    background-color: #28252A;
     margin-top:3%;
     border: 1px solid;
     border-color: #262121;
@@ -241,7 +243,7 @@ select
 }
 .localstorage_panel h1
 {
-    background-color:#272828;
+    background-color:#2E2B30;
     padding:0%;
     margin:0%;
     font-size:1.35em;

@@ -72,7 +72,7 @@ if (!isset($_SESSION['username']))
             <div id="week_information_panel">
                 <div class="flex_item">Todays date: <span id="currentDate"></span></div>
                 <div class="flex_item">Workout started: <span id="startDate"></span></div>
-                <div class="flex_item">Week number: <span id="weekNumber"></span><span id="initialise_weeks">reset?</span></div>
+                <div class="flex_item">Week number: <span id="weekNumber"></span><span id="initialise_weeks"> reset?</span></div>
                 <div class="flex_item">Days in: <span id="daysInToWeek"></span> </div>
             </div>
 
@@ -103,15 +103,19 @@ if (!isset($_SESSION['username']))
 
         </div> END FORTH -->
 
-        <div class="localstorage_panel" id="exercise_output"> <!-- FIFTH PANEL | EXERCISES-->
-            <h1>Exercises done today</h1>
-            <p>None.</p>
-        </div> <!-- END FIFTH-->
+        <div class="localstorage_panel_wrapper">
 
-        <div class="localstorage_panel" id="food_output"> <!-- FIFTH SIXTH | FOOD AND DRINK-->
-            <h1>Food and drink consumed today</h1>
-            <p>None.</p>
-        </div> <!-- END  -->
+            <div class="localstorage_panel" id="exercise_output"> <!-- FIFTH PANEL | EXERCISES-->
+                <h1>Exercises done today</h1>
+                <p>None.</p>
+            </div> <!-- END FIFTH-->
+
+            <div class="localstorage_panel" id="food_output"> <!-- FIFTH SIXTH | FOOD AND DRINK-->
+                <h1>Food and drink consumed today</h1>
+                <p>None.</p>
+            </div> <!-- END SIXTH-->
+
+        </div>
 
     </div>
 

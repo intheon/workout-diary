@@ -116,11 +116,11 @@ function writeExercises(exerciseString)
 			temp = parseInt(temp);
 			exerciseRunningTotal += temp;
 
-		$("#exercise_output p").append("<div class='database_output_panel'>\
-			<div class='item_number'>"+itemQ+"</div>\
-			<div class='item_description'>"+p.exercise_name+"</div>\
-			<div class='item_sub_description'>("+p.calories_total+" Calories / "+p.minutes_quantity+" Mins)</div>\
-			</div>\
+		$("#exercise_output p").append("<span class='database_output_panel'>\
+			<span class='item_number'>"+itemQ+"</span>\
+			<span class='item_description'>"+p.exercise_name+"</span>\
+			<span class='item_sub_description'>("+p.calories_total+" Calories / "+p.minutes_quantity+" Mins)</span>\
+			</span>\
 		");
 
 	}
@@ -160,11 +160,11 @@ function parseDiet(dietString)
 			{
 				itemQ++
 
-				$("#food_output p").append("<div class='database_output_panel'>\
-						<div class='item_number'>"+itemQ+"</div>\
-						<div class='item_description'>"+values+"</div>\
-						<div class='item_sub_description'>("+p[k][values]+" Calories)</div>\
-					</div>\
+				$("#food_output p").append("<span class='database_output_panel'>\
+						<span class='item_number'>"+itemQ+"</span>\
+						<span class='item_description'>"+values+"</span>\
+						<span class='item_sub_description'>("+p[k][values]+" Calories)</span>\
+					</span>\
 				");
 			}
 		}

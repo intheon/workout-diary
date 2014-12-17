@@ -76,19 +76,20 @@
 }
 .item_number
 {
-    font-size:2em;   
+    font-size:2.1em; 
+    flex-grow:0.2;  
 }
 .item_description
 {
-    padding-top:0.5em;
-    padding-left:3%;
-    font-size:1.2em;  
+    padding-top:0.24em;
+    font-size:1.5em;  
+    flex-grow:4; 
 }
 .item_sub_description
 {
-    font-size:0.6em; 
-    padding-top:2em;
-    padding-left:0.5em;
+    font-size:1em; 
+    padding-top:0.8em;
+
 }
 #calendar
 {
@@ -178,6 +179,15 @@
 .calendar_entry
 {
 margin-top:5px;
+}
+.localstorage_panel_wrapper
+{
+    display:flex;
+    flex-direction:row;
+}
+.localstorage_panel_wrapper div
+{
+    width:50%;
 }
 @media screen and (max-width:900px){
 
