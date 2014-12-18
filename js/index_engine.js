@@ -44,7 +44,9 @@ $(document).ready(function(){
 		data: "dateFilter=" + cDate,
 		success: function(diet)
 		{
-			parseDiet(diet);
+			//parseDiet(diet);
+
+			console.log(diet);
 		}
 	});
 
@@ -63,29 +65,19 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#currentDate").html(cDate); 
-	// ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
 	// Get and write current date.
+	$("#currentDate").html(cDate); 
 
-
+	// show a warning, just, because
 	$("#initialise_weeks").click(function(){
+		//resets all the timings. hence warning
 		showWarning("ARE YOU SURE??? <br />\
-		 <a href='#' onclick='startWeeksCount()'>YES</a>");
+		<a href='#' onclick='startWeeksCount()'>YES</a>");
 	});
-
-
-	// ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
-	// When clicked, resets all the timings.
-	// 	** TODO **
-	// 	- I should really add in some validation for this. 
-	//  - It would be a ballache if it was accidentally clicked.
-	// 	** **** **
 
 	$("#pictureSubmitButton").click(function(){
 		submitPictureToDatabase();
 	});
-	// ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
-	// Submit a picture to the database.
 
 });
 
@@ -129,10 +121,13 @@ function writeExercises(exerciseString)
 
 function parseDiet(dietString)
 {
+
 	// first thing I want to do is tally up the total 
 	// number of calories done today and spit it back client side.
 	var pString = JSON.parse(dietString);
 		// our raw data
+
+	console.log(pString.length);
 
 	for (keys in pString)
 	{
@@ -153,6 +148,8 @@ function parseDiet(dietString)
 	for (i = 0; i <= pString.length; i++)
 	{
 		var p = JSON.parse(pString[i].json);
+
+
 
 		for (k in p)
 		{
@@ -283,7 +280,7 @@ function calendarHandler(veryFirstDate)
 
 	function findWeeksAfterStart(workOutStartDateObj,multiplier)
 	{
-		// workOutStartDateObj  is your start date, interpretted as a valid Date() object
+		// workOutStartDateObj is your start date, interpretted as a valid Date() object
 		// multiplier is number of weeks since that date
 		var currentWeekDateObj = new Date();
 
@@ -291,24 +288,16 @@ function calendarHandler(veryFirstDate)
 		return currentWeekDateObj;
 	}
 
-	console.log(calendarStart);
-
+	// loop through 7 days and plonk them in the calendar
 	for (i = 0; i<=6; i++)
 	{
 		var remainingWeek = new Date();
 		remainingWeek.setTime( calendarStart.getTime() + i * 86400000 );
 
 		$("#calendar:not(:first-child)").each(function(){
-			$(this).append("<div class='day_column' id='dayNum"+remainingWeek.getDate()+"'>" + days[remainingWeek.getDay()] + " the " + remainingWeek.getDate() + getOrdinal(remainingWeek.getDate()) + " of " + months[remainingWeek.getMonth()] + "</div>");
-			//if (test2.getDate() == time.getDate())
-			//{
-			//	$("#dayNum"+time.getDate()).append("<div class='calendar_entry'>last day of week</div>");
-			//}
+			$(this).append("<div class='day_column' id='dayNum"+remainingWeek.getDate()+"'>" + days[remainingWeek.getDay()] + " the " + remainingWeek.getDate() + getOrdinal(remainingWeek.getDate() - 1) + " of " + months[remainingWeek.getMonth()] + "</div>");
 		});
 	}
-
-
-
 
 	function convertStringToComponents(string)
 	{
@@ -327,4 +316,22 @@ function calendarHandler(veryFirstDate)
 		};
 	}
 
+	checkForCurrentDate();
+}
+
+
+function checkForCurrentDate()
+{
+	$("#calendar .day_column").each(function(){
+		var innards = $(this).context.innerHTML;
+		var current = cDate.substr(0,cDate.length-5);
+
+
+		if (current == innards)
+		{
+			var target = $(this).context.id;
+			$("#"+target).append("<span class='current_calendar_day'>YOU ARE HERE</span>");
+		}
+
+	});
 }

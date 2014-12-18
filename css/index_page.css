@@ -100,9 +100,10 @@
 }
 .day_column
 {
+    color:#E9E9E9;
     padding:11px;
     flex:1;
-
+    position:relative;
     min-height:85px;
     font-size:0.73em;
     border-top:1px solid;
@@ -122,7 +123,18 @@
     border-right:1px solid;
     border-color:#5C5757;
 }
-
+.calendar_entry
+{
+    margin-top:5px;
+}
+.current_calendar_day
+{
+    position:absolute;
+    bottom:0;
+    left:0;
+    margin-left:5%;
+    color:#A3A3A3 !important;
+}
 
 .welcome_messages
 {
@@ -176,10 +188,7 @@
 	font-size:1.5em;
     color:#686872;
 }
-.calendar_entry
-{
-margin-top:5px;
-}
+
 .localstorage_panel_wrapper
 {
     display:flex;
