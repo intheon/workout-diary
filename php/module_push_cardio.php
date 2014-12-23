@@ -11,7 +11,7 @@ require "db_conf.php";
 
 
 	// queries
-	$sql = mysqli_query($connect,"INSERT INTO cardio_complete (exercise_name,date_done,calories_total,minutes_quantity) VALUES ('$exercise','$date','$totalCals','$quantity')");
+	$sql = mysqli_query($connect,"INSERT INTO exercises (exercise_name,date_done,calories_total,minutes_quantity) VALUES ('$exercise','$date','$totalCals','$quantity')");
 	
 	mysqli_close($connect);
 

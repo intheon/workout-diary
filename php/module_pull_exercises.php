@@ -1,17 +1,21 @@
 <?php
 
+session_start();
+
 require "db_conf.php";
 
-if (isset($_POST['filter']))
+if (isset($_POST['filter']) && isset($_SESSION['username']))
 {
+
+	$loggedInUser = $_SESSION['username'];
+
 	$filterBy = $_POST['filter'];
 
-	$cardio = mysqli_query($connect,"SELECT * FROM cardio_complete WHERE date_done = '$filterBy'");
-
+	$result = mysqli_query($connect,"SELECT * FROM exercise_index WHERE date = '$filterBy' AND user_id = '$loggedInUser' ");
 
 	$json = array();
 
-	while($row = mysqli_fetch_assoc($cardio))
+	while($row = mysqli_fetch_assoc($result))
 	{
 		$json[] =  $row;
 	}

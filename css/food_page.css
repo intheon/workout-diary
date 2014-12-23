@@ -16,7 +16,7 @@
 }
 .food_form input[type="button"]
 {
-    flex:100px;
+
 }
 .food_form span
 {
@@ -28,9 +28,7 @@
 {
     margin:2%;
     padding:2%;
-    border: 2px solid;
-    border-color:#1C1E1E;
-    background-color:#272828;
+    background-color:#2E2B30;
     display:flex;
     border-radius: 8px;
 }
@@ -64,7 +62,6 @@
     width:96%;
     padding:3%;
     border-radius: 8px
-    color:#525258;
 }
 #submit_db input[type="text"]
 {
@@ -97,6 +94,15 @@
 }
 .localstorage_panel
 {
-    width:64%;
+
     margin:1.5%;
+}
+
+@media screen and (max-width:950px){
+
+    .food_wrapper
+    {
+        flex-direction:column;
+    }
+
 }

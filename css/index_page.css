@@ -7,7 +7,6 @@
 #modules_bar div
 {
     border-radius:10px;
-    border: 2px solid;
     flex:1;
     padding:1%;
     margin-top:2%;
@@ -27,21 +26,21 @@
 
 #exercises_illustration
 {
-	color:#938C6B;
-    background: linear-gradient(to bottom, #524527 , #2A2310);
-    border-color:#443815 !important;
+	color:#E5E5E5;
+    background-color:#3E3838;
+    border-color:#585050 !important;
 }
 #calories_illustration
 {
-	color:#6E5B7A;
-    background: linear-gradient(to bottom, #2E283C , #2A272C);
-    border-color:#463550 !important;
+	color:#E5E5E5;
+    background-color:#3E3838;
+    border-color:#585050 !important;
 }
 #pictures_illustration
 {
-	color:#785169;
-    background: linear-gradient(to bottom, #42142C , #280E1C);
-    border-color:#381D2C !important;
+	color:#E5E5E5;
+    background-color:#3E3838;
+    border-color:#585050 !important;
 }
 
 #initialise_weeks
@@ -127,7 +126,7 @@
 {
     margin-top:5px;
 }
-.current_calendar_day
+.dynamic_calendar_item
 {
     position:absolute;
     bottom:0;

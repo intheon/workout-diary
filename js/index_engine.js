@@ -44,9 +44,9 @@ $(document).ready(function(){
 		data: "dateFilter=" + cDate,
 		success: function(diet)
 		{
-			//parseDiet(diet);
+			parseDiet(diet);
 
-			console.log(diet);
+			//console.log(diet);
 		}
 	});
 
@@ -95,7 +95,26 @@ function writeAthlete(resp)
 
 function writeExercises(exerciseString)
 {
+
+	// the entire json string from the db decoded
 	var eString = JSON.parse(exerciseString);
+
+	if (exerciseString.length <= 2)
+	{
+		$("#exercise_output").hide();
+	}
+	else
+	{
+		if (eString[0].gym_visited == 1)
+		{
+			checkForCurrentDate(true)
+		}
+
+	}
+
+
+	/*
+
 	var itemQ = 0;
 	$("#exercise_output p").html("");
 	for (i = 0; i <= eString.length - 1; i++)
@@ -117,6 +136,8 @@ function writeExercises(exerciseString)
 
 	}
 
+	*/
+
 }
 
 function parseDiet(dietString)
@@ -124,48 +145,53 @@ function parseDiet(dietString)
 
 	// first thing I want to do is tally up the total 
 	// number of calories done today and spit it back client side.
-	var pString = JSON.parse(dietString);
+
+	if (dietString.length <= 2)
+	{
+		$("#food_output").hide();
+	}
+	else
+	{
+		var pString = JSON.parse(dietString);
 		// our raw data
 
-	console.log(pString.length);
-
-	for (keys in pString)
-	{
-		var temp = pString[keys].total_calories;
-			temp = parseInt(temp);
-			foodRunningTotal += temp;
-	}	
+		for (keys in pString)
+		{
+			var temp = pString[keys].total_calories;
+				temp = parseInt(temp);
+				foodRunningTotal += temp;
+		}	
 		// our loop which grabs the total number of calories for each obj
 		// and converts it to a number
 
-	$("#calories_in").html(foodRunningTotal);
+		$("#calories_in").html(foodRunningTotal);
 		// overwrite whatever value is there
 
-	var itemQ = 0;
+		var itemQ = 0;
 
-	$("#food_output p").html("");
+		$("#food_output p").html("");
 
-	for (i = 0; i <= pString.length; i++)
-	{
-		var p = JSON.parse(pString[i].json);
-
-
-
-		for (k in p)
+		for (i = 0; i <= pString.length; i++)
 		{
-			for (values in p[k])
-			{
-				itemQ++
+			var p = JSON.parse(pString[i].json);
 
-				$("#food_output p").append("<span class='database_output_panel'>\
-						<span class='item_number'>"+itemQ+"</span>\
-						<span class='item_description'>"+values+"</span>\
-						<span class='item_sub_description'>("+p[k][values]+" Calories)</span>\
-					</span>\
-				");
+			for (k in p)
+			{
+				for (values in p[k])
+				{
+					itemQ++
+
+					$("#food_output p").append("<span class='database_output_panel'>\
+							<span class='item_number'>"+itemQ+"</span>\
+							<span class='item_description'>"+values+"</span>\
+							<span class='item_sub_description'>("+p[k][values]+" Calories)</span>\
+						</span>\
+					");
+				}
 			}
 		}
 	}
+
 }
 
 function startWeeksCount()
@@ -247,7 +273,6 @@ function handleTimings(jsonObj)
 			},
 			success: function(pictureDone)
 			{
-				console.log(pictureDone);
 
 				if (pictureDone == true)
 				{
@@ -316,22 +341,75 @@ function calendarHandler(veryFirstDate)
 		};
 	}
 
-	checkForCurrentDate();
+	checkForCurrentDate(false);
 }
 
 
-function checkForCurrentDate()
+var fcount = 0;
+function checkForCurrentDate(gymBool)
 {
+
+	var matchId;
+	var current = cDate.substr(0,cDate.length-5);
+
+
+	// matches the current day to the relevant calendar div
+	$("#calendar .day_column").each(function()
+	{
+		var innards = $(this).context.innerHTML;
+			if (current == innards)
+			{
+				fcount++;
+				console.log("iteration num", fcount)
+				return matchId = $(this)[0].id;
+			}
+	});
+
+	console.log(matchId);
+
+	if (gymBool)
+	{
+		$("#"+matchId).append("<span class='dynamic_calendar_item'>GYM VISITED</span>");
+	}
+	if (!gymBool)
+	{
+		$("#"+matchId).append("<span class='dynamic_calendar_item'>YOU ARE HERE</span>");
+	}
+
+
+
+}
+
+
+/*
 	$("#calendar .day_column").each(function(){
 		var innards = $(this).context.innerHTML;
-		var current = cDate.substr(0,cDate.length-5);
 
+
+		if (gymBool == true)
+		{
+			var current = gymVisitDay
+		}
+		else
+		{
+			var current = cDate.substr(0,cDate.length-5);
+		}
 
 		if (current == innards)
 		{
 			var target = $(this).context.id;
-			$("#"+target).append("<span class='current_calendar_day'>YOU ARE HERE</span>");
+
+			if (gymBool == true)
+			{
+				$("#"+target).append("<span class='calendar_gym_visit'>GYM VISITED</span>");
+			}
+			else
+			{
+				$("#"+target).append("<span class='current_calendar_day'>YOU ARE HERE</span>");
+			}
+
 		}
 
 	});
-}
+
+*/

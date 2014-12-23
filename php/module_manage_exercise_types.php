@@ -10,7 +10,7 @@ if (isset($_POST['newCardioName']) && isset($_POST['newCardioCalorieConsumption'
 	$newName = $_POST['newCardioName'];
 	$newCalories = $_POST['newCardioCalorieConsumption'];
 
-	$sql = mysqli_query($connect,"INSERT INTO cardio_exercises (exercise_name,calorie_consumption_per_minute) VALUES ('$newName','$newCalories')");
+	$sql = mysqli_query($connect,"INSERT INTO types_cardio (exercise_name,calorie_consumption_per_minute) VALUES ('$newName','$newCalories')");
 	echo $newName;
 }
 
@@ -20,7 +20,7 @@ if (isset($_POST['modName']) && isset($_POST['existingId']) && isset($_POST['mod
 	$newName = $_POST['modName'];
 	$newCalories = $_POST['modQuant'];
 
-	$sql = mysqli_query($connect,"UPDATE cardio_exercises SET exercise_name = '$newName', calorie_consumption_per_minute = '$newCalories' WHERE id = '$id'");
+	$sql = mysqli_query($connect,"UPDATE types_cardio SET exercise_name = '$newName', calorie_consumption_per_minute = '$newCalories' WHERE id = '$id'");
 
 	//echo "editCardio" . $newName;
 
