@@ -273,15 +273,13 @@ function handleTimings(jsonObj)
 			},
 			success: function(pictureDone)
 			{
-
 				if (pictureDone == true)
 				{
-					console.log()
-					$(".alert").hide();
+					$(".picture_upload_panel").hide();
 				}
 				else
 				{
-					$(".alert").hide().fadeIn(1400);
+					$(".picture_upload_panel").hide().fadeIn(1400);
 				}
 
 			}

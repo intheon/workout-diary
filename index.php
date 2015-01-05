@@ -78,30 +78,30 @@ if (!isset($_SESSION['username']))
 
         </div> <!-- SECOND FIRST -->
 
-        <!-- <div class="information_panel"> THIRD PANEL | ALERTS
+        <div class="information_panel"> <!--  THIRD PANEL | ALERTS -->
 
-            <div class="alert" style="display:none">
-            <h1>It's time for a picture!</h1>
+            <div class="picture_upload_panel">
                 <form name="pictureUploadForm" enctype="multipart/form-data" id="pictureUploadForm">
-                    <p>Click to upload a picture for this week.</p>
-                    <input type="file" name="fileUpload" id="fileUpload">
+                    <input type="file" name="fileUpload" id="fileUpload" placeholder="Click to upload...">
                     <input type="button" value="Submit" id="pictureSubmitButton">
                 </form>
             <div id="debug"></div>
+        </div> <!-- END THIRD -->
 
-        </div> END THIRD -->
-
-        <!--<div class="information_panel"> FORTH PANEL | MOTIVATIONAL MESSAGES
+        <!-- <div class="information_panel">  FORTH PANEL | MOTIVATIONAL MESSAGES
         
             <div id="motivation_panel">
+                <div class="flex_item"><span id="calorieDifference"></span></div>
+                <div class="flex_item">You need to burn 3500 calories per week to lose 1 pound</div>
                 <p>You are at a deficit. You will lose weight. The healthy amount of intake is 1800 calories.</p>
                 <p>You are over your calorie limit. You need to burn X amount.</p>
                 <p>As you want to burn the fat off, you need to burn 3500 calories per week to lose 1 pound</p>
                 <p>This means you need to burn 500 more calories than you eat a day</p>
                 <p>This week, you have burned X number of calories so far. You have eaten X number of calories so far.</p>
+                
             </div> 
 
-        </div> END FORTH -->
+        </div>  END FORTH -->
 
         <div class="localstorage_panel_wrapper">
 

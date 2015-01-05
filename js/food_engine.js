@@ -52,8 +52,6 @@ function assignDelete()
 
 		var uni = event.currentTarget.parentNode.id;
 
-		console.log(uni);
-
 		delete ls[uni];
 
 		$("#"+uni).fadeOut(500, function(){
@@ -61,6 +59,13 @@ function assignDelete()
 		});
 
 		localStorage.setItem("food",JSON.stringify(ls));
+
+		if (!lsBOOL())
+		{
+			$(".localstorage_panel").fadeOut(400, function(){
+				$(this).remove();
+			});
+		}
 
 	});
 
@@ -108,8 +113,6 @@ function localStorageStateCheck()
 		{
 			count = 0;
 		}
-
-		console.log(count);
 
 		for (keys in ls)
 		{

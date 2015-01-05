@@ -280,51 +280,19 @@ input[type="text"]
 {
     background-color: #272828;
 }
-.alert
+.picture_upload_panel
 {
-    border: 1px solid;
-    border-color: #262121;
-    border-radius:6px;
-    margin-bottom:2%;
-    margin-top:0.5%;
-    margin-right:1.5%;
-    margin-left:1.5%;
-    padding-bottom:1.5%;
-    background-color:#202022;
-}
-.alert p
-{
-    padding:0%;
-    margin:0%;
-    font-size:0.9em;
-    padding:0.7em;
+    display:none;
+    padding-top:1.5%;
     padding-left:1.5%;
+}
+.picture_upload_panel input
+{
 
 }
-.alert h1
+.picture_upload_panel input[type="button"]
 {
-    padding:0%;
-    margin:0%;
-    font-size:1.1em;
-    padding:0.3em;
-    color:#555562;
-    padding-left:1.5%;
-}
-.alert input
-{
-    padding:0%;
-    margin:0%;
-    margin-left:1.5%;
-    margin-bottom:1.5%;
-}
-.alert input[type="button"]
-{
-    width:97%;
-    margin-right:1.5%;
-    margin-left:1.5%;
-    color:#7D7D8D;
-    border:none;
-    padding:8px;
+
 }
 
 
