@@ -52,8 +52,7 @@ function localStorageController(key, val, type)
     {
         Object.defineProperty(data, type,
         {
-            value:
-            {},
+            value: {},
             enumerable: true,
             writable: true
         });
