@@ -1,8 +1,16 @@
+var entireString;
+var count = 0;
+var previouslyClicked = [];
+
 $(document).ready(function()
 {
   gatherExercises();
 
   gymVisisted();
+
+  bindButton("#addCardio");
+
+  bindButton("#editCardio");
 
 });
 
@@ -15,7 +23,7 @@ function gatherExercises(flag)
     url: globalURL + "php/module_pull_exercise_types.php",
     success: function(response)
     {
-      // on success you get this huge json string
+      // on success you get this huge json string or an empty response
       // just pass it to a parsing function
       drawHTML(response,flag);
     }
@@ -50,7 +58,6 @@ function gymVisisted()
   });
 }
 
-var entireString;
 
 function drawHTML(raw,resetFlag)
 {
@@ -80,7 +87,6 @@ function bindButton(element)
   {
     $(".information_panel p").fadeOut(500, function()
     {
-
 
       // IF ADDING
       if (element == "#addCardio")
@@ -129,14 +135,14 @@ function bindButton(element)
         });
       }
 
-
       //IF EDITING
       else if (element == "#editCardio")
       {
-        $(".information_panel p").fadeOut(100);
+        $("#cardio_completed_panel p").fadeOut(100);
+
         for (keys in entireString)
         {
-          $(".information_panel").append("\
+          $("#cardio_completed_panel").append("\
             <form class='editCardio' id='editCardio" + entireString[keys].exercise_name + "_form'>\
             <input type='text' name='existingCardioName' class='existingCardioName' value='" + entireString[keys].exercise_name + "'/>\
             <input type='text' name='newCardioCalorieConsumption' class='existingCardioCalorieConsumption' value='" + entireString[keys].calorie_consumption_per_minute + "'/>\
@@ -201,8 +207,7 @@ function bindButton(element)
   });
 }
 
-bindButton("#addCardio");
-bindButton("#editCardio");
+
 
 // this is called and registers and onclick handler to all cardio buttons
 function makeEventListeners()
@@ -220,8 +225,7 @@ function makeEventListeners()
   }); // close each loop
 }
 
-var count = 0;
-var previouslyClicked = [];
+
 
 // draw the form
 function showForm(formName)

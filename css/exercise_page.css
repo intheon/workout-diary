@@ -12,16 +12,21 @@
     flex:1;
     padding:1.5%;
     text-align: center;
+    background-color:#302C2C;
+    color:#E5E5E5;
+    border-radius:4px;
+    margin-left:0.8%;
 }
 .tab_item:nth-child(even)
 {
-    background-color:#272828;
+  margin-left:1%;
+  background-color:#2E2C2C;
 }
 .tab_item:hover
 {
-    background-color:#272828;
+    background-color:#343131;
     cursor:pointer;
-    color:#6A6A76;
+    color:#9F9C9C;
 }
 .edit
 {
@@ -62,32 +67,27 @@
     padding:1%;
     border-radius: 8px;
     border:none;
-    color:#9DAABA ;
+    color:#9DAABA;
 }
 .editCardio input[type="text"]
 {
-    border:1px solid;
-    border-color: #363640;
-    color:#9DAABA ;
+    background-color: #302C2C;
 }
 .cardio_forms
 {
-    margin-top:1%;
-    padding:1.5%;
-    border:1px solid;
-    border-radius:6px;
-    border-color: #363640;
+
+    display:none;
 }
 .cardio_forms form
 {
     display:flex;
-    margin-bottom:1%;
+    margin-bottom:0.5%;
 }
 .cardio_forms p
 {
     text-align:left;
-    margin:1%;
-    padding:1%;
+    margin:0.8%;
+    padding:0.8%;
     width:40%;
 }
 .cardio_forms input
@@ -95,30 +95,42 @@
     flex:1;
     margin:1%;
     padding:1%;
-    width:50%;
     text-align:center;
+    flex-grow:5;
+    background-color:#2E2C2C;
+    color:#E5E5E5;
+    border-radius:4px;
+    border:none;
 }
 .cardio_forms input[type="text"]
 {
-    border:1px solid;
-    border-color: #363640;
-    border-radius:8px;
-    color:#9DAABA ;
+    background-color:#302C2C;
+    color:#E5E5E5;
+    border-radius:4px;
+    border:none;
 }
 .cardio_submit_all input
 {
-    padding:2%;
-    margin-top:2%;
-    width:100%;
-    background-color: #272828;
-    border-radius:11px;
-    color:#9DAABA ;
+    padding:1%;
+    margin-left:1%;
+    margin-right:1%;
+    margin-bottom:1%;
+    width:98%;
+    border:none;
+    background-color:#2E2C2C;
+    color:#E5E5E5;
 }
 #editCardio:hover
 {
     color:#C59666;
     cursor:pointer;
 }
+.information_panel
+{
+  margin-bottom:1.5%;
+  margin-right:1.5%;
+}
+
 #addCardio:hover
 {
     color:#C59666;
@@ -271,4 +283,8 @@
 .switched
 {
     color:#74B780;
+}
+.information_panel p
+{
+  padding-bottom:0.5% !important;
 }

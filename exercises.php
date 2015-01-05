@@ -35,14 +35,14 @@ if (!isset($_SESSION['username']))
     </div>
 </div>
 
-<!-- SIDE PANEL -->
+<!-- MENU BAR -->
 <div class="menu_panel"></div>
 
-    <!-- THE INTERACTION PANEL IS PURELY WHERE INTERACTIONS OCCUR -->
+<!-- THE INTERACTION PANEL IS PURELY WHERE INTERACTIONS OCCUR -->
 <div class="main_content">
     <div id="interaction_panel">
 
-        <div class="information_panel">
+        <div class="information_panel" id="gym_visited_panel">
 
         <div id="gymCheck">
             <div id="gymConf">
@@ -54,34 +54,31 @@ if (!isset($_SESSION['username']))
             <div class="messages"></div>
         </div>
 
-
-
-
-
         </div>
 
-        <div class="information_panel">
+        <!-- CARDIO -->
+        <div class="information_panel" id="cardio_completed_panel">
             <h1>Cardiovascular <span class="edit"><span id="editCardio">Edit</span> | <span id="addCardio">Add</span></span></h1>
-            <p>Please enter the cardiovascular activity you are doing by clicking on the headers.</p>
+            <p>Please enter the cardiovascular activity you did by clicking on the headers.</p>
+
+                <!-- THE ELEMENTS ARE DYNAMICALLY DRAWN BY JAVASCRIPT -->
+        		<!-- THEY HAVE BEEN DEFINED IN THE MYSQLI DB -->
+        		<div class="cardio_panel"></div>
+
+        		<!-- THE FORM IS DYNAMICALLY DRAWN BY JAVASCRIPT -->
+        		<div class="cardio_forms"></div>
+
+       			<!-- AND A HIDDEN SUBMIT BUTTON TO SUBMIT ALL -->
+        		<div class="cardio_submit_all" style="display:none">
+            		<form><input type="button" value="Submit All"></form>        
+        		</div>
+
         </div>
 
-        <!-- THE ELEMENTS ARE DYNAMICALLY DRAWN BY JAVASCRIPT -->
-        <!-- THEY HAVE BEEN DEFINED IN THE MYSQLI DB -->
-        <div class="cardio_panel">
-        
-        </div>
 
-        <!-- THE FORM IS DYNAMICALLY DRAWN BY JAVASCRIPT -->
-        <div class="cardio_forms" style="display:none">
-        
-        </div>
 
-        <!-- AND A HIDDEN SUBMIT BUTTON TO SUBMIT ALL -->
-        <div class="cardio_submit_all" style="display:none">
-            <form><input type="button" value="Submit All"></form>        
-        </div>
-
-        <div class="information_panel">
+        <!-- WEIGHTS -->
+        <div class="information_panel" id="weights_completed_panel">
             <h1>Weights <span class="edit"><span id="editWeights">Edit</span> | <span id="addWeights">Add</span></span></h1>
             <p>Enter the weight you've done today.</p>
         </div>
