@@ -39,25 +39,22 @@ if (!isset($_SESSION['username']))
 <div class="menu_panel"></div>
 
 <!-- THE INTERACTION PANEL IS PURELY WHERE INTERACTIONS OCCUR -->
-<div class="main_content">
-    <div id="interaction_panel">
+<div class="exercise_wrapper">
 
-        <div class="information_panel" id="gym_visited_panel">
-
-        <div id="gymCheck">
-            <div id="gymConf">
-                <span class="toggle">
-                    <input type="checkbox">
-                    <label data-off="&#10006;" data-on="&#10004;"></label>
-                </span>
-            </div>
+        <div class="information_panel" id="gym_visited_panel"> <!-- FIRST -->
+            <div id="gymCheck">
+                <div id="gymConf">
+                    <span class="toggle">
+                        <input type="checkbox" disabled="true">
+                        <label data-off="&#10006;" data-on="&#10004;"></label>
+                    </span>
+                </div>
             <div class="messages"></div>
-        </div>
-
-        </div>
+            </div>
+        </div> <!-- END FIRST -->
 
         <!-- CARDIO -->
-        <div class="information_panel" id="cardio_completed_panel">
+        <div class="information_panel" id="cardio_completed_panel"> <!-- SECOND -->
             <h1>Cardiovascular <span class="edit"><span id="editCardio">Edit</span> | <span id="addCardio">Add</span></span></h1>
             <p>Please enter the cardiovascular activity you did by clicking on the headers.</p>
 
@@ -78,13 +75,12 @@ if (!isset($_SESSION['username']))
 
 
         <!-- WEIGHTS -->
-        <div class="information_panel" id="weights_completed_panel">
+        <div class="information_panel" id="weights_completed_panel"> <!-- THIRD -->
             <h1>Weights <span class="edit"><span id="editWeights">Edit</span> | <span id="addWeights">Add</span></span></h1>
             <p>Enter the weight you've done today.</p>
         </div>
 
 
-    </div> <!-- END INTERACTION PANEL -->
 </div>
 
 
