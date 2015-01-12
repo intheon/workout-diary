@@ -18,20 +18,8 @@ if (!isset($_SESSION['username']))
 <body>
 <!-- TOP TOOLBAR -->
 <div id="toolbar">
-    <div id="greeting">WorkoutDiary v1</div>
-    <div id="settings">
-        <ul>
-            <li><img src="img/settings.png" width="50%"></li>
-            <ul>
-                <li>
-                    <a href="myaccount.php">My Account</a>
-                </li>
-                <li>
-                    <a href="#" id="logMeOut">Sign Out</a>
-                </li>
-            </ul>
-        </ul>
-    </div>
+    <div id="appName"></div>
+    <div id="settings"></div>
 </div>
 
 <div class="menu_panel"></div>

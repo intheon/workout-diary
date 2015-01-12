@@ -20,20 +20,8 @@ if (!isset($_SESSION['username']))
 <body>
 <!-- TOP TOOLBAR -->
 <div id="toolbar">
-    <div id="greeting">WorkoutDiary v1</div>
-    <div id="settings">
-        <ul>
-            <li><img src="img/settings.png" width="50%"></li>
-            <ul>
-                <li>
-                    <a href="myaccount.php">My Account</a>
-                </li>
-                <li>
-                    <a href="#" id="logMeOut">Sign Out</a>
-                </li>
-            </ul>
-        </ul>
-    </div>
+    <div id="appName"></div>
+    <div id="settings"></div>
 </div>
 
 <div class="menu_panel"></div>
@@ -49,7 +37,7 @@ if (!isset($_SESSION['username']))
             <span class="jumbo" id="calories_out">???</span><span class="remainder"> calories burned.</span><br />
         </div>
         <div id="pictures_illustration">
-            <span class="jumbo">???</span><span class="remainder"> days until a picture!</span>
+            <span class="jumbo">???</span><span class="remainder"> ...</span>
         </div>
     </div>
 
@@ -78,14 +66,19 @@ if (!isset($_SESSION['username']))
 
         </div> <!-- SECOND FIRST -->
 
-        <div class="information_panel"> <!--  THIRD PANEL | ALERTS -->
+        <div class="information_panel"> <!--  THIRD PANEL | PICTURES -->
 
             <div class="picture_upload_panel">
+
+            	<div>Picture time! Take a picture and upload it below</div>
+
                 <form name="pictureUploadForm" enctype="multipart/form-data" id="pictureUploadForm">
-                    <input type="file" name="fileUpload" id="fileUpload" placeholder="Click to upload...">
+                    <input type="file" name="fileUpload" id="fileUpload" placeholder="Browse">
                     <input type="button" value="Submit" id="pictureSubmitButton">
                 </form>
-            <div id="debug"></div>
+
+            	<div id="debug"></div>
+
         </div> <!-- END THIRD -->
 
         <!-- <div class="information_panel">  FORTH PANEL | MOTIVATIONAL MESSAGES

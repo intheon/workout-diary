@@ -1,13 +1,20 @@
+/* GLOBAL CONFIG */
+var globalURL = "http://localhost/workout-diary/";
+var appName = "WorkoutDiary v1 - <span class='small_tag_line'>Build Jan 2015</span>";
+var links = [
+        "<div><a href='index.php'>Dashboard</a></div>",
+        "<div><a href='fooddrink.php'>Food and Drink</a></div>",
+        "<div><a href='exercises.php'>Exercises</a></div>",
+        "<div><a href='stats.php'>Statistics</a></div>",
+    ];
+
+var settings = "<ul><li><img src='img/settings.png' width='50%''></li><ul><li><a href='myaccount.php'>My Account</a></li><li><a href='#'' id='logMeOut'>Sign Out</a></li></ul></ul>";
+
+var data = {};
+var s;
+
 $(document).ready(function()
 {
-    $("#settings ul").click(function(event)
-    {
-        $("#settings ul ul").slideToggle();
-        $("#settings ul ul li").click(function(e)
-        {
-            e.stopPropagation()
-        });
-    });
     $("#logMeOut").click(function(event)
     {
         $.ajax(
@@ -28,20 +35,25 @@ $(document).ready(function()
             }
         });
     });
-    var links = [
-        "<div><a href='index.php'>Dashboard</a></div>",
-        "<div><a href='fooddrink.php'>Food and Drink</a></div>",
-        "<div><a href='exercises.php'>Exercises</a></div>",
-        "<div><a href='stats.php'>Statistics</a></div>",
-    ];
+
     for (i = 0; i <= links.length - 1; i++)
     {
         $(".menu_panel").append(links[i]);
     }
+
+    $("#appName").html(appName);
+    $("#settings").html(settings);
+
+     $("#settings ul").click(function(event)
+    {
+        $("#settings ul ul").slideToggle();
+        $("#settings ul ul li").click(function(e)
+        {
+            e.stopPropagation()
+        });
+    });
+
 });
-var globalURL = "http://localhost/workout-diary/";
-var data = {};
-var s;
 
 function localStorageController(key, val, type)
 {
@@ -124,9 +136,9 @@ function whatDate()
 function showWarning(msg)
 {
     $("body").append("<div class='warning'>\
-    " + msg + "<br /><br />\
-    <span class='dismiss'>close x</span>\
-    </div>");
+        " + msg + "<br /><br />\
+        <span class='dismiss'>close x</span>\
+        </div>");
     $(".warning").hide().fadeIn();
     $(".warning").click(function()
     {
@@ -179,7 +191,7 @@ function getOrdinal(number)
 WebFontConfig = {
     google:
     {
-        families: ['Raleway::latin']
+        families: ['Asap::latin']
     }
 };
 var wf = document.createElement('script');
