@@ -2,13 +2,15 @@
 
 require "db_conf.php";
 
+$loggedInUser = $_SESSION['username'];
+
 if (isset($_POST['checkPicture']) && isset($_POST['weekNumber']))
 {
 	$currentWeek = $_POST['weekNumber'];
 
 	if ($_POST['checkPicture'] == true)
 	{
-		$check = mysqli_query($connect,"SELECT * FROM picture WHERE week_number = '$currentWeek'");
+		$check = mysqli_query($connect,"SELECT * FROM picture WHERE week_number = '$currentWeek' AND user_id = '$loggedInUser'");
 
 		$result = mysqli_fetch_row($check);
 
@@ -36,6 +38,7 @@ else
 		{
 			$week_count = $_POST['cWeek'];
 		}
+
 		// params about my file
 		$prefix 			= "img_";
 		$destination 		= "../img/uploads/";
@@ -45,7 +48,7 @@ else
 		$target 			= $destination . $prefix . $img_name;
 
 		// i want to track this in the DB as well
-		$logging = mysqli_query($connect,"INSERT INTO picture (week_number, picture_path, picture_taken) VALUES ('$week_count','$target','1')");
+		$logging = mysqli_query($connect,"INSERT INTO picture (week_number, picture_path, picture_taken, user_id) VALUES ('$week_count','$target','1','$loggedInUser')");
 
 		// go ahead and move the fucker
 		move_uploaded_file($img_temp, $target);

@@ -251,15 +251,6 @@ function handleTimings(jsonObj)
 		$("#weekNumber").html(weekCount + 1);
 		$("#daysInToWeek").html(difference);
 
-		if (7 - difference >= 0)
-		{
-			$("#pictures_illustration .jumbo").html(7 - difference);
-		}
-		else if (7 - difference < 0)
-		{
-			$("#pictures_illustration").html("You harshly need to take a picture");
-		}
-
 		calendarHandler(jsonObj[0].date);
 
 			// check for picture
@@ -276,10 +267,14 @@ function handleTimings(jsonObj)
 				if (pictureDone == true)
 				{
 					$(".picture_upload_panel").hide();
+					$("#pictures_illustration .jumbo").html("&#10004;");
+					$("#pictures_illustration .remainder").html("Picture taken this week");
 				}
 				else
 				{
 					$(".picture_upload_panel").hide().fadeIn(1400);
+					$("#pictures_illustration .jumbo").html("&#10006;");
+					$("#pictures_illustration .remainder").html("Picture not taken this week");
 				}
 
 			}
