@@ -302,22 +302,20 @@ input[type="text"]
 
 @media screen and (max-width:1000px){
 
-
-body
-{
-    height:auto;
-    width:100%;
-}
-
+    body
+    {
+        height:auto;
+        width:100%;
+    }
 
     .menu_panel
     {
-
         display:flex;
         float:none;
         width:100%;
         border
     }
+
     .menu_panel div
     {
         text-align: center;
