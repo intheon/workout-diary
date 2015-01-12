@@ -218,6 +218,14 @@
   font-size:1em;
   color:#A99F9F;
 }
+.picTaken
+{
+    color:#19795C;
+}
+.picNotTaken
+{
+    color:#B1716D;
+}
 #pictureSubmitButton:hover
 {
   border-color: #3E3535;

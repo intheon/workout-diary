@@ -71,7 +71,7 @@ $(document).ready(function(){
 	// show a warning, just, because
 	$("#initialise_weeks").click(function(){
 		//resets all the timings. hence warning
-		showWarning("ARE YOU SURE??? <br />\
+		showWarning("Are you sure?? <br />\
 		<a href='#' onclick='startWeeksCount()'>YES</a>");
 	});
 
@@ -90,7 +90,6 @@ function writeAthlete(resp)
 	var dateObj = new Date();
 	var dateHours =	dateObj.getHours();
 	$("#calories_out").html(Math.round((user[0].calories / 24)) * dateHours);
-	//$("#exercises_illustration .jumbo").html(parseInt(user[1].gym_visits_left));
 }
 
 function writeExercises(exerciseString)
@@ -111,32 +110,6 @@ function writeExercises(exerciseString)
 		}
 
 	}
-
-
-	/*
-
-	var itemQ = 0;
-	$("#exercise_output p").html("");
-	for (i = 0; i <= eString.length - 1; i++)
-	{
-		itemQ++;
-
-		var p = eString[i];
-
-		var temp = p.calories_total;
-			temp = parseInt(temp);
-			exerciseRunningTotal += temp;
-
-		$("#exercise_output p").append("<span class='database_output_panel'>\
-			<span class='item_number'>"+itemQ+"</span>\
-			<span class='item_description'>"+p.exercise_name+"</span>\
-			<span class='item_sub_description'>("+p.calories_total+" Calories / "+p.minutes_quantity+" Mins)</span>\
-			</span>\
-		");
-
-	}
-
-	*/
 
 }
 
@@ -234,7 +207,7 @@ function submitPictureToDatabase()
 			if (parseInt(outcome) === 1)
 			{
 				$(".picture_upload_panel").fadeOut(function(){
-					$("#pictures_illustration .jumbo").html("&#10004;");
+					$("#pictures_illustration .jumbo").html("<span class='picTaken'>&#10004;</span>");
 					$("#pictures_illustration .remainder").html("Picture taken this week");
 					$(this).hide()
 				});
@@ -243,20 +216,6 @@ function submitPictureToDatabase()
 			{
 				$("#debug").html("error, please try again");
 			}
-			/*
-			if (outcome == "winner")
-			{
-				$(".picture_upload_panel").fadeOut(function(){
-					$("#pictures_illustration .jumbo").html("&#10004;");
-					$("#pictures_illustration .remainder").html("Picture taken this week");
-					$(this).hide()
-				});
-			}
-			else if (outcome == "false");
-			{
-				$("#debug").html("error, please try again");
-			}
-			*/
 		}
 	});
 
@@ -294,13 +253,13 @@ function handleTimings(jsonObj)
 				if (pictureDone == true)
 				{
 					$(".picture_upload_panel").hide();
-					$("#pictures_illustration .jumbo").html("&#10004;");
+					$("#pictures_illustration .jumbo").html("<span class='picTaken'>&#10004;</span>");
 					$("#pictures_illustration .remainder").html("Picture taken this week");
 				}
 				else
 				{
 					$(".picture_upload_panel").hide().fadeIn(1400);
-					$("#pictures_illustration .jumbo").html("&#10006;");
+					$("#pictures_illustration .jumbo").html("<span class='picNotTaken'>&#10006;</span>");
 					$("#pictures_illustration .remainder").html("Picture not taken this week");
 				}
 
@@ -372,7 +331,6 @@ function checkForCurrentDate(gymBool)
 	var matchId;
 	var current = cDate.substr(0,cDate.length-5);
 
-
 	// matches the current day to the relevant calendar div
 	$("#calendar .day_column").each(function()
 	{
@@ -380,12 +338,9 @@ function checkForCurrentDate(gymBool)
 			if (current == innards)
 			{
 				fcount++;
-				console.log("iteration num", fcount)
 				return matchId = $(this)[0].id;
 			}
 	});
-
-	console.log(matchId);
 
 	if (gymBool)
 	{
@@ -396,40 +351,4 @@ function checkForCurrentDate(gymBool)
 		$("#"+matchId).append("<span class='dynamic_calendar_item'>YOU ARE HERE</span>");
 	}
 
-
-
 }
-
-
-/*
-	$("#calendar .day_column").each(function(){
-		var innards = $(this).context.innerHTML;
-
-
-		if (gymBool == true)
-		{
-			var current = gymVisitDay
-		}
-		else
-		{
-			var current = cDate.substr(0,cDate.length-5);
-		}
-
-		if (current == innards)
-		{
-			var target = $(this).context.id;
-
-			if (gymBool == true)
-			{
-				$("#"+target).append("<span class='calendar_gym_visit'>GYM VISITED</span>");
-			}
-			else
-			{
-				$("#"+target).append("<span class='current_calendar_day'>YOU ARE HERE</span>");
-			}
-
-		}
-
-	});
-
-*/
