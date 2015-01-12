@@ -15,6 +15,24 @@ var s;
 
 $(document).ready(function()
 {
+
+    for (i = 0; i <= links.length - 1; i++)
+    {
+        $(".menu_panel").append(links[i]);
+    }
+
+    $("#appName").html(appName);
+    $("#settings").html(settings);
+
+     $("#settings ul").click(function(event)
+    {
+        $("#settings ul ul").slideToggle();
+        $("#settings ul ul li").click(function(e)
+        {
+            e.stopPropagation()
+        });
+    });
+
     $("#logMeOut").click(function(event)
     {
         $.ajax(
@@ -33,23 +51,6 @@ $(document).ready(function()
                     window.location = globalURL + "login.php";
                 }
             }
-        });
-    });
-
-    for (i = 0; i <= links.length - 1; i++)
-    {
-        $(".menu_panel").append(links[i]);
-    }
-
-    $("#appName").html(appName);
-    $("#settings").html(settings);
-
-     $("#settings ul").click(function(event)
-    {
-        $("#settings ul ul").slideToggle();
-        $("#settings ul ul li").click(function(e)
-        {
-            e.stopPropagation()
         });
     });
 

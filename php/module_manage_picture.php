@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require "db_conf.php";
 
 $loggedInUser = $_SESSION['username'];
@@ -30,7 +32,7 @@ else
 
 	if (!isset($_FILES['file']))
 	{
-		echo "no_image_uploaded!";
+		echo 0;
 	}
 	else
 	{
@@ -52,6 +54,8 @@ else
 
 		// go ahead and move the fucker
 		move_uploaded_file($img_temp, $target);
+
+		echo 1;
 	}
 
 }

@@ -227,9 +227,36 @@ function submitPictureToDatabase()
 		cache: false,
 		processData: false,
 		data: formData,
-		success: function(response)
+		success: function(outcome)
 		{
-			$("#debug").html(response);
+			console.log(outcome);
+
+			if (parseInt(outcome) === 1)
+			{
+				$(".picture_upload_panel").fadeOut(function(){
+					$("#pictures_illustration .jumbo").html("&#10004;");
+					$("#pictures_illustration .remainder").html("Picture taken this week");
+					$(this).hide()
+				});
+			}
+			else if (parseInt(outcome) === 0)
+			{
+				$("#debug").html("error, please try again");
+			}
+			/*
+			if (outcome == "winner")
+			{
+				$(".picture_upload_panel").fadeOut(function(){
+					$("#pictures_illustration .jumbo").html("&#10004;");
+					$("#pictures_illustration .remainder").html("Picture taken this week");
+					$(this).hide()
+				});
+			}
+			else if (outcome == "false");
+			{
+				$("#debug").html("error, please try again");
+			}
+			*/
 		}
 	});
 
