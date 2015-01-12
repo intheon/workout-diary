@@ -72,6 +72,7 @@ function createUser()
 		$age = mysqli_real_escape_string($connect,$_POST['age']);
 		$activity = mysqli_real_escape_string($connect,$_POST['activity']);
 		$weight = mysqli_real_escape_string($connect,$_POST['weight']);
+		$gym = mysqli_real_escape_string($connect,$_POST['gym']);
 		$height = mysqli_real_escape_string($connect,$_POST['height']);
 		$calories = mysqli_real_escape_string($connect,$_POST['calories']);
 		$dateCreated = mysqli_real_escape_string($connect,$_POST['dateCreated']);
@@ -84,7 +85,7 @@ function createUser()
 
 	// the auth table will have a foreign key pointing to the record in the auth table.
 
-	mysqli_query($connect,"INSERT INTO athlete (username,name,email,gender,age,activity,weight,height,calories,gym_visits_per_week) VALUES ('$username','$name','$email','$gender','$age','$activity','$weight','$height','$calories',4)");
+	mysqli_query($connect,"INSERT INTO athlete (username,name,email,gender,age,activity,weight,height,calories,gym_visits_per_week) VALUES ('$username','$name','$email','$gender','$age','$activity','$weight','$height','$calories','$gym')");
 
 	$newUsrID = mysqli_query($connect,"SELECT id FROM athlete WHERE username = '$username'");
 

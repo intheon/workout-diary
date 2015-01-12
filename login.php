@@ -41,7 +41,8 @@
     <p>Activity Level (daily)</p>
     <div class="chunk">
         <input type="text" placeholder="Weight (kgs)" name="weightField" id="weightField"/> <br/> 
-        <input type="text" placeholder="Height (cms)" name="heightField" id="heightField"/> <br/> 
+        <input type="text" placeholder="Height (cms)" name="heightField" id="heightField"/> <br/>
+        <input type="text" placeholder="Weekly gym visits" name="gymField" id="gymField"/> <br/> 
         <input type="radio" name="Activity" value="little" id="littleCheck"/><label for="littleCheck">Little</label>
         <input type="radio" name="Activity" value="light" id="lightCheck"/><label for="lightCheck">Light</label>
         <input type="radio" name="Activity" value="moderate" id="moderateCheck"/><label for="moderateCheck">Moderate</label>

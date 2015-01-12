@@ -4,7 +4,7 @@ $(document).ready(function(){
 	// register a event listeners for weight and height, gender, age, and activity
 	// as these need to dynamically update the calorific needs
 
-	var weightInt, heightInt, ageInt, gender, activityLevel;
+	var weightInt, heightInt, ageInt, gender, activityLevel, gymVisits;
 
 	$("#weightField").on("change",function(){
 		weightInt = $(this).val();
@@ -38,6 +38,15 @@ $(document).ready(function(){
 
 	$("input[name='Gender']").on("change",function(){
 		gender = $(this).val();
+	});
+
+	$("input[name='gymField']").on("change",function(){
+		gymVisits = $(this).val();
+
+		if (gymVisits > 7)
+		{
+			createErrorMSG("I think it's more likely you go less than 7 times!");
+		}
 	});
 
 	$("input[name='Activity']").on("change",function(){
@@ -217,8 +226,9 @@ function grabValues(flag)
 			var gender = formData[6].value;
 			var weight = formData[7].value;
 			var height = formData[8].value;
-			var activity = formData[9].value;
-			var calories = formData[10].value;
+			var gym = formData[9].value;
+			var activity = formData[10].value;
+			var calories = formData[11].value;
 
 			console.log(formData);
 
@@ -236,6 +246,7 @@ function grabValues(flag)
 					age: age,
 					activity: activity,
 					weight: weight,
+					gym: gym,
 					height: height,
 					calories: calories,
 					dateCreated: whatDate(),

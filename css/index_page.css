@@ -63,10 +63,18 @@
 
 .information_panel span
 {
-	font-size:1.2em;
+	   font-size:1.2em;
     color:#686872;
     border-bottom:1px solid;
     border-color:#423E3E;
+}
+
+.first
+{
+    background-image: url(../img/barbell.png), linear-gradient(to bottom, #383333 , #3A3535 ) !important;
+    background-repeat: no-repeat !important;
+    background-position: right -30px !important;
+    height: auto !important;
 }
 
 .database_output_panel

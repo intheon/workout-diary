@@ -33,8 +33,8 @@ if (!isset($_SESSION['username']))
             <span class="jumbo">???</span><span class="remainder"> more gym visits remaining.</span>
         </div>
         <div id="calories_illustration">
-            <span class="jumbo" id="calories_in">???</span><span class="remainder"> calories consumed.</span><br />
-            <span class="jumbo" id="calories_out">???</span><span class="remainder"> calories burned.</span><br />
+            <span class="jumbo" id="calories_in">0</span><span class="remainder"> calories consumed.</span><br />
+            <span class="jumbo" id="calories_out">0</span><span class="remainder"> calories burned.</span><br />
         </div>
         <div id="pictures_illustration">
             <span class="jumbo">???</span><span class="remainder"> ...</span>
@@ -43,7 +43,7 @@ if (!isset($_SESSION['username']))
 
     <div id="interaction_panel">
 
-        <div class="information_panel"> <!-- FIRST PANEL | WELCOME -->
+        <div class="information_panel first"> <!-- FIRST PANEL | WELCOME -->
 
             <h1>Welcome back, <span id="currentUser"><?php echo $_SESSION["username"]; ?></span></h1>
             <p>How the hell are you today? Get entering some information!</p>
