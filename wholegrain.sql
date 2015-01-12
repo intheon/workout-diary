@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2015 at 05:52 PM
+-- Generation Time: Jan 12, 2015 at 05:33 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `diet` (
   `total_calories` varchar(255) NOT NULL,
   `owner` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `diet`
@@ -93,7 +93,8 @@ INSERT INTO `diet` (`id`, `date_done`, `json`, `total_calories`, `owner`) VALUES
 (1, 'Wednesday the 24th of December 2014', '{"itemnumber1":{"Chees":"234"},"itemnumber2":{"Chicken Wings":"234"}}', '468', 'intheon'),
 (2, 'Monday the 5th of January 2015', '{"itemnumber1":{"Cheese and Onion Pasty":"500"}}', '500', 'intheon'),
 (3, 'Monday the 5th of January 2015', '{"itemnumber1":{"Chicken":"234"},"itemnumber2":{"Ham Sandwiches":"342"}}', '576', 'intheon'),
-(4, 'Monday the 5th of January 2015', '{"itemnumber1":{"Coffee":"243"},"itemnumber2":{"Snickers":"21"}}', '264', 'intheon');
+(4, 'Monday the 5th of January 2015', '{"itemnumber1":{"Coffee":"243"},"itemnumber2":{"Snickers":"21"}}', '264', 'intheon'),
+(5, 'Tuesday the 6th of January 2015', '{"itemnumber1":{"cunts":"231"},"itemnumber2":{"ham":"234"}}', '465', 'intheon');
 
 -- --------------------------------------------------------
 
@@ -146,7 +147,14 @@ CREATE TABLE IF NOT EXISTS `picture` (
   `picture_taken` tinyint(1) NOT NULL,
   `user_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+
+--
+-- Dumping data for table `picture`
+--
+
+INSERT INTO `picture` (`id`, `week_number`, `picture_path`, `picture_taken`, `user_id`) VALUES
+(21, '2', '../img/uploads/img_email_iphone.png', 1, 'intheon');
 
 -- --------------------------------------------------------
 
@@ -181,7 +189,14 @@ CREATE TABLE IF NOT EXISTS `types_cardio` (
   `exercise_name` varchar(255) NOT NULL,
   `calorie_consumption_per_minute` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `types_cardio`
+--
+
+INSERT INTO `types_cardio` (`id`, `exercise_name`, `calorie_consumption_per_minute`) VALUES
+(1, 'Cross Trainer', '16.6');
 
 -- --------------------------------------------------------
 
