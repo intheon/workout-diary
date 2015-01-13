@@ -1,8 +1,14 @@
 <?php
 
+session_start();
+
 require "db_conf.php";
 
-$sql = mysqli_query($connect,"SELECT * FROM types_cardio");
+var_dump($_POST);
+
+/*
+
+$sql = mysqli_query($connect,"SELECT * FROM '$type'");
 
 $json = array();
 
@@ -12,5 +18,5 @@ while ($row = mysqli_fetch_assoc($sql))
 }
 
 echo json_encode($json);
-
+*/
 ?>

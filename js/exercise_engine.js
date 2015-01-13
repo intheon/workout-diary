@@ -4,7 +4,7 @@ var previouslyClicked = [];
 
 $(document).ready(function()
 {
-  gatherExercises();
+  gatherExercises("types_cardio");
 
   gymVisisted();
 
@@ -15,17 +15,21 @@ $(document).ready(function()
 });
 
 
-function gatherExercises(flag)
+function gatherExercises(type)
 {
+  console.log(exercise);
   $.ajax(
   {
     type: "GET",
     url: globalURL + "php/module_pull_exercise_types.php",
+    data: {
+      exercise: type
+    },
     success: function(response)
     {
       // on success you get this huge json string or an empty response
       // just pass it to a parsing function
-      drawHTML(response,flag);
+      drawHTML(response);
     }
   });
 }
@@ -42,6 +46,7 @@ function gymVisisted()
     },
     success: function(response)
     {
+      console.log(response);
       if (response == "nothing")
       {
         $(".messages").html("Gym Not Visited");
@@ -290,6 +295,7 @@ function parseResults(quantity, name)
 
 function submitToDB(quantity, name)
 {
+  console.log("this has been called with", quantity, " and ", name);
   // change the first letter to uppercase
   gName = name.substr(0, 1).toUpperCase() + name.substr(1, name.length - 1);
 
@@ -310,6 +316,8 @@ function submitToDB(quantity, name)
     calories_total: consumed,
     date_done: whatDate()
   }
+
+  console.log(formData);
 
   // send to php
   $.ajax(

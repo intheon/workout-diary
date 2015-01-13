@@ -81,7 +81,7 @@ a:hover {
 
 .information_panel
 {
-    background: linear-gradient(to bottom, #383333 , #3A3535 ) !important;
+    background: linear-gradient(to bottom, #383333 , #3A3535 );
     border-radius:6px;
 }
 .information_panel h1
@@ -345,14 +345,19 @@ input[type="text"]
         float:left;
     display:flex;
     flex-direction:row-reverse;
-
+        padding-top:0%;
     }
 #modules_bar
     {
-    padding-left:2%;
-    margin-right:-4%;
+
+    padding-left:1%;
     display:flex;
     flex-direction:column-reverse;
+    }
+
+#modules_bar div
+    {
+    padding-top:1%;
     }
 
 }

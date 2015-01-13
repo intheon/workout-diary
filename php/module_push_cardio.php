@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // this gets passed a shit ton of params
 require "db_conf.php";
 
@@ -8,10 +10,11 @@ require "db_conf.php";
 	$quantity = $_POST["quantity"];
 	$totalCals = $_POST["calories_total"];
 	$date = $_POST["date_done"];
+	$loggedInUser = $_SESSION['username'] ;
 
 
 	// queries
-	$sql = mysqli_query($connect,"INSERT INTO exercises (exercise_name,date_done,calories_total,minutes_quantity) VALUES ('$exercise','$date','$totalCals','$quantity')");
+	$sql = mysqli_query($connect,"INSERT INTO exercises_log (exercise_name,date_done,calories_total,minutes_quantity,user) VALUES ('$exercise','$date','$totalCals','$quantity','$loggedInUser')");
 	
 	mysqli_close($connect);
 

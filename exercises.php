@@ -43,7 +43,7 @@ if (!isset($_SESSION['username']))
 
         <!-- CARDIO -->
         <div class="information_panel" id="cardio_completed_panel"> <!-- SECOND -->
-            <h1>Cardiovascular <span class="edit"><span id="editCardio">Edit</span> | <span id="addCardio">Add</span></span></h1>
+            <h1>Cardiovascular</h1>
             <p>Please enter the cardiovascular activity you did by clicking on the headers.</p>
 
                 <!-- THE ELEMENTS ARE DYNAMICALLY DRAWN BY JAVASCRIPT -->
@@ -64,7 +64,7 @@ if (!isset($_SESSION['username']))
 
         <!-- WEIGHTS -->
         <div class="information_panel" id="weights_completed_panel"> <!-- THIRD -->
-            <h1>Weights <span class="edit"><span id="editWeights">Edit</span> | <span id="addWeights">Add</span></span></h1>
+            <h1>Weights</h1>
             <p>Enter the weight you've done today.</p>
         </div>
 
