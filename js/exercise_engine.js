@@ -58,23 +58,10 @@ function drawHTML(raw)
   	makeEventListeners(type);
 }
 
-function makeEventListeners2(type)
-{
-	var storedVariable = type;
-
-	console.log("master:" , storedVariable);
-
-	return function(index, element)
-	{
-		console.log(storedVariable);
-	}
-
-}
-
-
 // registers an onclick handler to buttons
 function makeEventListeners(type)
 {
+
 	var reference = type;
 	// just loop through and give them an id based on their name
 	$("." + reference + " .tab_item").each(function()
@@ -97,27 +84,35 @@ function makeEventListeners(type)
   	}); // close each loop
 }
 
+var frames = [];
+
 function showForm(formName,frame)
 {
+	console.log("initial click");
 	// this is to prevent the same form from being shown twice
-
-	if ($.inArray(formName,previouslyClicked) > -1)
-	{
-		return false;
+	if ($.inArray(frame,frames) === -1)
+	{	
+		console.log("show form initially (twice)");
+		$("."+frame+"_forms").hide().fadeIn();
+		$("."+frame+"_submit_all").hide().fadeIn(2000);
+		frames.push(frame);
 	}
 	else
 	{
+		console.log("forms are shown, proceed...");
 		previouslyClicked.push(formName);
 
 		count++;
 
+		console.log(count);
+
 		// shows the form for a first time
-		if (count < 2)
-		{
-			$("."+frame+"_forms").hide().fadeIn();
-			$("."+frame+"_submit_all").hide().fadeIn(2000);
-			manageSubmitAll();
-		}
+		//if (count < 2)
+		//{
+			//$("."+frame+"_forms").hide().fadeIn();
+			//$("."+frame+"_submit_all").hide().fadeIn(2000);
+			//manageSubmitAll();
+		//}
 
 		var name = formName.toLowerCase();
 
