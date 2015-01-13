@@ -58,11 +58,26 @@ function drawHTML(raw)
   	makeEventListeners(type);
 }
 
-// registers an onclick handler to buttons
-function makeEventListeners()
+function makeEventListeners2(type)
 {
+	var storedVariable = type;
+
+	console.log("master:" , storedVariable);
+
+	return function(index, element)
+	{
+		console.log(storedVariable);
+	}
+
+}
+
+
+// registers an onclick handler to buttons
+function makeEventListeners(type)
+{
+	var reference = type;
 	// just loop through and give them an id based on their name
-	$(".tab_item").each(function()
+	$("." + reference + " .tab_item").each(function()
 	{
 
 		// TODO :
@@ -72,17 +87,18 @@ function makeEventListeners()
 
 		$(this).attr("id", name);
 
-		$(this).click(function()
+		$(this).click(function(event)
 		{
-			showForm(name);
+			var frame = event.currentTarget.parentElement.className;
+				frame = frame.substr(0,frame.length - 6);
+			showForm(name,frame);
 		}); // register click handlers
 
   	}); // close each loop
 }
 
-function showForm(formName)
+function showForm(formName,frame)
 {
-
 	// this is to prevent the same form from being shown twice
 
 	if ($.inArray(formName,previouslyClicked) > -1)
@@ -98,14 +114,14 @@ function showForm(formName)
 		// shows the form for a first time
 		if (count < 2)
 		{
-			$(".cardio_forms").hide().fadeIn();
-			$(".cardio_submit_all").hide().fadeIn(2000);
+			$("."+frame+"_forms").hide().fadeIn();
+			$("."+frame+"_submit_all").hide().fadeIn(2000);
 			manageSubmitAll();
 		}
 
 		var name = formName.toLowerCase();
 
-		$(".cardio_forms").append("\
+		$("."+frame+"_forms").append("\
 			<form id='" + name + "_form'>\
 			<p>How much " + name + " did you do?</p>\
 			<input type='text' placeholder='Quantity' id='" + name + "_input'>\
