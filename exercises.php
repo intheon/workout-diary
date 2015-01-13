@@ -66,6 +66,19 @@ if (!isset($_SESSION['username']))
         <div class="information_panel" id="weights_completed_panel"> <!-- THIRD -->
             <h1>Weights</h1>
             <p>Enter the weight you've done today.</p>
+
+                <!-- THE ELEMENTS ARE DYNAMICALLY DRAWN BY JAVASCRIPT -->
+                <!-- THEY HAVE BEEN DEFINED IN THE MYSQLI DB -->
+                <div class="weights_panel"></div>
+
+                <!-- THE FORM IS DYNAMICALLY DRAWN BY JAVASCRIPT -->
+                <div class="weights_forms"></div>
+
+                <!-- AND A HIDDEN SUBMIT BUTTON TO SUBMIT ALL -->
+                <div class="weights_submit_all" style="display:none">
+                    <form><input type="button" value="Submit All"></form>        
+                </div>
+
         </div>
 
 

@@ -5,25 +5,25 @@ var previouslyClicked = [];
 $(document).ready(function()
 {
   gatherExercises("types_cardio");
+  gatherExercises("types_weights");
 
-  gymVisisted();
+  //gymVisited();
 
-  bindButton("#addCardio");
+ //bindButton("#addCardio");
 
-  bindButton("#editCardio");
+  //bindButton("#editCardio");
 
 });
 
 
 function gatherExercises(type)
 {
-  console.log(exercise);
   $.ajax(
   {
-    type: "GET",
+    type: "POST",
     url: globalURL + "php/module_pull_exercise_types.php",
     data: {
-      exercise: type
+      type: type
     },
     success: function(response)
     {
@@ -34,7 +34,95 @@ function gatherExercises(type)
   });
 }
 
-function gymVisisted()
+function drawHTML(raw)
+{
+	// turn it into json object i can play with
+	entireString = JSON.parse(raw);
+
+	// very first element is the exercise type
+	var type = entireString[0];
+		type = type.substr(6,type.length);
+		type = type + "_panel";
+
+	// dont need the first element anymore
+	entireString.shift();
+
+ 	// loop through
+  	for (properties in entireString)
+  	{
+    	// spit out each name
+    	var exNames = entireString[properties].exercise_name;
+    	$("." + type).append("<div class='tab_item'>" + exNames + "</div>");
+  	}
+
+  	makeEventListeners(type);
+}
+
+// registers an onclick handler to buttons
+function makeEventListeners()
+{
+	// just loop through and give them an id based on their name
+	$(".tab_item").each(function()
+	{
+
+		// TODO :
+		// - have spaces in id name
+
+		var name = $(this).context.innerHTML;
+
+		$(this).attr("id", name);
+
+		$(this).click(function()
+		{
+			showForm(name);
+		}); // register click handlers
+
+  	}); // close each loop
+}
+
+function showForm(formName)
+{
+
+	// this is to prevent the same form from being shown twice
+
+	if ($.inArray(formName,previouslyClicked) > -1)
+	{
+		return false;
+	}
+	else
+	{
+		previouslyClicked.push(formName);
+
+		count++;
+
+		// shows the form for a first time
+		if (count < 2)
+		{
+			$(".cardio_forms").hide().fadeIn();
+			$(".cardio_submit_all").hide().fadeIn(2000);
+			manageSubmitAll();
+		}
+
+		var name = formName.toLowerCase();
+
+		$(".cardio_forms").append("\
+			<form id='" + name + "_form'>\
+			<p>How much " + name + " did you do?</p>\
+			<input type='text' placeholder='Quantity' id='" + name + "_input'>\
+			<input type='button' value='Submit' id='" + name + "_submit'>\
+			</form>");
+
+		$("#" + name + "_form").hide().fadeIn(600);
+
+		$("#" + name + "_submit").click(function()
+		{
+			var quantity = $("#" + name + "_input").val();
+			parseResults(quantity, name);
+		});
+	}
+}
+
+function gymVisited()
 {
   $.ajax(
   {
@@ -61,27 +149,6 @@ function gymVisisted()
       }
     }
   });
-}
-
-
-function drawHTML(raw,resetFlag)
-{
-  if (resetFlag == true)
-  {
-    $(".cardio_panel").html("");
-  }
-  // turn it into json object i can play with
-  entireString = JSON.parse(raw);
-
-  // loop through
-  for (properties in entireString)
-  {
-    // spit out each name
-    var exNames = entireString[properties].exercise_name;
-    $(".cardio_panel").append("<div class='tab_item'>" + exNames + "</div>");
-  }
-
-  makeEventListeners();
 }
 
 // ADDING A NEW CARDIO EXERCISE
@@ -210,67 +277,6 @@ function bindButton(element)
 
     });
   });
-}
-
-
-
-// this is called and registers and onclick handler to all cardio buttons
-function makeEventListeners()
-{
-  // just loop through and give them an id based on their name
-  $(".tab_item").each(function()
-  {
-    var name = $(this).context.innerHTML;
-    $(this).attr("id", name);
-
-    $(this).click(function()
-    {
-      showForm(name);
-    }); // register three click handlers
-  }); // close each loop
-}
-
-
-
-// draw the form
-function showForm(formName)
-{
-
-  if ($.inArray(formName,previouslyClicked) > -1)
-  {
-    console.log("ive found a match");
-  }
-  else
-  {
-    previouslyClicked.push(formName);
-
-    count++;
-    // cos the form would have never been shown before
-    if (count < 2)
-    {
-      $(".cardio_forms").hide().fadeIn();
-      $(".cardio_submit_all").hide().fadeIn(2000);
-      manageSubmitAll();
-    }
-
-    var name = formName.toLowerCase();
-
-    $(".cardio_forms").append("\
-      <form id='" + name + "_form'>\
-        <p>How much " + name + " did you do?</p>\
-        <input type='text' placeholder='Quantity' id='" + name + "_input'>\
-        <input type='button' value='Submit' id='" + name + "_submit'>\
-      </form>");
-
-    $("#" + name + "_form").hide().fadeIn(600);
-
-    $("#" + name + "_submit").click(function()
-    {
-      var quantity = $("#" + name + "_input").val();
-      parseResults(quantity, name);
-    });
-    }
-
 }
 
 function parseResults(quantity, name)

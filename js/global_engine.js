@@ -8,7 +8,10 @@ var links = [
         "<div><a href='stats.php'>Statistics</a></div>",
     ];
 
-var settings = "<ul><li><img src='img/settings.png' width='50%''></li><ul><li><a href='myaccount.php'>My Account</a></li><li><a href='#'' id='logMeOut'>Sign Out</a></li></ul></ul>";
+var settings2 = "<ul><li><img src='img/settings.png' width='50%''></li><ul><li><a href='myaccount.php'>My Account</a></li><li><a href='#'' id='logMeOut'>Sign Out</a></li></ul></ul>";
+
+var settings = "<span id='settings'><img src='img/settings.png'></span><span id='settings_menu'><span class='menu_item'><a href='myaccount.php'>My Account</a></span><span class='menu_item'><a href='#' id='logMeOut'>Sign Out</a></span></span>";
+
 
 var data = {};
 var s;
@@ -22,6 +25,29 @@ $(document).ready(function()
     }
 
     $("#appName").html(appName);
+
+    $("#settings").html(settings);
+    $("#settings").click(function()
+    {
+        // stop the child element from being clickable
+        $("#settings #settings_menu").click(function(e)
+        {
+            e.stopPropagation();
+        });
+
+        if ( $("#settings_menu").css("display") == "flex" )
+        {
+            $("#settings_menu").css("display", "none");
+        }
+        else
+        {
+            $("#settings_menu").css("display", "flex");
+        }
+  
+    });
+
+    /*
+
     $("#settings").html(settings);
 
      $("#settings ul").click(function(event)
@@ -32,6 +58,8 @@ $(document).ready(function()
             e.stopPropagation()
         });
     });
+
+*/
 
     $("#logMeOut").click(function(event)
     {
