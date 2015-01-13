@@ -1,4 +1,4 @@
-.cardio_panel
+.cardio_panel, .weights_panel
 {
     display:flex;
     margin-top:1%;
@@ -39,7 +39,7 @@
     margin-top:0.7%;
     padding:0.6%;
 }
-.addCardio input
+.addCardio input, .add
 {
     flex:1;
     margin:1.5%;
@@ -73,24 +73,23 @@
 {
     background-color: #302C2C;
 }
-.cardio_forms
+.cardio_forms, .weights_forms
 {
-
     display:none;
 }
-.cardio_forms form
+.cardio_forms form, .weights_forms form
 {
     display:flex;
     margin-bottom:0.5%;
 }
-.cardio_forms p
+.cardio_forms p, .weights_forms p
 {
     text-align:left;
     margin:0.8%;
     padding:0.8%;
     width:40%;
 }
-.cardio_forms input
+.cardio_forms input, .weights_forms input
 {
     flex:1;
     margin:1%;
@@ -102,14 +101,14 @@
     border-radius:4px;
     border:none;
 }
-.cardio_forms input[type="text"]
+.cardio_forms input[type="text"], .weights_forms input[type="text"]
 {
     background-color:#302C2C;
     color:#E5E5E5;
     border-radius:4px;
     border:none;
 }
-.cardio_submit_all input
+.cardio_submit_all input, .weights_submit_all input
 {
     padding:1%;
     margin-left:1%;
@@ -119,11 +118,6 @@
     border:none;
     background-color:#2E2C2C;
     color:#E5E5E5;
-}
-#editCardio:hover
-{
-    color:#C59666;
-    cursor:pointer;
 }
 .information_panel
 {
