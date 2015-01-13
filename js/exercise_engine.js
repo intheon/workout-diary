@@ -88,49 +88,48 @@ var frames = [];
 
 function showForm(formName,frame)
 {
-	console.log("initial click");
 	// this is to prevent the same form from being shown twice
 	if ($.inArray(frame,frames) === -1)
 	{	
-		console.log("show form initially (twice)");
 		$("."+frame+"_forms").hide().fadeIn();
 		$("."+frame+"_submit_all").hide().fadeIn(2000);
 		frames.push(frame);
+    previouslyClicked.push(formName);
+    drawSubForm(formName,frame);
 	}
 	else
 	{
-		console.log("forms are shown, proceed...");
-		previouslyClicked.push(formName);
+    if ($.inArray(formName,previouslyClicked) === -1)
+    {
+      previouslyClicked.push(formName);
 
-		count++;
-
-		console.log(count);
-
-		// shows the form for a first time
-		//if (count < 2)
-		//{
-			//$("."+frame+"_forms").hide().fadeIn();
-			//$("."+frame+"_submit_all").hide().fadeIn(2000);
-			//manageSubmitAll();
-		//}
-
-		var name = formName.toLowerCase();
-
-		$("."+frame+"_forms").append("\
-			<form id='" + name + "_form'>\
-			<p>How much " + name + " did you do?</p>\
-			<input type='text' placeholder='Quantity' id='" + name + "_input'>\
-			<input type='button' value='Submit' id='" + name + "_submit'>\
-			</form>");
-
-		$("#" + name + "_form").hide().fadeIn(600);
-
-		$("#" + name + "_submit").click(function()
-		{
-			var quantity = $("#" + name + "_input").val();
-			parseResults(quantity, name);
-		});
+      drawSubForm(formName,frame);
+    }
+    else
+    {
+      return false;
+    }
 	}
+}
+
+function drawSubForm(formName,frame)
+{
+  var name = formName.toLowerCase();
+
+  $("."+frame+"_forms").append("\
+    <form id='" + name + "_form'>\
+    <p>How much " + name + " did you do?</p>\
+    <input type='text' placeholder='Quantity' id='" + name + "_input'>\
+    <input type='button' value='Submit' id='" + name + "_submit'>\
+    </form>");
+
+  $("#" + name + "_form").hide().fadeIn(600);
+
+  $("#" + name + "_submit").click(function()
+  {
+    var quantity = $("#" + name + "_input").val();
+    parseResults(quantity, name);
+  });
 }
 
 function gymVisited()
