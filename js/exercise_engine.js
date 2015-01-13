@@ -88,6 +88,7 @@ var frames = [];
 
 function showForm(formName,frame)
 {
+  $("#"+formName).css({'text-decoration':"line-through",'color':"#8F8A8A",});
 	// this is to prevent the same form from being shown twice
 	if ($.inArray(frame,frames) === -1)
 	{	
@@ -95,6 +96,7 @@ function showForm(formName,frame)
 		$("."+frame+"_submit_all").hide().fadeIn(2000);
 		frames.push(frame);
     previouslyClicked.push(formName);
+    manageSubmitAll(frame)
     drawSubForm(formName,frame);
 	}
 	else
@@ -102,7 +104,6 @@ function showForm(formName,frame)
     if ($.inArray(formName,previouslyClicked) === -1)
     {
       previouslyClicked.push(formName);
-
       drawSubForm(formName,frame);
     }
     else
@@ -119,18 +120,116 @@ function drawSubForm(formName,frame)
   $("."+frame+"_forms").append("\
     <form id='" + name + "_form'>\
     <p>How much " + name + " did you do?</p>\
-    <input type='text' placeholder='Quantity' id='" + name + "_input'>\
-    <input type='button' value='Submit' id='" + name + "_submit'>\
+    <input type='text' placeholder='Quantity (minutes done)' id='" + name + "_input'>\
     </form>");
 
   $("#" + name + "_form").hide().fadeIn(600);
 
-  $("#" + name + "_submit").click(function()
+  /*
+  $("."+frame+"_submit_all form input").click(function()
   {
+    // regex for just numbers
+    var r = new RegExp("^[0-9]*$");
+
     var quantity = $("#" + name + "_input").val();
-    parseResults(quantity, name);
+
+    console.log(quantity);
+    if (r.test(quantity) == false)
+    {
+      console.log("nan");
+      //showWarning("Enter a number");
+    }
+    else if (quantity >= 1000)
+    {
+      console.log("too big");
+    }
+    else
+    {
+      console.log("winner");
+    }
+  });
+
+*/
+}
+
+var json = {};
+
+function manageSubmitAll(frame)
+{
+  $("."+frame+"_submit_all form input").one("click", function()
+  {
+    $("."+frame+"_forms form input[type='text']").each(function(i){
+      var targetValue = $(this).val();
+      var targetFullName = $(this).context.id;
+      var targetName = targetFullName.substr(0,targetFullName.length-6);
+
+      var r = new RegExp("^[0-9]*$");
+
+      if (r.test(targetValue) == false)
+      {
+        showWarning("Enter a number");
+        return false;
+      }
+      else if (targetValue >= 1000)
+      {
+        showWarning("too big");
+        return false;
+      }
+      else
+      {
+        json[targetName] = targetValue;
+      }
+
+    });
+
+    console.log(json);
+    submitToDB(quantity, name);
+
   });
 }
+
+function submitToDB(quantity, name)
+{
+  console.log("this has been called with", quantity, " and ", name);
+  // change the first letter to uppercase
+  gName = name.substr(0, 1).toUpperCase() + name.substr(1, name.length - 1);
+
+  // match the name with the matching object
+  for (keys in entireString)
+  {
+    if (gName == entireString[keys].exercise_name)
+    {
+      // calculate its totals
+      var consumed = quantity * entireString[keys].calorie_consumption_per_minute
+    }
+  }
+
+  // build an object
+  var formData = {
+    ex_name: gName,
+    quantity: quantity,
+    calories_total: consumed,
+    date_done: whatDate()
+  }
+
+  console.log(formData);
+
+  // send to php
+  $.ajax(
+  {
+    type: "POST",
+    url: globalURL + "php/module_push_cardio.php",
+    data: formData,
+    success: function(response)
+    {
+      $("#"+name+"_form").fadeOut(500, function()
+      {
+        $(this).remove();
+      });
+    }
+  });
+}
+
 
 function gymVisited()
 {
@@ -160,6 +259,7 @@ function gymVisited()
     }
   });
 }
+
 
 // ADDING A NEW CARDIO EXERCISE
 
@@ -288,84 +388,6 @@ function bindButton(element)
     });
   });
 }
-
-function parseResults(quantity, name)
-{
-  // regex for just numbers
-  var r = new RegExp("^[0-9]*$");
-
-  // test if number of calories is a number
-  if (r.test(quantity) == false)
-  {
-    showWarning("Enter a number");
-  }
-  else if (quantity >= 1000)
-  {
-    showWarning("There's no way you've done that much");
-  }
-  else
-  {
-    submitToDB(quantity, name);
-  }
-}
-
-function submitToDB(quantity, name)
-{
-  console.log("this has been called with", quantity, " and ", name);
-  // change the first letter to uppercase
-  gName = name.substr(0, 1).toUpperCase() + name.substr(1, name.length - 1);
-
-  // match the name with the matching object
-  for (keys in entireString)
-  {
-    if (gName == entireString[keys].exercise_name)
-    {
-      // calculate its totals
-      var consumed = quantity * entireString[keys].calorie_consumption_per_minute
-    }
-  }
-
-  // build an object
-  var formData = {
-    ex_name: gName,
-    quantity: quantity,
-    calories_total: consumed,
-    date_done: whatDate()
-  }
-
-  console.log(formData);
-
-  // send to php
-  $.ajax(
-  {
-    type: "POST",
-    url: globalURL + "php/module_push_cardio.php",
-    data: formData,
-    success: function(response)
-    {
-      $("#"+name+"_form").fadeOut(500, function()
-      {
-        $(this).remove();
-      });
-    }
-  });
-}
-
-function manageSubmitAll()
-{
-  $(".cardio_submit_all form input").one("click", function()
-  {
-
-    $(".cardio_forms form input[type='text']").each(function()
-    {
-      var quantity = $(this).val();
-      var name = $(this).attr("id").substr(0, $(this).attr("id").length - 6);
-      parseResults(quantity, name)
-    });
-
-  })
-}
-
 
 $(".toggle input[type='checkbox']").click(function(){
   var isChecked = $(".toggle input[type='checkbox']").is(":checked");

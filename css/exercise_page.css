@@ -19,8 +19,8 @@
 }
 .tab_item:nth-child(even)
 {
-  margin-left:1%;
-  background-color:#2E2C2C;
+    margin-left:1%;
+    background-color:#2E2C2C;
 }
 .tab_item:hover
 {
@@ -111,13 +111,13 @@
 .cardio_submit_all input, .weights_submit_all input
 {
     padding:1%;
-    margin-left:1%;
-    margin-right:1%;
+    margin-left:1.5%;
     margin-bottom:1%;
-    width:98%;
+    width:97.5%;
     border:none;
-    background-color:#2E2C2C;
+    background-color:#302C2C;
     color:#E5E5E5;
+    cursor: pointer;
 }
 .information_panel
 {

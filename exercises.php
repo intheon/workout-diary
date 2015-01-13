@@ -55,7 +55,7 @@ if (!isset($_SESSION['username']))
 
        			<!-- AND A HIDDEN SUBMIT BUTTON TO SUBMIT ALL -->
         		<div class="cardio_submit_all" style="display:none">
-            		<form><input type="button" value="Submit All"></form>        
+            		<form><input type="button" value="Submit to database"></form>        
         		</div>
 
         </div>
