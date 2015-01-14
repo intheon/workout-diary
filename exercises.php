@@ -51,13 +51,12 @@ if (!isset($_SESSION['username']))
         		<div class="cardio_panel"></div>
 
         		<!-- THE FORM IS DYNAMICALLY DRAWN BY JAVASCRIPT -->
-        		<div class="cardio_forms"></div>
+        		<div class="cardio_forms exercises"></div>
 
        			<!-- AND A HIDDEN SUBMIT BUTTON TO SUBMIT ALL -->
-        		<div class="cardio_submit_all" style="display:none">
+        		<div class="cardio_submit_all exercises" style="display:none">
             		<form><input type="button" value="Submit to database"></form>        
         		</div>
-
         </div>
 
 
@@ -70,15 +69,13 @@ if (!isset($_SESSION['username']))
                 <!-- THE ELEMENTS ARE DYNAMICALLY DRAWN BY JAVASCRIPT -->
                 <!-- THEY HAVE BEEN DEFINED IN THE MYSQLI DB -->
                 <div class="weights_panel"></div>
-
                 <!-- THE FORM IS DYNAMICALLY DRAWN BY JAVASCRIPT -->
-                <div class="weights_forms"></div>
+                <div class="weights_forms exercises"></div>
 
                 <!-- AND A HIDDEN SUBMIT BUTTON TO SUBMIT ALL -->
-                <div class="weights_submit_all" style="display:none">
+                <div class="weights_submit_all exercises" style="display:none">
                     <form><input type="button" value="Submit All"></form>        
                 </div>
-
         </div>
 
 

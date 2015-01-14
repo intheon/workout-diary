@@ -4,34 +4,34 @@ var previouslyClicked = [];
 
 $(document).ready(function()
 {
-  gatherExercises("types_cardio");
-  gatherExercises("types_weights");
+	gatherExercises("types_cardio");
+	gatherExercises("types_weights");
 
-  //gymVisited();
+	//gymVisited();
 
  //bindButton("#addCardio");
 
-  //bindButton("#editCardio");
+	//bindButton("#editCardio");
 
 });
 
 
 function gatherExercises(type)
 {
-  $.ajax(
-  {
-    type: "POST",
-    url: globalURL + "php/module_pull_exercise_types.php",
-    data: {
-      type: type
-    },
-    success: function(response)
-    {
-      // on success you get this huge json string or an empty response
-      // just pass it to a parsing function
-      drawHTML(response);
-    }
-  });
+	$.ajax(
+	{
+		type: "POST",
+		url: globalURL + "php/module_pull_exercise_types.php",
+		data: {
+			type: type
+		},
+		success: function(response)
+		{
+			// on success you get this huge json string or an empty response
+			// just pass it to a parsing function
+			drawHTML(response);
+		}
+	});
 }
 
 function drawHTML(raw)
@@ -47,15 +47,15 @@ function drawHTML(raw)
 	// dont need the first element anymore
 	entireString.shift();
 
- 	// loop through
-  	for (properties in entireString)
-  	{
-    	// spit out each name
-    	var exNames = entireString[properties].exercise_name;
-    	$("." + type).append("<div class='tab_item'>" + exNames + "</div>");
-  	}
+	// loop through
+		for (properties in entireString)
+		{
+			// spit out each name
+			var exNames = entireString[properties].exercise_name;
+			$("." + type).append("<div class='tab_item'>" + exNames + "</div>");
+		}
 
-  	makeEventListeners(type);
+		makeEventListeners(type);
 }
 
 // registers an onclick handler to buttons
@@ -81,183 +81,169 @@ function makeEventListeners(type)
 			showForm(name,frame);
 		}); // register click handlers
 
-  	}); // close each loop
+		}); // close each loop
 }
 
 var frames = [];
 
 function showForm(formName,frame)
 {
-  $("#"+formName).css({'text-decoration':"line-through",'color':"#8F8A8A",});
+	$("#"+formName).css({'text-decoration':"line-through",'color':"#8F8A8A",});
 	// this is to prevent the same form from being shown twice
 	if ($.inArray(frame,frames) === -1)
 	{	
 		$("."+frame+"_forms").hide().fadeIn();
 		$("."+frame+"_submit_all").hide().fadeIn(2000);
 		frames.push(frame);
-    previouslyClicked.push(formName);
-    manageSubmitAll(frame)
-    drawSubForm(formName,frame);
+		previouslyClicked.push(formName);
+		manageSubmitAll(frame)
+		drawSubForm(formName,frame);
 	}
 	else
 	{
-    if ($.inArray(formName,previouslyClicked) === -1)
-    {
-      previouslyClicked.push(formName);
-      drawSubForm(formName,frame);
-    }
-    else
-    {
-      return false;
-    }
+		if ($.inArray(formName,previouslyClicked) === -1)
+		{
+			previouslyClicked.push(formName);
+			drawSubForm(formName,frame);
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
 
 function drawSubForm(formName,frame)
 {
-  var name = formName.toLowerCase();
+	var name = formName.toLowerCase();
 
-  $("."+frame+"_forms").append("\
-    <form id='" + name + "_form'>\
-    <p>How much " + name + " did you do?</p>\
-    <input type='text' placeholder='Quantity (minutes done)' id='" + name + "_input'>\
-    </form>");
+	$("."+frame+"_forms").append("\
+		<form id='" + name + "_form'>\
+		<p>How much " + name + " did you do?</p>\
+		<input type='text' placeholder='Quantity (minutes done)' id='" + name + "_input'>\
+		</form>");
 
-  $("#" + name + "_form").hide().fadeIn(600);
+	$("#" + name + "_form").hide().fadeIn(600);
 
-  /*
-  $("."+frame+"_submit_all form input").click(function()
-  {
-    // regex for just numbers
-    var r = new RegExp("^[0-9]*$");
-
-    var quantity = $("#" + name + "_input").val();
-
-    console.log(quantity);
-    if (r.test(quantity) == false)
-    {
-      console.log("nan");
-      //showWarning("Enter a number");
-    }
-    else if (quantity >= 1000)
-    {
-      console.log("too big");
-    }
-    else
-    {
-      console.log("winner");
-    }
-  });
-
-*/
 }
 
-var json = {};
+var exercises = [];
 
 function manageSubmitAll(frame)
 {
-  $("."+frame+"_submit_all form input").one("click", function()
-  {
-    $("."+frame+"_forms form input[type='text']").each(function(i){
-      var targetValue = $(this).val();
-      var targetFullName = $(this).context.id;
-      var targetName = targetFullName.substr(0,targetFullName.length-6);
+	$("."+frame+"_submit_all form input").one("click", function()
+	{
+		$("."+frame+"_forms form input[type='text']").each(function(i)
+		{
+			var targetValue = $(this).val();
+			var targetFullName = $(this).context.id;
+			var targetName = targetFullName.substr(0,targetFullName.length-6);
 
-      var r = new RegExp("^[0-9]*$");
+			var r = new RegExp("^[0-9]*$");
 
-      if (r.test(targetValue) == false)
-      {
-        showWarning("Enter a number");
-        return false;
-      }
-      else if (targetValue >= 1000)
-      {
-        showWarning("too big");
-        return false;
-      }
-      else
-      {
-        json[targetName] = targetValue;
-      }
+			if (r.test(targetValue) == false)
+			{
+				showWarning("Enter a number");
+				return false;
+			}
+			else if (targetValue >= 1000)
+			{
+				showWarning("too big");
+				return false;
+			}
+			else
+			{
+				exercises.push({name: targetName, value: targetValue});
+			}
+		});
 
-    });
+		submitToDB(JSON.stringify(exercises));
 
-    console.log(json);
-    submitToDB(quantity, name);
-
-  });
+		$("."+frame+"_forms form").each(function(i)
+		{
+			$(this).delay((i + 1) * 300).fadeOut(function()
+			{
+				$(this).hide();
+				$("."+frame+"_submit_all form").fadeOut(function()
+				{
+					$(this).hide();
+				});
+			});
+		});
+	});
 }
 
-function submitToDB(quantity, name)
+function submitToDB(json)
 {
-  console.log("this has been called with", quantity, " and ", name);
-  // change the first letter to uppercase
-  gName = name.substr(0, 1).toUpperCase() + name.substr(1, name.length - 1);
+	var parsedObject = JSON.parse(json);
+		var array = [];
+		var total = 0;
 
-  // match the name with the matching object
-  for (keys in entireString)
-  {
-    if (gName == entireString[keys].exercise_name)
-    {
-      // calculate its totals
-      var consumed = quantity * entireString[keys].calorie_consumption_per_minute
-    }
-  }
+		for (properties in parsedObject)
+		{
+			array.push(parseInt(parsedObject[properties].value));
+		}
 
-  // build an object
-  var formData = {
-    ex_name: gName,
-    quantity: quantity,
-    calories_total: consumed,
-    date_done: whatDate()
-  }
+		$.each(array,function(){
+				total += this;
+		});
 
-  console.log(formData);
+		// build an object
+		var formData = {
+			date_done: whatDate(),
+			json: json,
+			calories_total: total,
+		};
 
-  // send to php
-  $.ajax(
-  {
-    type: "POST",
-    url: globalURL + "php/module_push_cardio.php",
-    data: formData,
-    success: function(response)
-    {
-      $("#"+name+"_form").fadeOut(500, function()
-      {
-        $(this).remove();
-      });
-    }
-  });
+		console.log(formData);
+
+		
+		// send to php
+		/*
+		$.ajax(
+		{
+			type: "POST",
+			url: globalURL + "php/module_push_exercises.php",
+			data: formData,
+			success: function(response)
+			{
+				$("#"+name+"_form").fadeOut(500, function()
+				{
+					$(this).remove();
+				});
+			}
+		});
+		*/
 }
 
 
 function gymVisited()
 {
-  $.ajax(
-  {
-    type: "POST",
-    url: globalURL + "php/module_manage_exercises.php",
-    data: {
-      date: whatDate(),
-      checkForVisit: true
-    },
-    success: function(response)
-    {
-      console.log(response);
-      if (response == "nothing")
-      {
-        $(".messages").html("Gym Not Visited");
-        $(".toggle input[type='checkbox']").attr("checked",false);
-      }
-      else if (response == "match")
-      {
-        $(".messages").html("Gym Visited");
-        $(".messages").addClass("switched");
-        $(".toggle input[type='checkbox']").attr("checked",true);
-        $(".toggle input[type='checkbox']").attr("disabled",true);
-      }
-    }
-  });
+	$.ajax(
+	{
+		type: "POST",
+		url: globalURL + "php/module_manage_exercises.php",
+		data: {
+			date: whatDate(),
+			checkForVisit: true
+		},
+		success: function(response)
+		{
+			console.log(response);
+			if (response == "nothing")
+			{
+				$(".messages").html("Gym Not Visited");
+				$(".toggle input[type='checkbox']").attr("checked",false);
+			}
+			else if (response == "match")
+			{
+				$(".messages").html("Gym Visited");
+				$(".messages").addClass("switched");
+				$(".toggle input[type='checkbox']").attr("checked",true);
+				$(".toggle input[type='checkbox']").attr("disabled",true);
+			}
+		}
+	});
 }
 
 
@@ -265,157 +251,157 @@ function gymVisited()
 
 function bindButton(element)
 {
-  $(element).unbind("click").one("click", function()
-  {
-    $(".information_panel p").fadeOut(500, function()
-    {
+	$(element).unbind("click").one("click", function()
+	{
+		$(".information_panel p").fadeOut(500, function()
+		{
 
-      // IF ADDING
-      if (element == "#addCardio")
-      {
-        $(".information_panel").append("\
-            <form class='addCardio'>\
-            <input type='text' name='newCardioName' id='newCardioName' placeholder='Name'/>\
-            <input type='text' name='newCardioCalorieConsumption' id='newCardioCalorieConsumption' placeholder='Calorie consumption per minute'/>\
-            <input type='button' value='Add new exercise' class='submitCalories'/>\
-            </form>");
-        // this fades it in nicely
-        $(".addCardio").hide().fadeIn();
-        // change the text to tell the user to resume
-        // bind event listener to find new values
-        $(".submitCalories").click(function()
-        {
-          //var cName = $("#newCardioName").val();
-          //var cCalories = $("#newCardioCalorieConsumption").val();
-          var formData = $(".addCardio").serialize();
-          // fire it to php
-          // TODO ADD VALIDATION SO CALORIES CAN ONLY BE AN INTEGER
-          $.ajax(
-          {
-            type: "POST",
-            url: globalURL + "php/module_manage_exercise_types.php",
-            data: formData,
-            success: function(response)
-            {
-              // redraw the exercises
-              $(".cardio_panel").append("<div class='tab_item'>" + response + "</div>");
-              makeEventListeners();
-            }
-          });
-        });
-        $("#addCardio").html("Resume");
-        // using "callbacks" to reset the .one() functionality
-        $("#addCardio").on("click", function()
-        {
-          bindButton("#addCardio");
-          $(".addCardio").fadeOut(500, function()
-          {
-            $(".addCardio").remove();
-            $("#addCardio").html("Add");
-            $("#addCardio").hide().fadeIn();
-          });
-        });
-      }
+			// IF ADDING
+			if (element == "#addCardio")
+			{
+				$(".information_panel").append("\
+						<form class='addCardio'>\
+						<input type='text' name='newCardioName' id='newCardioName' placeholder='Name'/>\
+						<input type='text' name='newCardioCalorieConsumption' id='newCardioCalorieConsumption' placeholder='Calorie consumption per minute'/>\
+						<input type='button' value='Add new exercise' class='submitCalories'/>\
+						</form>");
+				// this fades it in nicely
+				$(".addCardio").hide().fadeIn();
+				// change the text to tell the user to resume
+				// bind event listener to find new values
+				$(".submitCalories").click(function()
+				{
+					//var cName = $("#newCardioName").val();
+					//var cCalories = $("#newCardioCalorieConsumption").val();
+					var formData = $(".addCardio").serialize();
+					// fire it to php
+					// TODO ADD VALIDATION SO CALORIES CAN ONLY BE AN INTEGER
+					$.ajax(
+					{
+						type: "POST",
+						url: globalURL + "php/module_manage_exercise_types.php",
+						data: formData,
+						success: function(response)
+						{
+							// redraw the exercises
+							$(".cardio_panel").append("<div class='tab_item'>" + response + "</div>");
+							makeEventListeners();
+						}
+					});
+				});
+				$("#addCardio").html("Resume");
+				// using "callbacks" to reset the .one() functionality
+				$("#addCardio").on("click", function()
+				{
+					bindButton("#addCardio");
+					$(".addCardio").fadeOut(500, function()
+					{
+						$(".addCardio").remove();
+						$("#addCardio").html("Add");
+						$("#addCardio").hide().fadeIn();
+					});
+				});
+			}
 
-      //IF EDITING
-      else if (element == "#editCardio")
-      {
-        $("#cardio_completed_panel p").fadeOut(100);
+			//IF EDITING
+			else if (element == "#editCardio")
+			{
+				$("#cardio_completed_panel p").fadeOut(100);
 
-        for (keys in entireString)
-        {
-          $("#cardio_completed_panel").append("\
-            <form class='editCardio' id='editCardio" + entireString[keys].exercise_name + "_form'>\
-            <input type='text' name='existingCardioName' class='existingCardioName' value='" + entireString[keys].exercise_name + "'/>\
-            <input type='text' name='newCardioCalorieConsumption' class='existingCardioCalorieConsumption' value='" + entireString[keys].calorie_consumption_per_minute + "'/>\
-            <input type='hidden' name='int' class='existingId' value='" + entireString[keys].id + "'/>\
-            <input type='button' value='Modify Exercise' class='submitCalories' id='submitCardioForm" + entireString[keys].exercise_name + "'/>\
-            </form>");
+				for (keys in entireString)
+				{
+					$("#cardio_completed_panel").append("\
+						<form class='editCardio' id='editCardio" + entireString[keys].exercise_name + "_form'>\
+						<input type='text' name='existingCardioName' class='existingCardioName' value='" + entireString[keys].exercise_name + "'/>\
+						<input type='text' name='newCardioCalorieConsumption' class='existingCardioCalorieConsumption' value='" + entireString[keys].calorie_consumption_per_minute + "'/>\
+						<input type='hidden' name='int' class='existingId' value='" + entireString[keys].id + "'/>\
+						<input type='button' value='Modify Exercise' class='submitCalories' id='submitCardioForm" + entireString[keys].exercise_name + "'/>\
+						</form>");
 
-          $(".editCardio").each(function(i)
-          {
-            $(this).delay((i + 1) * 100).hide().fadeIn();
-          });
+					$(".editCardio").each(function(i)
+					{
+						$(this).delay((i + 1) * 100).hide().fadeIn();
+					});
 
-          $("#submitCardioForm" + entireString[keys].exercise_name).click(function(event)
-          {
-            // traverse that dom motherfucker!
-            var currentName = $(this)[0].parentNode[0].value;
-            var currentQuant = $(this)[0].parentNode[1].value;
-            var exist = $(this)[0].parentNode[2].value;
+					$("#submitCardioForm" + entireString[keys].exercise_name).click(function(event)
+					{
+						// traverse that dom motherfucker!
+						var currentName = $(this)[0].parentNode[0].value;
+						var currentQuant = $(this)[0].parentNode[1].value;
+						var exist = $(this)[0].parentNode[2].value;
 
-            $.ajax(
-            {
-              type: "POST",
-              url: globalURL + "php/module_manage_exercise_types.php",
-              data:
-              {
-                existingId: exist,
-                modName: currentName,
-                modQuant: currentQuant
-              },
-              success: function(response)
-              {
-                var targ = event.currentTarget.form.id;
+						$.ajax(
+						{
+							type: "POST",
+							url: globalURL + "php/module_manage_exercise_types.php",
+							data:
+							{
+								existingId: exist,
+								modName: currentName,
+								modQuant: currentQuant
+							},
+							success: function(response)
+							{
+								var targ = event.currentTarget.form.id;
 
-                $("#"+targ).fadeOut(500, function()
-                {
-                   $("#"+targ).remove();
-                });
+								$("#"+targ).fadeOut(500, function()
+								{
+									 $("#"+targ).remove();
+								});
 
-                gatherExercises(true)
+								gatherExercises(true)
 
-              }
-            });
-          })
-        }
+							}
+						});
+					})
+				}
 
-        $("#editCardio").html("Close");
+				$("#editCardio").html("Close");
 
-        $("#editCardio").on("click", function()
-        {
-          bindButton("#editCardio");
-          $(".editCardio").each(function()
-          {
-            $(this).remove();
-            $("#editCardio").html("Edit");
-          });
-        });
-      }
+				$("#editCardio").on("click", function()
+				{
+					bindButton("#editCardio");
+					$(".editCardio").each(function()
+					{
+						$(this).remove();
+						$("#editCardio").html("Edit");
+					});
+				});
+			}
 
 
 
-    });
-  });
+		});
+	});
 }
 
 $(".toggle input[type='checkbox']").click(function(){
-  var isChecked = $(".toggle input[type='checkbox']").is(":checked");
+	var isChecked = $(".toggle input[type='checkbox']").is(":checked");
 
-  if (isChecked)
-  {
-    $(".messages").html("Gym Visited");
-    $(".messages").addClass("switched");
-    $(".toggle input[type='checkbox']").attr("disabled",true);
+	if (isChecked)
+	{
+		$(".messages").html("Gym Visited");
+		$(".messages").addClass("switched");
+		$(".toggle input[type='checkbox']").attr("disabled",true);
 
-    $.ajax(
-      {
-        type: "POST",
-        url: globalURL + "php/module_manage_exercises.php",
-        data: {
-          checked: true,
-          date: whatDate()
-        },
-        success: function(response)
-        {
-          console.log(response);
-        }
-    });
-  }
-  else
-  {
-    $(".messages").html("Gym Not Visited");
-    $(".messages").removeClass("switched")
-  }
+		$.ajax(
+			{
+				type: "POST",
+				url: globalURL + "php/module_manage_exercises.php",
+				data: {
+					checked: true,
+					date: whatDate()
+				},
+				success: function(response)
+				{
+					console.log(response);
+				}
+		});
+	}
+	else
+	{
+		$(".messages").html("Gym Not Visited");
+		$(".messages").removeClass("switched")
+	}
 
 });

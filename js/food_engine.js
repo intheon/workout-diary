@@ -23,28 +23,6 @@ function drawSomething(tag,quantity,uniqueLabel)
 		</div>");
 }
 
-// just takes a json string, loops through it, adds to an array and calculates the total value.
-function calculateCalories(json)
-{
-	var parsedObject = JSON.parse(json);
-	var array = [];
-	var total = 0;
-
-	for (properties in parsedObject)
-	{
-		for (subProperties in parsedObject[properties])
-		{
-			array.push(parseInt(parsedObject[properties][subProperties]));
-		}
-	}
-
-	$.each(array,function(){
-		total += this;
-	});
-
-	return total;
-}
-
 function assignDelete()
 {
 
