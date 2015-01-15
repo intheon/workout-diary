@@ -159,13 +159,14 @@ var exercises = [];
 
 function manageSubmitAll(frame)
 {
-	$("."+frame+"_submit_all form input").one("click", function()
+	$("."+frame+"_submit_all form input").click(function()
 	{
 		$("."+frame+"_forms form input[type='text']").each(function(i)
 		{
 			var targetValue = $(this).val();
 			var targetFullName = $(this).context.id;
 			var targetName = targetFullName.substr(0,targetFullName.length-6);
+			var calories = $(this).data("cals");
 
 			var r = new RegExp("^[0-9]*$");
 
@@ -181,62 +182,63 @@ function manageSubmitAll(frame)
 			}
 			else
 			{
-				exercises.push({name: targetName, value: targetValue});
+				exercises.push({name: targetName, value: targetValue, calories: calories,});
+
+				$("."+frame+"_forms form").each(function(i)
+				{
+					$(this).delay((i + 1) * 300).fadeOut(function()
+					{
+						$(this).hide();
+						$("."+frame+"_submit_all form").fadeOut(function()
+						{
+							$(this).hide();
+						});
+					});
+				});
 			}
 		});
 
 		submitToDB(JSON.stringify(exercises));
-
-		$("."+frame+"_forms form").each(function(i)
-		{
-			$(this).delay((i + 1) * 300).fadeOut(function()
-			{
-				$(this).hide();
-				$("."+frame+"_submit_all form").fadeOut(function()
-				{
-					$(this).hide();
-				});
-			});
-		});
 	});
 }
 
 function submitToDB(json)
 {
+
 	var parsedObject = JSON.parse(json);
-		var array = [];
-		var total = 0;
 
-		for (properties in parsedObject)
+	var array = [];
+	var total = 0;
+
+	for (properties in parsedObject)
+	{
+		array.push(parseInt(parsedObject[properties].value * parsedObject[properties].calories));
+	}
+
+	$.each(array,function(){
+		total += this;
+	});
+
+	// build an object
+	var formData = {
+		date_done: whatDate(),
+		json: json,
+		calories_total: total,
+	};
+
+	// send to php
+
+	$.ajax(
+	{
+		type: "POST",
+		url: globalURL + "php/module_push_exercises.php",
+		data: formData,
+		success: function(response)
 		{
-			array.push(parseInt(parsedObject[properties].value));
+			console.log(response);
 		}
+	});
 
-		$.each(array,function(){
-				total += this;
-		});
-
-		// build an object
-		var formData = {
-			date_done: whatDate(),
-			json: json,
-			calories_total: total,
-		};
-
-		// send to php
-
-		$.ajax(
-		{
-			type: "POST",
-			url: globalURL + "php/module_push_exercises.php",
-			data: formData,
-			success: function(response)
-			{
-				console.log("WINNER");
-
-				console.log(response);
-			}
-		});
 }
 
 

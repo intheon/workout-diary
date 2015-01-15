@@ -2,6 +2,11 @@
 
 session_start();
 
+
+// TODO 
+
+// HANDLE MULTIPLE INSTANCES
+
 // this gets passed a shit ton of params
 require "db_conf.php";
 
