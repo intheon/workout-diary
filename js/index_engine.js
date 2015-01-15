@@ -7,6 +7,10 @@ var cDate;
 var weekCount;
 var user;
 
+String.prototype.toProperCase = function () {
+    return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
+
 $(document).ready(function(){
 	// returns the current date
 	cDate = whatDate();
@@ -27,12 +31,10 @@ $(document).ready(function(){
 	$.ajax({
 		type: "POST",
 		url:  globalURL + "php/module_pull_exercises.php",
-		data: 
-		{
-			filter: whatDate()
-		},
+		data: "dateFilter=" + cDate,
 		success: function(exercises)
 		{
+			//console.log(exercises);
 			writeExercises(exercises);
 		}
 	});
@@ -94,19 +96,72 @@ function writeAthlete(resp)
 
 function writeExercises(exerciseString)
 {
-
-	// the entire json string from the db decoded
-	var eString = JSON.parse(exerciseString);
-
 	if (exerciseString.length <= 2)
 	{
 		$("#exercise_output").hide();
 	}
 	else
 	{
-		if (eString[0].gym_visited == 1)
+		// the entire json string from the db decoded
+		var eString = JSON.parse(exerciseString);
+
+		// CALORIES
+
+		// update the calories burned module by adding this value to it.
+
+		// burned
+		var exerciseCalories = parseInt(eString[0].calories_total);
+
+		// whatever has passed through the day
+		var newCalories = parseInt($("#calories_out").html());
+
+		// add together
+			newCalories += exerciseCalories;
+
+		// update
+
+			$("#calories_out").html(newCalories);
+
+		// EXERCISES LISTING
+
+		// a counter
+		var itemQ = 0;
+
+		$("#exercise_output p").html("");
+
+		for (i = 0; i <= eString.length; i++)
 		{
-			checkForCurrentDate(true)
+			var p = JSON.parse(eString[i].json);
+
+			for (index in p)
+			{
+				itemQ++
+
+				var name = p[index].name;
+					name = name.toProperCase();
+
+				var calories = Math.floor(p[index].value * p[index].calories);
+
+				$("#exercise_output p").append("<span class='database_output_panel'>\
+						<span class='item_number'>"+itemQ+"</span>\
+						<span class='item_description'>"+name+"</span>\
+						<span class='item_sub_description'>("+calories+" Calories)</span>\
+					</span>\
+				");
+			}
+
+
+					/*
+					itemQ++
+
+
+					$("#exercise_output p").append("<span class='database_output_panel'>\
+							<span class='item_number'>"+itemQ+"</span>\
+							<span class='item_description'>"+p[k][values]+"</span>\
+							<span class='item_sub_description'>("+p[k][values]+" Calories)</span>\
+						</span>\
+					");
+       */
 		}
 
 	}

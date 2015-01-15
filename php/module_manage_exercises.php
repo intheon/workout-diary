@@ -10,7 +10,7 @@ if (isset($_POST['checkForVisit']) && isset($_SESSION['username']))
 	$date = $_POST['date'];
 
 
-	$result = mysqli_query($connect,"SELECT * FROM exercises_log WHERE date_done = '$date' AND user = '$loggedInUser'");
+	$result = mysqli_query($connect,"SELECT * FROM exercises_log WHERE date_done = '$date' AND owner = '$loggedInUser'");
 
 	if ($result->num_rows <= 0)
 	{

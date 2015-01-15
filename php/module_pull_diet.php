@@ -1,6 +1,5 @@
 <?php
 
-
 require "db_conf.php";
 
 session_start();

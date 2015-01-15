@@ -8,11 +8,7 @@ $(document).ready(function()
 	gatherExercises("types_cardio");
 	gatherExercises("types_weights");
 
-	//gymVisited();
-
- //bindButton("#addCardio");
-
-	//bindButton("#editCardio");
+	gymVisited();
 
 });
 
@@ -254,7 +250,6 @@ function gymVisited()
 		},
 		success: function(response)
 		{
-			console.log(response);
 			if (response == "nothing")
 			{
 				$(".messages").html("Gym Not Visited");
@@ -270,165 +265,3 @@ function gymVisited()
 		}
 	});
 }
-
-
-// ADDING A NEW CARDIO EXERCISE
-
-/*
-function bindButton(element)
-{
-	$(element).unbind("click").one("click", function()
-	{
-		$(".information_panel p").fadeOut(500, function()
-		{
-
-			// IF ADDING
-			if (element == "#addCardio")
-			{
-				$(".information_panel").append("\
-						<form class='addCardio'>\
-						<input type='text' name='newCardioName' id='newCardioName' placeholder='Name'/>\
-						<input type='text' name='newCardioCalorieConsumption' id='newCardioCalorieConsumption' placeholder='Calorie consumption per minute'/>\
-						<input type='button' value='Add new exercise' class='submitCalories'/>\
-						</form>");
-				// this fades it in nicely
-				$(".addCardio").hide().fadeIn();
-				// change the text to tell the user to resume
-				// bind event listener to find new values
-				$(".submitCalories").click(function()
-				{
-					//var cName = $("#newCardioName").val();
-					//var cCalories = $("#newCardioCalorieConsumption").val();
-					var formData = $(".addCardio").serialize();
-					// fire it to php
-					// TODO ADD VALIDATION SO CALORIES CAN ONLY BE AN INTEGER
-					$.ajax(
-					{
-						type: "POST",
-						url: globalURL + "php/module_manage_exercise_types.php",
-						data: formData,
-						success: function(response)
-						{
-							// redraw the exercises
-							$(".cardio_panel").append("<div class='tab_item'>" + response + "</div>");
-							makeEventListeners();
-						}
-					});
-				});
-				$("#addCardio").html("Resume");
-				// using "callbacks" to reset the .one() functionality
-				$("#addCardio").on("click", function()
-				{
-					bindButton("#addCardio");
-					$(".addCardio").fadeOut(500, function()
-					{
-						$(".addCardio").remove();
-						$("#addCardio").html("Add");
-						$("#addCardio").hide().fadeIn();
-					});
-				});
-			}
-
-			//IF EDITING
-			else if (element == "#editCardio")
-			{
-				$("#cardio_completed_panel p").fadeOut(100);
-
-				for (keys in entireString)
-				{
-					$("#cardio_completed_panel").append("\
-						<form class='editCardio' id='editCardio" + entireString[keys].exercise_name + "_form'>\
-						<input type='text' name='existingCardioName' class='existingCardioName' value='" + entireString[keys].exercise_name + "'/>\
-						<input type='text' name='newCardioCalorieConsumption' class='existingCardioCalorieConsumption' value='" + entireString[keys].calorie_consumption_per_minute + "'/>\
-						<input type='hidden' name='int' class='existingId' value='" + entireString[keys].id + "'/>\
-						<input type='button' value='Modify Exercise' class='submitCalories' id='submitCardioForm" + entireString[keys].exercise_name + "'/>\
-						</form>");
-
-					$(".editCardio").each(function(i)
-					{
-						$(this).delay((i + 1) * 100).hide().fadeIn();
-					});
-
-					$("#submitCardioForm" + entireString[keys].exercise_name).click(function(event)
-					{
-						// traverse that dom motherfucker!
-						var currentName = $(this)[0].parentNode[0].value;
-						var currentQuant = $(this)[0].parentNode[1].value;
-						var exist = $(this)[0].parentNode[2].value;
-
-						$.ajax(
-						{
-							type: "POST",
-							url: globalURL + "php/module_manage_exercise_types.php",
-							data:
-							{
-								existingId: exist,
-								modName: currentName,
-								modQuant: currentQuant
-							},
-							success: function(response)
-							{
-								var targ = event.currentTarget.form.id;
-
-								$("#"+targ).fadeOut(500, function()
-								{
-									 $("#"+targ).remove();
-								});
-
-								gatherExercises(true)
-
-							}
-						});
-					})
-				}
-
-				$("#editCardio").html("Close");
-
-				$("#editCardio").on("click", function()
-				{
-					bindButton("#editCardio");
-					$(".editCardio").each(function()
-					{
-						$(this).remove();
-						$("#editCardio").html("Edit");
-					});
-				});
-			}
-
-
-
-		});
-	});
-}
-*/
-
-$(".toggle input[type='checkbox']").click(function(){
-	var isChecked = $(".toggle input[type='checkbox']").is(":checked");
-
-	if (isChecked)
-	{
-		$(".messages").html("Gym Visited");
-		$(".messages").addClass("switched");
-		$(".toggle input[type='checkbox']").attr("disabled",true);
-
-		$.ajax(
-			{
-				type: "POST",
-				url: globalURL + "php/module_manage_exercises.php",
-				data: {
-					checked: true,
-					date: whatDate()
-				},
-				success: function(response)
-				{
-					console.log(response);
-				}
-		});
-	}
-	else
-	{
-		$(".messages").html("Gym Not Visited");
-		$(".messages").removeClass("switched")
-	}
-
-});

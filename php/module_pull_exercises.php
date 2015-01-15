@@ -1,30 +1,29 @@
 <?php
 
-session_start();
-
 require "db_conf.php";
 
-if (isset($_POST['filter']) && isset($_SESSION['username']))
+session_start();
+
+$loggedInUser = $_SESSION['username'] ;
+
+if (isset($_POST['dateFilter']))
 {
+	$dateParam = $_POST['dateFilter'];
 
-	$loggedInUser = $_SESSION['username'];
-
-	$filterBy = $_POST['filter'];
-
-	$result = mysqli_query($connect,"SELECT * FROM exercise_index WHERE date = '$filterBy' AND user_id = '$loggedInUser' ");
-
+	$sql = mysqli_query($connect,"SELECT * FROM `exercises_log` WHERE date_done = '$dateParam' AND owner = '$loggedInUser'");
+	
 	$json = array();
 
-	while($row = mysqli_fetch_assoc($result))
+	while ($row = mysqli_fetch_assoc($sql))
 	{
 		$json[] =  $row;
 	}
 
-
-	mysqli_close($connect);
-
 	echo json_encode($json);
 
 }
+
+
+
 
 ?>
