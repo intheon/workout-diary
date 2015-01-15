@@ -6,20 +6,15 @@ session_start();
 require "db_conf.php";
 
 	// store the post variables into their own vars
-	$exercise = $_POST["ex_name"];
-	$quantity = $_POST["quantity"];
-	$totalCals = $_POST["calories_total"];
 	$date = $_POST["date_done"];
+	$json = $_POST["json"];
+	$totalCals = $_POST["calories_total"];
 	$loggedInUser = $_SESSION['username'] ;
 
-
 	// queries
-	$sql = mysqli_query($connect,"INSERT INTO exercises_log (exercise_name,date_done,calories_total,minutes_quantity,user) VALUES ('$exercise','$date','$totalCals','$quantity','$loggedInUser')");
+	$sql = mysqli_query($connect,"INSERT INTO exercises_log (date_done,json,calories_total,owner) VALUES ('$date','$json','$totalCals','$loggedInUser')");
 	
 	mysqli_close($connect);
-
-
-?>
 
 
 ?>

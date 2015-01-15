@@ -1,4 +1,5 @@
 var entireString;
+var attr = [];
 var count = 0;
 var previouslyClicked = [];
 
@@ -29,7 +30,9 @@ function gatherExercises(type)
 		{
 			// on success you get this huge json string or an empty response
 			// just pass it to a parsing function
+			attr.push(response);
 			drawHTML(response);
+
 		}
 	});
 }
@@ -52,7 +55,8 @@ function drawHTML(raw)
 		{
 			// spit out each name
 			var exNames = entireString[properties].exercise_name;
-			$("." + type).append("<div class='tab_item'>" + exNames + "</div>");
+			var exCals = entireString[properties].calorie_consumption_per_minute;
+			$("." + type).append("<div class='tab_item' data-exercise-name="+exNames+" data-calories="+exCals+">" + exNames + "</div>");
 		}
 
 		makeEventListeners(type);
@@ -97,14 +101,16 @@ function showForm(formName,frame)
 		frames.push(frame);
 		previouslyClicked.push(formName);
 		manageSubmitAll(frame)
-		drawSubForm(formName,frame);
+		console.log(formName,frame);
+		//drawSubForm(formName,frame);
 	}
 	else
 	{
 		if ($.inArray(formName,previouslyClicked) === -1)
 		{
 			previouslyClicked.push(formName);
-			drawSubForm(formName,frame);
+					console.log(formName,frame,entireString);
+			//drawSubForm(formName,frame);
 		}
 		else
 		{
@@ -112,19 +118,49 @@ function showForm(formName,frame)
 		}
 	}
 }
+var testArr = [];
 
 function drawSubForm(formName,frame)
 {
 	var name = formName.toLowerCase();
+	var e, c;
+
+	//console.log(formName);
+
+	for (index in attr)
+	{
+		var jsonFrameName = attr[index];
+			jsonFrameName = JSON.parse(jsonFrameName);
+
+			for (b = 1; b < jsonFrameName.length; b++)
+			{
+				e = jsonFrameName[b].exercise_name;
+				c = jsonFrameName[b].calorie_consumption_per_minute;
+				test5(frame,formName,e,c)
+			}
+
+		var comp = "types_" + frame;
+
+
+	}
+	//console.log(testArr);
+
+
+
+
+}
+
+function test5()
+{
+	var cals = "test";
 
 	$("."+frame+"_forms").append("\
 		<form id='" + name + "_form'>\
 		<p>How much " + name + " did you do?</p>\
-		<input type='text' placeholder='Quantity (minutes done)' id='" + name + "_input'>\
+		<input type='text' placeholder='Quantity (minutes done)' id='" + name + "_input' data-name='"+e+"' data-cals='"+c+"' ';>\
 		</form>");
 
 	$("#" + name + "_form").hide().fadeIn(600);
-
 }
 
 var exercises = [];
@@ -195,11 +231,8 @@ function submitToDB(json)
 			calories_total: total,
 		};
 
-		console.log(formData);
-
-		
 		// send to php
-		/*
+
 		$.ajax(
 		{
 			type: "POST",
@@ -207,13 +240,11 @@ function submitToDB(json)
 			data: formData,
 			success: function(response)
 			{
-				$("#"+name+"_form").fadeOut(500, function()
-				{
-					$(this).remove();
-				});
+				console.log("WINNER");
+
+				console.log(response);
 			}
 		});
-		*/
 }
 
 
