@@ -24,6 +24,11 @@
     flex:1;
 }
 
+#exercise_output
+{
+  border-right:3px dotted #363131;
+}
+
 #exercises_illustration
 {
 	color:#E5E5E5;
@@ -54,19 +59,40 @@
     cursor: pointer;
 }
 
+.database
+{
+  display:flex;
+}
+.database_output
+{
+  padding:1%;
+  flex:1;
+}
+.database_output_panel
+{
+  display:flex;
+  margin-bottom:1.5%;
+  margin-top:1.5%;
+  padding:1.5%;
+  background-color: #363131;
+  border-radius: 11px;
+}
 
 .information_panel
 {
 	width:100%;
-    margin-top:1.5%;
+  margin-top:1.5%;
 }
 
-.information_panel span
+.database_output_panel .item_number
 {
-	   font-size:1.2em;
-    color:#686872;
-    border-bottom:1px solid;
-    border-color:#423E3E;
+  color:#484343;
+  margin-top:-1.2%;
+    font-size:1.8em;
+}
+.database_output_panel .item_description
+{
+  margin-left:1%;
 }
 
 .first
@@ -76,25 +102,24 @@
     background-position: top right!important;
 }
 
-.database_output_panel
-{
-    display:flex;
-}
+
 .item_number
 {
-    font-size:2.1em; 
+  padding-top:0.6%;
+    font-size:4em; 
     flex-grow:0.2;  
 }
 .item_description
 {
-    padding-top:0.24em;
+    color:#686872;
     font-size:1.5em;  
     flex-grow:4; 
 }
 .item_sub_description
 {
+    color:#504C4C;
     font-size:1em; 
-    padding-top:0.8em;
+    padding-top:0.45em;
 
 }
 #calendar
@@ -278,11 +303,12 @@
 
 #modules_bar div
 {
-    padding:0.8%;
+    padding:1%;
     margin-top:0;
-    padding-bottom: 3px;
-    min-height:49px;
-    width:100%;
+    margin-right:1%;
 }
 
 }
+
+
+

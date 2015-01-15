@@ -79,6 +79,8 @@ if (!isset($_SESSION['username']))
 
             	<div id="debug"></div>
 
+            </div>
+
         </div> <!-- END THIRD -->
 
         <!-- <div class="information_panel">  FORTH PANEL | MOTIVATIONAL MESSAGES
@@ -96,15 +98,15 @@ if (!isset($_SESSION['username']))
 
         </div>  END FORTH -->
 
-        <div class="localstorage_panel_wrapper">
+        <div class="information_panel database">
 
-            <div class="localstorage_panel" id="exercise_output"> <!-- FIFTH PANEL | EXERCISES-->
-                <h1>Exercises done today</h1>
+            <div id="exercise_output" class="database_output"> <!-- FIFTH PANEL | EXERCISES-->
+                <h2>Exercises done today</h2>
                 <p>None.</p>
             </div> <!-- END FIFTH-->
 
-            <div class="localstorage_panel" id="food_output"> <!-- FIFTH SIXTH | FOOD AND DRINK-->
-                <h1>Food and drink consumed today</h1>
+            <div id="food_output" class="database_output"> <!-- FIFTH SIXTH | FOOD AND DRINK-->
+                <h2>Food and drink consumed today</h2>
                 <p>None.</p>
             </div> <!-- END SIXTH-->
 

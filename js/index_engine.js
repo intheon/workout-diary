@@ -92,6 +92,8 @@ function writeAthlete(resp)
 	var dateObj = new Date();
 	var dateHours =	dateObj.getHours();
 	$("#calories_out").html(Math.round((user[0].calories / 24)) * dateHours);
+	$("#exercises_illustration .jumbo").html(resp[0].gym_visits_per_week);
+
 }
 
 function writeExercises(exerciseString)
