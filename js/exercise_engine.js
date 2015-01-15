@@ -101,16 +101,14 @@ function showForm(formName,frame)
 		frames.push(frame);
 		previouslyClicked.push(formName);
 		manageSubmitAll(frame)
-		console.log(formName,frame);
-		//drawSubForm(formName,frame);
+		drawSubForm(formName,frame);
 	}
 	else
 	{
 		if ($.inArray(formName,previouslyClicked) === -1)
 		{
 			previouslyClicked.push(formName);
-					console.log(formName,frame,entireString);
-			//drawSubForm(formName,frame);
+			drawSubForm(formName,frame);
 		}
 		else
 		{
@@ -123,41 +121,35 @@ var testArr = [];
 function drawSubForm(formName,frame)
 {
 	var name = formName.toLowerCase();
-	var e, c;
-
-	//console.log(formName);
 
 	for (index in attr)
 	{
-		var jsonFrameName = attr[index];
-			jsonFrameName = JSON.parse(jsonFrameName);
+		var jsonString = attr[index];
 
-			for (b = 1; b < jsonFrameName.length; b++)
+			jsonString = JSON.parse(jsonString);
+
+			jsonString.shift()
+
+			for (index in jsonString)
 			{
-				e = jsonFrameName[b].exercise_name;
-				c = jsonFrameName[b].calorie_consumption_per_minute;
-				test5(frame,formName,e,c)
+				if (formName == jsonString[index].exercise_name)
+				{
+					var calories = jsonString[index].calorie_consumption_per_minute;
+				}
 			}
-
-		var comp = "types_" + frame;
-
-
 	}
-	//console.log(testArr);
-
-
-
+	drawSubForms(frame,name,name,calories);
 
 }
 
-function test5()
+function drawSubForms(frame,name,e,c)
 {
 	var cals = "test";
 
 	$("."+frame+"_forms").append("\
 		<form id='" + name + "_form'>\
 		<p>How much " + name + " did you do?</p>\
-		<input type='text' placeholder='Quantity (minutes done)' id='" + name + "_input' data-name='"+e+"' data-cals='"+c+"' ';>\
+		<input type='text' placeholder='Quantity (minutes done)' id='" + name + "_input' data-name='"+e+"' data-cals='"+c+"';>\
 		</form>");
 
 	$("#" + name + "_form").hide().fadeIn(600);
@@ -280,6 +272,7 @@ function gymVisited()
 
 // ADDING A NEW CARDIO EXERCISE
 
+/*
 function bindButton(element)
 {
 	$(element).unbind("click").one("click", function()
@@ -405,6 +398,7 @@ function bindButton(element)
 		});
 	});
 }
+*/
 
 $(".toggle input[type='checkbox']").click(function(){
 	var isChecked = $(".toggle input[type='checkbox']").is(":checked");
